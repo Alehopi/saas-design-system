@@ -175,6 +175,7 @@ export const WithAction: Story = {
 
 // All variants
 export const AllVariants: Story = {
+  args: {},
   render: () => (
     <div className="space-y-12 p-6 max-w-4xl">
       <div>
@@ -218,6 +219,7 @@ export const AllVariants: Story = {
 
 // All states
 export const AllStates: Story = {
+  args: {},
   render: () => (
     <div className="space-y-8 p-6 max-w-4xl bg-slate-50 dark:bg-slate-900 rounded-lg">
       <section>
@@ -344,6 +346,7 @@ export const AllStates: Story = {
 
 // Real world examples
 export const RealWorldExamples: Story = {
+  args: {},
   render: () => (
     <div className="space-y-8 p-6 max-w-4xl">
       <section>

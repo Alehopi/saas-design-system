@@ -4,8 +4,6 @@ import {
   Toast,
   ToastProvider,
   ToastViewport,
-  ToastTitle,
-  ToastDescription,
   ToastClose,
   ToastAction,
   ToastContent,

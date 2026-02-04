@@ -120,6 +120,7 @@ export const Playground: Story = {
 
 // Default
 export const Default: Story = {
+  args: {},
   render: () => (
     <div className="w-80">
       <FieldGroup
@@ -134,6 +135,7 @@ export const Default: Story = {
 
 // Required field
 export const Required: Story = {
+  args: {},
   render: () => (
     <div className="w-80">
       <FieldGroup
@@ -152,6 +154,7 @@ export const Required: Story = {
 
 // With error
 export const WithError: Story = {
+  args: {},
   render: () => (
     <div className="w-80">
       <FieldGroup
@@ -175,6 +178,7 @@ export const WithError: Story = {
 
 // Compact spacing
 export const CompactSpacing: Story = {
+  args: {},
   render: () => (
     <div className="w-80">
       <FieldGroup
@@ -190,6 +194,7 @@ export const CompactSpacing: Story = {
 
 // Large spacing
 export const LargeSpacing: Story = {
+  args: {},
   render: () => (
     <div className="w-80">
       <FieldGroup
@@ -205,6 +210,7 @@ export const LargeSpacing: Story = {
 
 // All spacing options
 export const AllSpacing: Story = {
+  args: {},
   render: () => (
     <div className="space-y-8 max-w-md">
       <div>
@@ -243,6 +249,7 @@ export const AllSpacing: Story = {
 
 // All states
 export const AllStates: Story = {
+  args: {},
   render: () => (
     <div className="space-y-8 p-6 max-w-md bg-slate-50 dark:bg-slate-900 rounded-lg">
       <section>
@@ -323,6 +330,7 @@ export const AllStates: Story = {
 
 // Real world example
 export const RealWorldExamples: Story = {
+  args: {},
   render: () => (
     <div className="space-y-8 p-6 max-w-md">
       <form className="space-y-6">
@@ -380,6 +388,7 @@ export const RealWorldExamples: Story = {
 
 // Validation states
 export const ValidationStates: Story = {
+  args: {},
   render: () => (
     <div className="space-y-8 p-6 max-w-md">
       <section>

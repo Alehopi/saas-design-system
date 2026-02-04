@@ -42,6 +42,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {},
   render: () => (
     <Accordion type="single" collapsible className="w-[500px]">
       <AccordionItem value="item-1">
@@ -67,6 +68,7 @@ export const Default: Story = {
 };
 
 export const Multiple: Story = {
+  args: {},
   render: () => (
     <Accordion type="multiple" className="w-[500px]">
       <AccordionItem value="item-1">
@@ -88,6 +90,7 @@ export const Multiple: Story = {
 };
 
 export const DefaultOpen: Story = {
+  args: {},
   render: () => (
     <Accordion type="single" defaultValue="item-1" collapsible className="w-[500px]">
       <AccordionItem value="item-1">
@@ -103,6 +106,7 @@ export const DefaultOpen: Story = {
 };
 
 export const FAQ: Story = {
+  args: {},
   render: () => (
     <Accordion type="single" collapsible className="w-[600px]">
       <AccordionItem value="item-1">
@@ -138,6 +142,7 @@ export const FAQ: Story = {
 };
 
 export const WithRichContent: Story = {
+  args: {},
   render: () => (
     <Accordion type="single" collapsible className="w-[600px]">
       <AccordionItem value="item-1">
@@ -185,6 +190,7 @@ export const WithRichContent: Story = {
 };
 
 export const CompactSpacing: Story = {
+  args: {},
   render: () => (
     <Accordion type="single" collapsible className="w-[500px]">
       <AccordionItem value="item-1" className="border-b-0">
@@ -206,6 +212,7 @@ export const CompactSpacing: Story = {
 };
 
 export const LongContent: Story = {
+  args: {},
   render: () => (
     <Accordion type="single" collapsible className="w-[600px]">
       <AccordionItem value="item-1">
@@ -233,6 +240,7 @@ export const LongContent: Story = {
 };
 
 export const WithBorders: Story = {
+  args: {},
   render: () => (
     <div className="w-[600px] rounded-lg border border-slate-200 dark:border-slate-800">
       <Accordion type="single" collapsible>

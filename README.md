@@ -1,5 +1,19 @@
 # APEX Design System
 
+<div align="center">
+
+![Version](https://img.shields.io/badge/version-0.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript)
+![Storybook](https://img.shields.io/badge/Storybook-10.2.1-FF4785?logo=storybook)
+
+[📚 View Live Demo](https://your-apex-storybook.vercel.app) • [🐛 Report Bug](https://github.com/Alehopi/saas-design-system/issues) • [✨ Request Feature](https://github.com/Alehopi/saas-design-system/issues)
+
+</div>
+
+---
+
 A comprehensive, production-ready design system for enterprise SaaS applications. Built with modern web technologies and designed for scalability, accessibility, and developer experience.
 
 ## ✨ Features
@@ -98,17 +112,23 @@ function App() {
 
 ## 📚 Documentation
 
-Explore the full component library and guidelines in Storybook:
+### 🌐 Live Documentation
+👉 **[View Live Storybook](https://your-apex-storybook.vercel.app)**
+
+Explore the complete component library, guidelines, and interactive examples online.
+
+### 💻 Local Development
+Run Storybook locally:
 
 ```bash
 npm run storybook
 ```
 
 Visit [http://localhost:6006](http://localhost:6006) to browse:
-- **Foundation** - Colors, typography, spacing
-- **Components** - All components with interactive examples
-- **Patterns** - Common composition patterns
-- **Guidelines** - Design principles and best practices
+- **Design Tokens** - Colors, typography, spacing
+- **Components** - 30+ components with interactive examples (organized by category: Inputs, Display, Feedback, Overlay, Navigation, Data Display, Utility)
+- **Patterns** - Common composition patterns (Forms, Layouts, Cards)
+- **Guidelines** - Theming guide, accessibility standards, design principles
 
 ## 🛠 Tech Stack
 
@@ -176,6 +196,46 @@ This design system is optimized for:
 2. **Clarity** - Clear visual hierarchy and intuitive interactions
 3. **Efficiency** - Optimized for productivity and task completion
 4. **Accessibility** - Usable by everyone, including keyboard and screen reader users
+
+## 🚀 Deployment
+
+### Deploy Storybook to Vercel
+
+Share your design system documentation with the world! Follow these simple steps:
+
+#### 1. Build Storybook
+```bash
+npm run build-storybook
+```
+This creates a `storybook-static/` folder with all the static files.
+
+#### 2. Deploy to Vercel
+- Push your code to GitHub
+- Go to [vercel.com](https://vercel.com) and sign up (free)
+- Click **"New Project"** → **"Import"**
+- Select your repository
+- Vercel will auto-detect Storybook settings
+- Click **"Deploy"**
+
+🎉 Your Storybook will be live at: `https://your-project.vercel.app`
+
+**Auto-deployment:** Every push to `main` branch automatically updates your live site!
+
+#### For detailed step-by-step instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+### Other Deployment Options
+
+**Netlify:**
+```bash
+npm run build-storybook
+# Drag and drop storybook-static/ folder to Netlify
+```
+
+**GitHub Pages:**
+```bash
+npm run build-storybook
+# Use GitHub Actions to deploy storybook-static/ folder
+```
 
 ## 📄 License
 

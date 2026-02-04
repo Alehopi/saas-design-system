@@ -97,7 +97,7 @@ const AvatarWithLabel = React.forwardRef<
   const avatarComponent = (
     <div className="relative">
       <Avatar size={size} className={className} ref={ref} {...props}>
-        {src && <AvatarImage src={src} alt={alt} />}
+        {src && <AvatarImage src={src} alt={alt || ''} />}
         <AvatarFallback>{fallback}</AvatarFallback>
       </Avatar>
       {status && (

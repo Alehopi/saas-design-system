@@ -226,7 +226,7 @@ const SelectWrapper: React.FC<SelectWrapperProps> = ({
   errorMessage,
   error = false,
   required = false,
-  size = 'md',
+  size: _size = 'md',
   children,
   className,
 }) => {

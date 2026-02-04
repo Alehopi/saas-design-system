@@ -43,7 +43,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
   render: () => (
     <SimpleTooltip content="This is a tooltip">
       <Button>Hover me</Button>
@@ -52,7 +51,6 @@ export const Default: Story = {
 };
 
 export const Top: Story = {
-  args: {},
   render: () => (
     <SimpleTooltip content="Tooltip on top" side="top">
       <Button>Top</Button>
@@ -61,7 +59,6 @@ export const Top: Story = {
 };
 
 export const Right: Story = {
-  args: {},
   render: () => (
     <SimpleTooltip content="Tooltip on right" side="right">
       <Button>Right</Button>
@@ -70,7 +67,6 @@ export const Right: Story = {
 };
 
 export const Bottom: Story = {
-  args: {},
   render: () => (
     <SimpleTooltip content="Tooltip on bottom" side="bottom">
       <Button>Bottom</Button>
@@ -79,7 +75,6 @@ export const Bottom: Story = {
 };
 
 export const Left: Story = {
-  args: {},
   render: () => (
     <SimpleTooltip content="Tooltip on left" side="left">
       <Button>Left</Button>
@@ -88,7 +83,6 @@ export const Left: Story = {
 };
 
 export const AllSides: Story = {
-  args: {},
   render: () => (
     <div className="flex gap-4">
       <SimpleTooltip content="Top" side="top">
@@ -108,7 +102,6 @@ export const AllSides: Story = {
 };
 
 export const WithIcon: Story = {
-  args: {},
   render: () => (
     <div className="flex items-center gap-2">
       <span className="text-sm">Need help?</span>
@@ -122,7 +115,6 @@ export const WithIcon: Story = {
 };
 
 export const OnIconButton: Story = {
-  args: {},
   render: () => (
     <div className="flex gap-2">
       <SimpleTooltip content="Information">
@@ -145,7 +137,6 @@ export const OnIconButton: Story = {
 };
 
 export const LongContent: Story = {
-  args: {},
   render: () => (
     <SimpleTooltip content="This is a longer tooltip message that provides more detailed information to the user.">
       <Button>Long tooltip</Button>
@@ -154,7 +145,6 @@ export const LongContent: Story = {
 };
 
 export const MultilineContent: Story = {
-  args: {},
   render: () => (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -173,7 +163,6 @@ export const MultilineContent: Story = {
 };
 
 export const OnDisabledButton: Story = {
-  args: {},
   render: () => (
     <SimpleTooltip content="This button is disabled">
       <span>
@@ -184,7 +173,6 @@ export const OnDisabledButton: Story = {
 };
 
 export const CustomDelay: Story = {
-  args: {},
   render: () => (
     <div className="flex gap-4">
       <SimpleTooltip content="Instant tooltip" delayDuration={0}>
@@ -201,7 +189,6 @@ export const CustomDelay: Story = {
 };
 
 export const InForm: Story = {
-  args: {},
   render: () => (
     <div className="w-[300px] space-y-4">
       <div className="space-y-2">
@@ -225,7 +212,6 @@ export const InForm: Story = {
 };
 
 export const InTable: Story = {
-  args: {},
   render: () => (
     <div className="rounded-lg border border-slate-200 dark:border-slate-800">
       <table className="w-full">
