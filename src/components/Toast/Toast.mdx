@@ -1,0 +1,132 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as ToastStories from './Toast.stories';
+
+<Meta of={ToastStories} />
+
+# Toast
+
+Toast notifications provide brief, auto-dismissing feedback about operations. They appear temporarily at the edge of the screen without interrupting the user's workflow.
+
+<Story of={ToastStories.Default} />
+
+
+## Overview
+
+Toasts deliver lightweight, non-intrusive messages that inform users about background processes, completed actions, or system status. They automatically disappear after a few seconds and don't require user action.
+
+## When to Use
+
+### Use Toast when:
+
+- **Action confirmation**: "File saved", "Email sent successfully"
+- **Background operations**: "Export complete", "Sync finished"
+- **Non-critical errors**: "Network timeout, retrying..."
+- **Temporary status**: Auto-disappearing feedback
+- **Non-blocking info**: Updates that don't require action
+
+### Don't use Toast when:
+
+- **Critical errors**: Use Dialog or Alert for important messages
+- **Requires action**: Use Dialog for confirmations
+- **Long messages**: Toasts should be brief (1-2 lines)
+- **Persistent info**: Use Alert for non-dismissing messages
+- **Complex content**: Keep it simple, toasts auto-dismiss
+
+## Variants
+
+### Default
+
+<Story of={ToastStories.Default} />
+
+### Success
+
+<Canvas of={ToastStories.Success} />
+
+### Error
+
+<Canvas of={ToastStories.Error} />
+
+### Warning
+
+<Canvas of={ToastStories.Warning} />
+
+### Info
+
+<Canvas of={ToastStories.Info} />
+
+## Features
+
+### With Action
+
+<Canvas of={ToastStories.WithAction} />
+
+### Auto Dismiss
+
+<Canvas of={ToastStories.AutoDismiss} />
+
+## Accessibility
+
+- **ARIA Live Region**: Announced to screen readers when they appear
+- **Keyboard Accessible**: Action buttons are keyboard accessible
+- **Auto-dismiss**: Configurable duration
+- **Focus Management**: Doesn't steal focus from current task
+
+## Best Practices
+
+### Do
+
+- Keep messages brief (under 60 characters)
+- Use appropriate variant for context
+- Auto-dismiss after 3-5 seconds
+- Position consistently (usually bottom-right)
+- Stack multiple toasts logically
+- Provide undo action when appropriate
+
+### Don't
+
+- Show critical errors in toasts
+- Use for long messages
+- Require user interaction for critical info
+- Show too many toasts at once
+- Block important UI elements
+
+## API Reference
+
+### Toast Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'success' \| 'error' \| 'warning' \| 'info'` | `'default'` | Visual style |
+| `title` | `string` | - | Toast title |
+| `description` | `string` | - | Toast description |
+| `duration` | `number` | `5000` | Time in ms before auto-dismiss |
+| `action` | `ReactNode` | - | Optional action button |
+| `onClose` | `() => void` | - | Callback when dismissed |
+
+### Usage Examples
+
+```tsx
+import { toast } from '@/components';
+
+// Simple toast
+toast({
+  title: "Success",
+  description: "File saved successfully",
+});
+
+// With action
+toast({
+  title: "Email sent",
+  action: <Button onClick={undo}>Undo</Button>,
+});
+
+// Different variants
+toast({ variant: "success", title: "Done!" });
+toast({ variant: "error", title: "Failed" });
+```
+
+## Related Components
+
+- **Alert** - Persistent inline messages
+- **Dialog** - Modal confirmations
+- **Snackbar** - Alternative notification style

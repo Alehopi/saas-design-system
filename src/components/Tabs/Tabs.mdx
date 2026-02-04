@@ -1,0 +1,123 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as TabsStories from './Tabs.stories';
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+Tabs organize content into multiple sections that users can navigate between. Only one tab's content is visible at a time, reducing clutter and cognitive load.
+
+<Story of={TabsStories.Default} />
+
+
+## Overview
+
+The Tabs component allows users to switch between different views or sections of related content within the same page. Tabs save space and help organize complex interfaces without overwhelming users.
+
+## When to Use
+
+### Use Tabs when:
+
+- **Related sections**: Different views of the same data
+- **Reducing scrolling**: Break long pages into sections
+- **Settings organization**: Group related settings
+- **Data views**: Different representations (list, grid, chart)
+- **Form steps**: Multi-step forms or wizards
+- **3-7 tabs**: Sweet spot for navigation
+
+### Don't use Tabs when:
+
+- **Sequential workflow**: Use stepper component
+- **Comparison needed**: Users need to see multiple sections
+- **Too many tabs**: More than 7 tabs overwhelm users (use navigation)
+- **Critical content**: Don't hide important info in tabs
+- **Mobile-first**: Consider alternative layouts
+
+## Features
+
+### With Cards
+
+<Canvas of={TabsStories.WithCards} />
+
+### Many Tabs
+
+<Canvas of={TabsStories.ManyTabs} />
+
+### Full Width
+
+<Canvas of={TabsStories.FullWidth} />
+
+### Vertical Layout
+
+<Canvas of={TabsStories.Vertical} />
+
+### With Disabled Tab
+
+<Canvas of={TabsStories.WithDisabledTab} />
+
+## Accessibility
+
+- **Keyboard Navigation**: Arrow keys navigate tabs, Tab moves to content
+- **ARIA Attributes**: `role="tablist"`, `role="tab"`, `role="tabpanel"`
+- **Focus Management**: Active tab receives focus
+- **Screen Readers**: Tab relationship announced
+
+## Best Practices
+
+### Do
+
+- Keep tab labels short (1-2 words)
+- Order tabs logically (most used first)
+- Maintain tab state when switching
+- Show active tab clearly
+- Use consistent tab style
+- Limit to 3-7 tabs
+
+### Don't
+
+- Use for sequential steps (use stepper)
+- Hide critical content in tabs
+- Change tabs automatically
+- Use too many tabs
+- Make tab labels too long
+
+## API Reference
+
+### Tabs Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'pills' \| 'underline'` | `'default'` | Visual style |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Tab layout |
+| `defaultValue` | `string` | - | Default active tab |
+| `value` | `string` | - | Controlled active tab |
+| `onValueChange` | `(value: string) => void` | - | Tab change callback |
+
+### Usage Examples
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components';
+
+<Tabs defaultValue="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">Overview</TabsTrigger>
+    <TabsTrigger value="tab2">Details</TabsTrigger>
+    <TabsTrigger value="tab3">Settings</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">
+    <p>Overview content</p>
+  </TabsContent>
+  <TabsContent value="tab2">
+    <p>Details content</p>
+  </TabsContent>
+  <TabsContent value="tab3">
+    <p>Settings content</p>
+  </TabsContent>
+</Tabs>
+```
+
+## Related Components
+
+- **Accordion** - Collapsible content sections
+- **Stepper** - Sequential workflow
+- **Navigation** - Page-level navigation

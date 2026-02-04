@@ -1,0 +1,137 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as AccordionStories from './Accordion.stories';
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+Accordions are collapsible sections that show and hide content. They help reduce page length and allow users to focus on relevant information.
+
+<Story of={AccordionStories.Default} />
+
+
+## Overview
+
+The Accordion component organizes content into collapsible panels. Users click headers to expand or collapse sections, revealing or hiding details. This pattern saves vertical space and reduces cognitive load.
+
+## When to Use
+
+### Use Accordion when:
+
+- **Long content**: Reducing page length
+- **Optional details**: Progressive disclosure
+- **FAQs**: Question and answer format
+- **Settings**: Grouping related settings
+- **Comparison**: Side-by-side sections (with multi-expand)
+- **Mobile**: Space-constrained interfaces
+
+### Don't use Accordion when:
+
+- **Critical content**: Users must see all information
+- **Short content**: Everything fits on screen
+- **Comparison needed**: Users need to see all sections
+- **Sequential reading**: Content flows linearly
+- **Too many items**: More than 10 sections become unwieldy
+
+## Behavior
+
+### Single Expand
+
+Only one section open at a time (default).
+
+<Canvas of={AccordionStories.Default} />
+
+### Multiple Expand
+
+Multiple sections can be open simultaneously.
+
+<Canvas of={AccordionStories.Multiple} />
+
+### Default Open
+
+An item can be expanded by default when the component loads.
+
+<Canvas of={AccordionStories.DefaultOpen} />
+
+## Real World Examples
+
+### FAQ
+
+<Canvas of={AccordionStories.FAQ} />
+
+### With Rich Content
+
+<Canvas of={AccordionStories.WithRichContent} />
+
+### With Borders
+
+<Canvas of={AccordionStories.WithBorders} />
+
+### Compact Spacing
+
+<Canvas of={AccordionStories.CompactSpacing} />
+
+## Accessibility
+
+- **Keyboard Navigation**: Enter/Space to toggle, Tab to navigate
+- **ARIA Attributes**: `aria-expanded`, `aria-controls`, `aria-labelledby`
+- **Focus Management**: Focus moves logically through items
+- **Screen Readers**: Expanded/collapsed state announced
+
+## Best Practices
+
+### Do
+
+- Use clear, descriptive headers
+- Start with most important section expanded
+- Keep headers scannable
+- Use consistent expand/collapse icons
+- Maintain state when switching pages
+- Group related content logically
+
+### Don't
+
+- Hide critical information
+- Use for very short content
+- Nest accordions deeply (max 1 level)
+- Make headers too long
+- Auto-collapse without user action
+
+## API Reference
+
+### Accordion Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `'single' \| 'multiple'` | `'single'` | Expansion behavior |
+| `collapsible` | `boolean` | `false` | Allow closing all items (single mode) |
+| `defaultValue` | `string \| string[]` | - | Default expanded items |
+| `value` | `string \| string[]` | - | Controlled expanded items |
+| `onValueChange` | `(value) => void` | - | Change callback |
+
+### Usage Examples
+
+```tsx
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components';
+
+<Accordion type="single" collapsible>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Section 1</AccordionTrigger>
+    <AccordionContent>
+      Content for section 1
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Section 2</AccordionTrigger>
+    <AccordionContent>
+      Content for section 2
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Related Components
+
+- **Tabs** - Horizontal content switching
+- **Collapse** - Single collapsible section
+- **Drawer** - Side panel overlay

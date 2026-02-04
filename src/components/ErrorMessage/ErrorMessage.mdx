@@ -1,0 +1,263 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as ErrorMessageStories from './ErrorMessage.stories';
+
+<Meta of={ErrorMessageStories} />
+
+# ErrorMessage
+
+Error messages inform users about validation errors or invalid input. They appear below fields when validation fails.
+
+<Canvas of={ErrorMessageStories.Playground} />
+
+<Controls of={ErrorMessageStories.Playground} />
+
+## Overview
+
+The ErrorMessage component displays validation errors and input problems to users. It uses red text and an optional alert icon to draw attention to issues that need to be resolved. The component includes `role="alert"` for screen reader announcements.
+
+## When to Use
+
+### Use ErrorMessage when:
+
+- **Validation errors**: Field doesn't meet requirements
+- **Required fields**: User skipped a required field
+- **Format errors**: Invalid email, phone, URL format
+- **Server errors**: Backend validation failures
+- **Constraint violations**: Value out of range, too long/short
+
+### Don't use ErrorMessage when:
+
+- **General help**: Use HelperText for instructions
+- **Success messages**: Use Toast or Alert
+- **Loading states**: Use Spinner
+- **Warnings**: Use Alert component with warning variant
+
+## Default State
+
+Error message with icon (default behavior).
+
+<Canvas of={ErrorMessageStories.Default} />
+
+## Without Icon
+
+Error message can be displayed without the alert icon.
+
+<Canvas of={ErrorMessageStories.WithoutIcon} />
+
+## Sizes
+
+ErrorMessage supports two sizes: small (sm) and medium (md - default).
+
+<Canvas of={ErrorMessageStories.AllSizes} />
+
+## All States
+
+View all error message variations and common error types.
+
+<Canvas of={ErrorMessageStories.AllStates} />
+
+## With Input
+
+ErrorMessage appears below the input field to show validation errors.
+
+<Canvas of={ErrorMessageStories.WithInput} />
+
+## Validation States
+
+Examples of common validation error scenarios.
+
+<Canvas of={ErrorMessageStories.ValidationStates} />
+
+## Real World Examples
+
+Common error message patterns used in production forms.
+
+<Canvas of={ErrorMessageStories.RealWorldExamples} />
+
+## Accessibility
+
+The ErrorMessage component follows WCAG 2.1 guidelines and implements the following accessibility features:
+
+- **Alert Role**: Uses `role="alert"` for immediate screen reader announcement
+- **Color Contrast**: Red text meets WCAG AA standards (4.5:1 minimum)
+- **Icon Support**: Alert icon provides visual cue (not relying on color alone)
+- **Clear Language**: Descriptive and actionable error messages
+- **ARIA Integration**: Can be linked to inputs via `aria-describedby`
+- **Live Region**: Errors announced when they appear
+
+### Associating Errors with Inputs
+
+Link error messages to inputs for better accessibility:
+
+```tsx
+<Input
+  id="email"
+  type="email"
+  aria-invalid="true"
+  aria-describedby="email-error"
+  className="border-red-500"
+/>
+<ErrorMessage id="email-error">
+  Please enter a valid email address.
+</ErrorMessage>
+```
+
+### Testing Recommendations
+
+- Test with screen readers (NVDA, JAWS, VoiceOver)
+- Verify errors are announced immediately when they appear
+- Check color contrast in both light and dark modes
+- Ensure error icon is decorative (not required for understanding)
+- Test that errors don't disappear too quickly
+
+## Best Practices
+
+### Do
+
+- Be specific about what's wrong ("Email is invalid")
+- Provide actionable guidance ("Enter a valid email address")
+- Show error immediately on blur or submit
+- Use clear, plain language (not technical jargon)
+- Include error icon for visual scanning
+- Use role="alert" for accessibility
+
+### Don't
+
+- Don't blame the user ("You entered...")
+- Don't use ALL CAPS or aggressive tone
+- Don't show multiple errors at once per field
+- Don't hide errors after showing them too quickly
+- Don't use technical error codes without explanation
+- Don't show errors before user interacts
+
+## API Reference
+
+### ErrorMessage Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Error message content |
+| `size` | `'sm' \| 'md'` | `'md'` | Text size |
+| `showIcon` | `boolean` | `true` | Show error icon (AlertCircle) |
+| `className` | `string` | - | Additional CSS classes |
+| `id` | `string` | - | ID for aria-describedby linking |
+
+### Usage Examples
+
+#### Basic Error Message
+
+```tsx
+import { Label, Input, ErrorMessage } from '@/components';
+
+function MyForm() {
+  const [error, setError] = useState('');
+
+  return (
+    <div>
+      <Label htmlFor="email" required>Email address</Label>
+      <Input
+        id="email"
+        type="email"
+        aria-invalid={!!error}
+        aria-describedby={error ? "email-error" : undefined}
+        className={error ? "border-red-500" : ""}
+      />
+      {error && (
+        <ErrorMessage id="email-error">{error}</ErrorMessage>
+      )}
+    </div>
+  );
+}
+```
+
+#### Without Icon
+
+```tsx
+<ErrorMessage showIcon={false}>
+  Password must be at least 8 characters.
+</ErrorMessage>
+```
+
+#### Small Size for Compact Layouts
+
+```tsx
+<ErrorMessage size="sm">
+  Invalid format.
+</ErrorMessage>
+```
+
+#### Common Error Messages
+
+```tsx
+// Required field
+<ErrorMessage>This field is required.</ErrorMessage>
+
+// Invalid email
+<ErrorMessage>Email address is invalid.</ErrorMessage>
+
+// Password requirements
+<ErrorMessage>
+  Password must contain at least one uppercase letter.
+</ErrorMessage>
+
+// Duplicate entry
+<ErrorMessage>Username is already taken.</ErrorMessage>
+
+// File size limit
+<ErrorMessage>File size must be less than 5MB.</ErrorMessage>
+
+// Invalid URL
+<ErrorMessage size="sm">Please enter a valid URL.</ErrorMessage>
+```
+
+#### With Full Validation
+
+```tsx
+function PasswordField() {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const validate = (value: string) => {
+    if (value.length < 8) {
+      setError('Password must be at least 8 characters long.');
+    } else if (!/[A-Z]/.test(value)) {
+      setError('Password must contain at least one uppercase letter.');
+    } else if (!/[0-9]/.test(value)) {
+      setError('Password must contain at least one number.');
+    } else {
+      setError('');
+    }
+  };
+
+  return (
+    <div>
+      <Label htmlFor="password" required>Password</Label>
+      <Input
+        id="password"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        onBlur={(e) => validate(e.target.value)}
+        aria-invalid={!!error}
+        aria-describedby={error ? "password-error" : "password-helper"}
+        className={error ? "border-red-500" : ""}
+      />
+      {error ? (
+        <ErrorMessage id="password-error">{error}</ErrorMessage>
+      ) : (
+        <HelperText id="password-helper">
+          Must be at least 8 characters with uppercase, lowercase, and numbers.
+        </HelperText>
+      )}
+    </div>
+  );
+}
+```
+
+## Related Components
+
+- **Label** - Field labels that identify inputs
+- **HelperText** - Helpful instructions (shown when no error)
+- **FieldGroup** - Wrapper that manages error/helper text display
+- **Input** - Text input fields with validation
+- **Alert** - Page-level error messages

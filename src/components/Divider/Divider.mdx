@@ -1,0 +1,137 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as DividerStories from './Divider.stories';
+
+<Meta of={DividerStories} />
+
+# Divider
+
+Dividers separate content into distinct sections. They create visual hierarchy and improve scannability by breaking up groups of elements.
+
+<Story of={DividerStories.Default} />
+
+
+## Overview
+
+The Divider component (also called Separator) creates visual separation between content sections. It's a simple horizontal or vertical line that helps organize layouts and establish content hierarchy.
+
+## When to Use
+
+### Use Divider when:
+
+- **Separating sections**: Group related content
+- **List items**: Visual breaks between items
+- **Form sections**: Separate field groups
+- **Menu items**: Divide menu options
+- **Layout structure**: Create visual hierarchy
+- **Toolbars**: Separate button groups
+
+### Don't use Divider when:
+
+- **Whitespace works**: Spacing alone is sufficient
+- **Overuse**: Too many dividers create clutter
+- **Within related items**: Don't break logical groups
+- **Color/background changes**: Visual difference exists
+
+## Orientations
+
+### Default (Horizontal)
+
+<Canvas of={DividerStories.Default} />
+
+### Vertical
+
+<Canvas of={DividerStories.Vertical} />
+
+## With Labels
+
+<Canvas of={DividerStories.WithLabel} />
+
+### Label Left
+
+<Canvas of={DividerStories.LabelLeft} />
+
+### Label Right
+
+<Canvas of={DividerStories.LabelRight} />
+
+## Real World Examples
+
+### In Form
+
+<Canvas of={DividerStories.InForm} />
+
+### In Card
+
+<Canvas of={DividerStories.InCard} />
+
+### Multiple Sections
+
+<Canvas of={DividerStories.MultipleSections} />
+
+### Spacing Variations
+
+<Canvas of={DividerStories.Spacing} />
+
+## Accessibility
+
+- **ARIA Role**: `role="separator"`
+- **Semantic HTML**: Uses `hr` or styled element
+- **Color Independence**: Not relying on color alone
+- **Screen Readers**: Separator announced correctly
+
+## Best Practices
+
+### Do
+
+- Use to create clear visual hierarchy
+- Keep consistent thickness/style
+- Use sparingly for impact
+- Combine with appropriate spacing
+- Match brand style
+
+### Don't
+
+- Overuse (creates visual noise)
+- Use when whitespace suffices
+- Mix orientations inconsistently
+- Make too thick or prominent
+
+## API Reference
+
+### Divider Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Divider direction |
+| `variant` | `'default' \| 'dashed' \| 'dotted'` | `'default'` | Line style |
+| `label` | `string` | - | Optional label text |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { Divider } from '@/components';
+
+// Horizontal (default)
+<Divider />
+
+// Vertical
+<div className="flex">
+  <Button>Action 1</Button>
+  <Divider orientation="vertical" />
+  <Button>Action 2</Button>
+</div>
+
+// With label
+<Divider label="OR" />
+
+// Different styles
+<Divider variant="dashed" />
+<Divider variant="dotted" />
+```
+
+## Related Components
+
+- **Separator** - Alternative name
+- **Spacer** - Invisible spacing
+- **Card** - Content containers

@@ -1,0 +1,130 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as ProgressStories from './Progress.stories';
+
+<Meta of={ProgressStories} />
+
+# Progress
+
+Progress bars visually indicate the completion status of ongoing operations. They show either determinate progress (specific percentage) or indeterminate activity (unknown duration).
+
+<Story of={ProgressStories.Default} />
+
+
+## Overview
+
+The Progress component communicates the status of running processes. Determinate progress bars show specific completion percentages, while indeterminate ones indicate ongoing activity without a known endpoint.
+
+## When to Use
+
+### Use Progress when:
+
+- **File uploads/downloads**: Show transfer progress
+- **Multi-step forms**: Indicate completion status
+- **Loading operations**: Data processing, exports
+- **Long-running tasks**: Anything taking over 2 seconds
+- **Installation/setup**: Step-by-step progress
+- **Known duration**: When you can calculate percentage
+
+### Don't use Progress when:
+
+- **Quick operations**: Use Spinner instead for tasks under 2 seconds
+- **Unknown duration**: Use indeterminate or Spinner
+- **Page loading**: Use page-level Spinner
+- **Instant feedback**: Use immediate state changes
+
+## Default
+
+<Canvas of={ProgressStories.Default} />
+
+## With Label
+
+<Canvas of={ProgressStories.WithLabel} />
+
+## All Variants
+
+<Canvas of={ProgressStories.AllVariants} />
+
+## Different Values
+
+<Canvas of={ProgressStories.DifferentValues} />
+
+## Real World Examples
+
+<Canvas of={ProgressStories.FileUpload} />
+
+## Accessibility
+
+- **ARIA Attributes**: `role="progressbar"`, `aria-valuenow`, `aria-valuemin`, `aria-valuemax`
+- **Screen Readers**: Progress value announced
+- **Visual Labels**: Include percentage or label text
+- **Color Independence**: Bar fill, not just color
+
+## Best Practices
+
+### Do
+
+- Show percentage when known
+- Update progress smoothly
+- Provide context labels ("Uploading file...")
+- Use appropriate size for context
+- Show completion state briefly
+- Allow cancellation for long operations
+
+### Don't
+
+- Show for operations under 2 seconds
+- Jump progress suddenly (smooth updates)
+- Block UI completely during progress
+- Show multiple progress bars unnecessarily
+- Forget to handle error states
+
+## API Reference
+
+### Progress Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | - | Progress value (0-100) |
+| `max` | `number` | `100` | Maximum value |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Progress bar size |
+| `variant` | `'default' \| 'success' \| 'warning' \| 'error'` | `'default'` | Visual style |
+| `indeterminate` | `boolean` | `false` | Indeterminate animation |
+| `showLabel` | `boolean` | `false` | Show percentage label |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { Progress } from '@/components';
+
+// Determinate
+<Progress value={65} />
+
+// With label
+<Progress value={75} showLabel />
+
+// Indeterminate
+<Progress indeterminate />
+
+// Different sizes
+<Progress value={50} size="sm" />
+<Progress value={50} size="lg" />
+
+// File upload example
+function FileUpload() {
+  const [progress, setProgress] = React.useState(0);
+
+  return (
+    <div>
+      <p>Uploading file...</p>
+      <Progress value={progress} showLabel />
+    </div>
+  );
+}
+```
+
+## Related Components
+
+- **Spinner** - Loading indicator
+- **Skeleton** - Content placeholders
+- **Toast** - Completion feedback

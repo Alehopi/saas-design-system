@@ -1,0 +1,113 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as TableStories from './Table.stories';
+
+<Meta of={TableStories} />
+
+# Table
+
+Tables organize and display data in rows and columns, making it easy to scan, compare, and manipulate structured information.
+
+<Story of={TableStories.Default} />
+
+
+## Overview
+
+The Table component presents structured data in a grid format. It supports custom styling for headers and cells. Tables are essential for displaying datasets where comparison is important.
+
+## When to Use
+
+### Use Table when:
+
+- **Structured data**: Multiple rows with consistent columns
+- **Comparison**: Users need to compare values across items
+- **Scanning**: Quick lookup of specific information
+- **Data-heavy interfaces**: Dashboards, admin panels
+- **Lists with attributes**: Users, orders, products
+
+### Don't use Table when:
+
+- **Few items (under 5)**: Use list or cards instead
+- **Complex nested data**: Consider tree view
+- **Mobile-first**: Tables don't work well on small screens
+- **Single column**: Use simple list instead
+
+## Features
+
+### With Caption
+
+<Canvas of={TableStories.WithCaption} />
+
+### With Badges
+
+<Canvas of={TableStories.WithBadges} />
+
+### With Checkboxes
+
+<Canvas of={TableStories.WithCheckboxes} />
+
+### With Actions
+
+<Canvas of={TableStories.WithActions} />
+
+### With Footer
+
+<Canvas of={TableStories.WithFooter} />
+
+### Striped Rows
+
+<Canvas of={TableStories.Striped} />
+
+### Compact Size
+
+<Canvas of={TableStories.Compact} />
+
+### Large Data
+
+<Canvas of={TableStories.LargeData} />
+
+## Accessibility
+
+- **Table Semantics**: Proper `table`, `thead`, `tbody`, `th`, `td` elements
+- **Headers**: Column headers with `scope="col"`
+- **Keyboard Navigation**: Tab through interactive elements
+- **Screen Readers**: Table structure announced correctly
+
+## API Reference
+
+### Table Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'striped'` | `'default'` | Visual style |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Table size |
+| `hoverable` | `boolean` | `true` | Row hover effect |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components';
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Email</TableHead>
+      <TableHead>Role</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>John Doe</TableCell>
+      <TableCell>john@example.com</TableCell>
+      <TableCell>Admin</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## Related Components
+
+- **Card** - Alternative data display
+- **List** - Simple item lists
+- **DataGrid** - Advanced table features

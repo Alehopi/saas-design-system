@@ -1,0 +1,227 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as DropdownMenuStories from './DropdownMenu.stories';
+
+<Meta of={DropdownMenuStories} />
+
+# DropdownMenu
+
+Dropdown menus display a list of actions or options when triggered. They provide access to secondary actions without cluttering the interface.
+
+<Story of={DropdownMenuStories.Default} />
+
+
+## Overview
+
+The DropdownMenu component reveals a menu of options when users click a trigger element. It's perfect for grouping related actions, context menus, and overflow menus where space is limited.
+
+## When to Use
+
+### Use DropdownMenu when:
+
+- **Multiple actions**: Group related actions together
+- **Context menus**: Right-click or action menus
+- **Overflow menus**: "More actions" (⋮) buttons
+- **User menus**: Account settings, profile options
+- **Table row actions**: Actions for specific items
+- **Toolbar overflow**: Too many toolbar actions
+- **Filter/sort options**: Data table controls
+
+### Don't use DropdownMenu when:
+
+- **2-3 options**: Use visible buttons instead
+- **Critical actions**: Make important actions visible
+- **Navigation**: Use navigation components
+- **Form selections**: Use Select component
+- **Always visible**: Don't hide primary actions
+
+## Features
+
+### With Submenus
+
+<Canvas of={DropdownMenuStories.WithSubmenus} />
+
+### With Checkboxes
+
+<Canvas of={DropdownMenuStories.WithCheckboxes} />
+
+### With Radio Group
+
+<Canvas of={DropdownMenuStories.WithRadioGroup} />
+
+## Real World Examples
+
+<Canvas of={DropdownMenuStories.RealWorldExamples} />
+
+## Accessibility
+
+- **Keyboard Navigation**: Arrow keys, Enter, Escape
+- **Focus Management**: Focus moves into menu
+- **ARIA Attributes**: Proper `role="menu"`, `role="menuitem"`
+- **Submenus**: Arrow right to open, left to close
+- **Close on Select**: Menu closes after selection
+- **Screen Readers**: Menu structure announced
+
+## Best Practices
+
+### Do
+
+- Use clear, action-oriented labels
+- Group related items with separators
+- Show keyboard shortcuts when relevant
+- Use icons to reinforce meaning
+- Keep menus under 10 items
+- Place destructive actions at bottom
+- Disable (don't hide) unavailable options
+
+### Don't
+
+- Nest menus too deeply (max 2 levels)
+- Put primary actions only in menus
+- Use for long lists (use Select)
+- Forget to handle disabled states
+- Mix selection (checkboxes) with actions
+- Use generic labels ("Action 1", "Option")
+
+## Menu Item Types
+
+### Regular Actions
+Execute immediately when clicked.
+
+### Checkable Items
+Toggle on/off state (like filters).
+
+### Radio Groups
+Mutually exclusive selections (like sorting).
+
+### Submenus
+Nested menus for related actions.
+
+### Separators
+Visual grouping of menu sections.
+
+## API Reference
+
+### DropdownMenu Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `open` | `boolean` | - | Whether menu is open (controlled) |
+| `onOpenChange` | `(open: boolean) => void` | - | Open state change callback |
+| `modal` | `boolean` | `true` | Whether menu is modal |
+
+### DropdownMenuItem Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `disabled` | `boolean` | `false` | Whether item is disabled |
+| `onSelect` | `() => void` | - | Select callback |
+| `inset` | `boolean` | `false` | Add left padding (for alignment) |
+
+### Usage Examples
+
+```tsx
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
+  DropdownMenuGroup,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+} from '@/components';
+
+// Basic menu
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button>Open Menu</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Edit</DropdownMenuItem>
+    <DropdownMenuItem>Duplicate</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Delete</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
+// With icons
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="ghost">⋮</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>
+      <EditIcon /> Edit
+    </DropdownMenuItem>
+    <DropdownMenuItem>
+      <CopyIcon /> Duplicate
+    </DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>
+      <TrashIcon /> Delete
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
+// With submenu
+<DropdownMenu>
+  <DropdownMenuTrigger>More</DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Action</DropdownMenuItem>
+    <DropdownMenuSub>
+      <DropdownMenuSubTrigger>
+        More Options
+      </DropdownMenuSubTrigger>
+      <DropdownMenuSubContent>
+        <DropdownMenuItem>Sub Item 1</DropdownMenuItem>
+        <DropdownMenuItem>Sub Item 2</DropdownMenuItem>
+      </DropdownMenuSubContent>
+    </DropdownMenuSub>
+  </DropdownMenuContent>
+</DropdownMenu>
+
+// With checkboxes
+<DropdownMenu>
+  <DropdownMenuTrigger>View</DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>View Options</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuCheckboxItem checked={showPanel}>
+      Show Panel
+    </DropdownMenuCheckboxItem>
+    <DropdownMenuCheckboxItem checked={showSidebar}>
+      Show Sidebar
+    </DropdownMenuCheckboxItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
+// User menu
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="ghost">
+      <Avatar src="/user.jpg" />
+    </Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent align="end">
+    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownMenuItem>Billing</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Log out</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+## Related Components
+
+- **Command** - Command palette
+- **Select** - Form selections
+- **Popover** - Custom positioned content
+- **Context Menu** - Right-click menus

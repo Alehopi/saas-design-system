@@ -1,0 +1,392 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as RadioStories from './Radio.stories';
+
+<Meta of={RadioStories} />
+
+# Radio
+
+Radio buttons allow users to select a single option from a mutually exclusive set of choices. They're presented in groups where selecting one option automatically deselects the others.
+
+<Canvas of={RadioStories.Default} />
+
+<Controls of={RadioStories.Default} />
+
+## Overview
+
+The Radio component provides a way for users to make a single selection from 2-7 predefined options. Unlike checkboxes which allow multiple selections, radio buttons enforce a single choice. They're ideal for required decisions where users must pick exactly one option.
+
+## When to Use
+
+### Use Radio when:
+
+- **Mutually exclusive options**: Users must choose exactly one option
+- **2-7 choices**: Visible options that users can scan quickly
+- **Required selection**: User must make a choice before proceeding
+- **Clear alternatives**: Options are distinct and well-defined
+- **Comparison needed**: Users benefit from seeing all options at once
+- **Form fields**: Gender, payment method, shipping options
+- **Settings**: Theme selection, language preferences
+
+### Don't use Radio when:
+
+- **Multiple selections allowed**: Use Checkbox for multi-select
+- **Many options (8+)**: Use Select dropdown for long lists
+- **Optional selection**: Consider Select or checkbox if "none" is valid
+- **Binary on/off toggle**: Use Switch for instant state changes
+- **Single obvious choice**: Don't force users to select the only option
+
+## Basic Examples
+
+### With Label
+
+<Canvas of={RadioStories.WithLabel} />
+
+### With Descriptions
+
+Adding descriptions helps users understand each option better.
+
+<Canvas of={RadioStories.WithDescriptions} />
+
+## Layouts
+
+### Vertical (Default)
+
+Recommended for most use cases as it's easier to scan.
+
+<Canvas of={RadioStories.Default} />
+
+### Horizontal
+
+Use for short labels and limited space.
+
+<Canvas of={RadioStories.Horizontal} />
+
+## States
+
+### With Disabled Option
+
+Individual options can be disabled while keeping others selectable.
+
+<Canvas of={RadioStories.WithDisabledOption} />
+
+### Error State
+
+<Canvas of={RadioStories.Error} />
+
+## Accessibility
+
+The Radio component follows WCAG 2.1 guidelines and implements the following accessibility features:
+
+- **Keyboard Support**: Full keyboard navigation (Arrow keys, Tab)
+- **ARIA Attributes**: Proper `role="radiogroup"`, `role="radio"`, `aria-checked`
+- **Focus Management**: Arrow keys move between options within group
+- **Label Association**: All options properly labeled for screen readers
+- **State Announcement**: Selected/unselected states announced correctly
+- **Touch Targets**: Minimum 44x44px for mobile accessibility
+- **Group Labels**: Radio groups have clear, descriptive labels
+
+### Keyboard Shortcuts
+
+- **Arrow Up/Down** (or Left/Right): Navigate between options in the group
+- **Tab**: Move focus to/from the radio group
+- **Space**: Select the focused option
+
+### ARIA Labels
+
+Always provide a label for the radio group:
+
+```tsx
+<RadioGroupWrapper label="Choose your plan">
+  <RadioGroup>
+    <RadioGroupItem value="free">Free</RadioGroupItem>
+    <RadioGroupItem value="pro">Pro</RadioGroupItem>
+  </RadioGroup>
+</RadioGroupWrapper>
+```
+
+For groups without visible labels, use `aria-label`:
+
+```tsx
+<RadioGroup aria-label="Select shipping method">
+  ...
+</RadioGroup>
+```
+
+## Best Practices
+
+### Do
+
+- Provide 2-7 options (sweet spot is 3-5)
+- Use clear, concise labels that describe each option
+- Add descriptions for complex choices
+- Vertically stack options for better scannability
+- Provide a sensible default selection when appropriate
+- Keep option labels roughly the same length
+- Group related options together
+- Use error messages that guide users to fix issues
+
+### Don't
+
+- Use for more than 7 options (use Select instead)
+- Allow no selection if a choice is required
+- Use for binary yes/no (use Switch or Checkbox)
+- Mix radio buttons with checkboxes in the same group
+- Make labels too long or technical
+- Hide important information in descriptions
+- Change page content when selection changes unexpectedly
+- Use horizontal layout for long labels
+
+## Common Mistakes
+
+1. **Too many options**: More than 7 options make scanning difficult
+2. **No default selected**: Required fields should have a sensible default
+3. **Using for multiple selections**: That's what checkboxes are for
+4. **Missing group label**: Users need to know what they're choosing
+5. **Unclear option labels**: Users shouldn't have to guess what options mean
+6. **Horizontal with long labels**: Labels get cut off or wrapped awkwardly
+7. **No validation feedback**: Users need to know when selection is required
+
+## Layout Guidelines
+
+### When to use Vertical (Default)
+
+- Labels are longer than a few words
+- Descriptions are included
+- More than 3 options
+- Users need to carefully compare options
+- Most use cases (recommended default)
+
+### When to use Horizontal
+
+- Labels are very short (1-2 words)
+- Exactly 2-3 options
+- Space is limited (compact forms)
+- Options are simple and obvious
+
+## Default Selection Strategy
+
+Consider pre-selecting an option when:
+- One option is most common (80%+ usage)
+- A safe or recommended choice exists
+- The field is required and has a clear default
+
+Don't pre-select when:
+- All options are equally valid
+- Selection has significant consequences
+- You want users to consciously make a choice
+- The field is truly optional
+
+## API Reference
+
+### RadioGroupWrapper Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | - | Label for the radio group |
+| `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | Layout orientation of options |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of radio buttons |
+| `disabled` | `boolean` | `false` | Disable all radio buttons in group |
+| `error` | `boolean` | `false` | Show error state |
+| `errorMessage` | `string` | - | Error message to display |
+| `required` | `boolean` | `false` | Mark group as required |
+| `helperText` | `string` | - | Helper text below the group |
+| `options` | `Array<{value, label, description?, disabled?}>` | required | Array of radio options |
+| `defaultValue` | `string` | - | Default selected value (uncontrolled) |
+| `value` | `string` | - | Selected value (controlled) |
+| `onValueChange` | `(value: string) => void` | - | Function called when selection changes |
+
+### Radio Option Object
+
+```typescript
+{
+  value: string;          // Unique value for this option
+  label: string;          // Display text
+  description?: string;   // Optional description text
+  disabled?: boolean;     // Whether this option is disabled
+}
+```
+
+### Usage Examples
+
+#### Basic Radio Group
+
+```tsx
+import { RadioGroupWrapper } from '@/components';
+
+function MyForm() {
+  return (
+    <RadioGroupWrapper
+      label="Choose an option"
+      options={[
+        { value: 'yes', label: 'Yes' },
+        { value: 'no', label: 'No' },
+        { value: 'maybe', label: 'Maybe' },
+      ]}
+    />
+  );
+}
+```
+
+#### With Descriptions
+
+```tsx
+<RadioGroupWrapper
+  label="Select your plan"
+  options={[
+    {
+      value: 'free',
+      label: 'Free',
+      description: '$0/month - Basic features'
+    },
+    {
+      value: 'pro',
+      label: 'Pro',
+      description: '$10/month - Advanced features'
+    },
+    {
+      value: 'enterprise',
+      label: 'Enterprise',
+      description: 'Custom pricing - All features'
+    },
+  ]}
+  defaultValue="pro"
+/>
+```
+
+#### Controlled Radio Group
+
+```tsx
+function ControlledRadio() {
+  const [value, setValue] = React.useState('standard');
+
+  return (
+    <RadioGroupWrapper
+      label="Shipping method"
+      value={value}
+      onValueChange={setValue}
+      options={[
+        { value: 'standard', label: 'Standard - Free' },
+        { value: 'express', label: 'Express - $10' },
+        { value: 'overnight', label: 'Overnight - $25' },
+      ]}
+    />
+  );
+}
+```
+
+#### Horizontal Layout
+
+```tsx
+<RadioGroupWrapper
+  label="Size"
+  orientation="horizontal"
+  options={[
+    { value: 's', label: 'S' },
+    { value: 'm', label: 'M' },
+    { value: 'l', label: 'L' },
+  ]}
+/>
+```
+
+#### With Disabled Option
+
+```tsx
+<RadioGroupWrapper
+  label="Choose size"
+  options={[
+    { value: 'small', label: 'Small' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'large', label: 'Large (Out of Stock)', disabled: true },
+  ]}
+/>
+```
+
+#### Different Sizes
+
+```tsx
+<RadioGroupWrapper
+  size="sm"
+  label="Small radio buttons"
+  options={[...]}
+/>
+
+<RadioGroupWrapper
+  size="md"
+  label="Medium radio buttons"
+  options={[...]}
+/>
+
+<RadioGroupWrapper
+  size="lg"
+  label="Large radio buttons"
+  options={[...]}
+/>
+```
+
+#### With Error Validation
+
+```tsx
+function ValidatedRadio() {
+  const [value, setValue] = React.useState('');
+  const [error, setError] = React.useState('');
+
+  const handleSubmit = () => {
+    if (!value) {
+      setError('Please select an option');
+    }
+  };
+
+  return (
+    <RadioGroupWrapper
+      label="Required field"
+      required
+      value={value}
+      onValueChange={(newValue) => {
+        setValue(newValue);
+        setError('');
+      }}
+      error={!!error}
+      errorMessage={error}
+      options={[
+        { value: 'option1', label: 'Option 1' },
+        { value: 'option2', label: 'Option 2' },
+      ]}
+    />
+  );
+}
+```
+
+#### Payment Method Example
+
+```tsx
+<RadioGroupWrapper
+  label="Payment method"
+  required
+  options={[
+    {
+      value: 'card',
+      label: 'Credit Card',
+      description: 'Pay with Visa, Mastercard, or Amex'
+    },
+    {
+      value: 'paypal',
+      label: 'PayPal',
+      description: 'Fast and secure PayPal checkout'
+    },
+    {
+      value: 'bank',
+      label: 'Bank Transfer',
+      description: '2-3 business days processing'
+    },
+  ]}
+  defaultValue="card"
+/>
+```
+
+## Related Components
+
+- **Checkbox** - For multiple selections
+- **Switch** - For instant on/off toggles
+- **Select** - For single selection from many options
+- **Label** - For custom form labels
+- **FieldGroup** - For grouping form controls

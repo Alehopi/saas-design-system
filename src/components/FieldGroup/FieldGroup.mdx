@@ -1,0 +1,384 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as FieldGroupStories from './FieldGroup.stories';
+
+<Meta of={FieldGroupStories} />
+
+# FieldGroup
+
+FieldGroup is a wrapper component that combines Label, Input/Field, HelperText, and ErrorMessage into a consistent, accessible form field structure.
+
+<Canvas of={FieldGroupStories.Playground} />
+
+<Controls of={FieldGroupStories.Playground} />
+
+## Overview
+
+The FieldGroup component provides a structured container for form fields, automatically managing the layout and spacing between label, input, and helper/error text. It ensures consistent form field patterns across your application and handles the logic of showing either helper text or error messages (but not both simultaneously).
+
+## When to Use
+
+### Use FieldGroup when:
+
+- **All form fields**: Wrap every input with FieldGroup for consistency
+- **Complex forms**: Maintain consistent spacing and structure
+- **Validation states**: Automatically show errors or helper text
+- **Accessibility**: Proper associations between label, input, and messages
+
+### Don't use FieldGroup when:
+
+- **Custom layouts**: When you need complete control over structure
+- **Non-form elements**: Only for actual form fields
+- **Simple inline inputs**: Like search bars without labels
+
+## Default Usage
+
+Standard field with label and helper text.
+
+<Canvas of={FieldGroupStories.Default} />
+
+## Required Field
+
+Fields can be marked as required using the Label's required prop.
+
+<Canvas of={FieldGroupStories.Required} />
+
+## With Error
+
+When an error is provided, it replaces the helper text automatically.
+
+<Canvas of={FieldGroupStories.WithError} />
+
+## Spacing Options
+
+FieldGroup supports three spacing sizes: small (sm), medium (md - default), and large (lg).
+
+### Compact Spacing
+
+<Canvas of={FieldGroupStories.CompactSpacing} />
+
+### Large Spacing
+
+<Canvas of={FieldGroupStories.LargeSpacing} />
+
+### All Spacing Comparison
+
+<Canvas of={FieldGroupStories.AllSpacing} />
+
+## All States
+
+View all field group states in one place.
+
+<Canvas of={FieldGroupStories.AllStates} />
+
+## Real World Examples
+
+Complete form built with FieldGroup components.
+
+<Canvas of={FieldGroupStories.RealWorldExamples} />
+
+## Validation States
+
+Examples showing valid, error, and disabled field states.
+
+<Canvas of={FieldGroupStories.ValidationStates} />
+
+## Accessibility
+
+The FieldGroup component follows WCAG 2.1 guidelines and implements the following accessibility features:
+
+- **Semantic Structure**: Proper HTML hierarchy with label, input, and description
+- **Label Association**: Label properly linked to input via `htmlFor`
+- **Error Announcements**: Error messages use `role="alert"` for immediate announcement
+- **Helper Text Linking**: Helper text can be linked via `aria-describedby`
+- **Focus Management**: Natural tab order through form elements
+- **Keyboard Navigation**: Full keyboard support for all interactions
+
+### Proper Field Association
+
+FieldGroup ensures all elements are properly associated:
+
+```tsx
+<FieldGroup
+  label={<Label htmlFor="email" required>Email</Label>}
+  helperText={<HelperText>We'll never share your email.</HelperText>}
+>
+  <Input id="email" type="email" />
+</FieldGroup>
+```
+
+### Testing Recommendations
+
+- Test with screen readers to verify proper announcements
+- Check tab order through multiple fields
+- Verify error states are announced immediately
+- Test keyboard navigation (Tab, Shift+Tab)
+- Ensure focus indicators are visible
+- Validate label click focuses input
+
+## Best Practices
+
+### Do
+
+- Use for all standard form fields
+- Show either error OR helper text (not both)
+- Provide descriptive labels
+- Use consistent spacing across forms
+- Include helper text for complex fields
+- Mark required fields clearly
+
+### Don't
+
+- Don't show both error and helper text simultaneously
+- Don't omit labels (except in special cases)
+- Don't nest FieldGroups
+- Don't use for non-form content
+- Don't forget to associate elements properly
+
+## API Reference
+
+### FieldGroup Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Input/field element |
+| `label` | `ReactNode` | - | Label element (typically `<Label>`) |
+| `helperText` | `ReactNode` | - | Helper text element (shown when no error) |
+| `error` | `ReactNode` | - | Error message element (replaces helperText) |
+| `spacing` | `'sm' \| 'md' \| 'lg'` | `'md'` | Spacing between elements |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+#### Basic Field
+
+```tsx
+import { FieldGroup, Label, Input, HelperText } from '@/components';
+
+function MyForm() {
+  return (
+    <FieldGroup
+      label={<Label htmlFor="email">Email address</Label>}
+      helperText={<HelperText>We'll never share your email.</HelperText>}
+    >
+      <Input id="email" type="email" placeholder="you@example.com" />
+    </FieldGroup>
+  );
+}
+```
+
+#### Required Field
+
+```tsx
+<FieldGroup
+  label={
+    <Label htmlFor="name" required>
+      Full name
+    </Label>
+  }
+  helperText={<HelperText>Enter your first and last name.</HelperText>}
+>
+  <Input id="name" placeholder="John Doe" />
+</FieldGroup>
+```
+
+#### With Validation Error
+
+```tsx
+function EmailField() {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+
+  const validateEmail = (value: string) => {
+    if (!value.includes('@')) {
+      setError('Please enter a valid email address.');
+    } else {
+      setError('');
+    }
+  };
+
+  return (
+    <FieldGroup
+      label={
+        <Label htmlFor="email" required>
+          Email address
+        </Label>
+      }
+      error={error && <ErrorMessage>{error}</ErrorMessage>}
+      helperText={!error && <HelperText>We'll never share your email.</HelperText>}
+    >
+      <Input
+        id="email"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        onBlur={(e) => validateEmail(e.target.value)}
+        className={error ? 'border-red-500' : ''}
+      />
+    </FieldGroup>
+  );
+}
+```
+
+#### Different Spacing Sizes
+
+```tsx
+// Compact spacing for dense forms
+<FieldGroup
+  spacing="sm"
+  label={<Label htmlFor="compact">Compact field</Label>}
+  helperText={<HelperText size="sm">Smaller spacing.</HelperText>}
+>
+  <Input id="compact" />
+</FieldGroup>
+
+// Default spacing
+<FieldGroup
+  spacing="md"
+  label={<Label htmlFor="default">Default field</Label>}
+  helperText={<HelperText>Standard spacing.</HelperText>}
+>
+  <Input id="default" />
+</FieldGroup>
+
+// Large spacing for emphasis
+<FieldGroup
+  spacing="lg"
+  label={<Label htmlFor="large" size="lg">Large field</Label>}
+  helperText={<HelperText>Generous spacing.</HelperText>}
+>
+  <Input id="large" />
+</FieldGroup>
+```
+
+#### Disabled State
+
+```tsx
+<FieldGroup
+  label={
+    <Label htmlFor="disabled" disabled>
+      Disabled field
+    </Label>
+  }
+  helperText={<HelperText variant="muted">This field cannot be edited.</HelperText>}
+>
+  <Input id="disabled" disabled defaultValue="Cannot edit" />
+</FieldGroup>
+```
+
+#### Complete Form Example
+
+```tsx
+function SignupForm() {
+  return (
+    <form className="space-y-6 max-w-md">
+      <FieldGroup
+        label={
+          <Label htmlFor="username" required>
+            Username
+          </Label>
+        }
+        helperText={
+          <HelperText>
+            3-20 characters. Letters, numbers, and underscores only.
+          </HelperText>
+        }
+      >
+        <Input id="username" placeholder="johndoe" />
+      </FieldGroup>
+
+      <FieldGroup
+        label={
+          <Label htmlFor="email" required>
+            Email address
+          </Label>
+        }
+        helperText={
+          <HelperText>
+            We'll never share your email with anyone else.
+          </HelperText>
+        }
+      >
+        <Input id="email" type="email" placeholder="you@example.com" />
+      </FieldGroup>
+
+      <FieldGroup
+        label={
+          <Label htmlFor="password" required>
+            Password
+          </Label>
+        }
+        helperText={
+          <HelperText>
+            Must be at least 8 characters with uppercase, lowercase, and numbers.
+          </HelperText>
+        }
+      >
+        <Input id="password" type="password" />
+      </FieldGroup>
+
+      <FieldGroup
+        label={<Label htmlFor="company">Company name</Label>}
+        helperText={<HelperText variant="muted">Optional field.</HelperText>}
+      >
+        <Input id="company" placeholder="Acme Inc." />
+      </FieldGroup>
+
+      <Button variant="primary" className="w-full">
+        Create Account
+      </Button>
+    </form>
+  );
+}
+```
+
+#### With Textarea
+
+```tsx
+<FieldGroup
+  label={
+    <Label htmlFor="bio" required>
+      Bio
+    </Label>
+  }
+  helperText={
+    <HelperText>
+      Tell us about yourself in 2-3 sentences.
+    </HelperText>
+  }
+>
+  <Textarea id="bio" rows={4} placeholder="I am a..." />
+</FieldGroup>
+```
+
+#### With Select
+
+```tsx
+<FieldGroup
+  label={
+    <Label htmlFor="country" required>
+      Country
+    </Label>
+  }
+  helperText={<HelperText>Select your country of residence.</HelperText>}
+>
+  <Select>
+    <SelectTrigger id="country">
+      <SelectValue placeholder="Select country" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="us">United States</SelectItem>
+      <SelectItem value="uk">United Kingdom</SelectItem>
+      <SelectItem value="ca">Canada</SelectItem>
+    </SelectContent>
+  </Select>
+</FieldGroup>
+```
+
+## Related Components
+
+- **Label** - Field labels with required indicators
+- **Input** - Text input fields
+- **Textarea** - Multi-line text input
+- **Select** - Dropdown selection fields
+- **HelperText** - Instructional text below fields
+- **ErrorMessage** - Validation error messages

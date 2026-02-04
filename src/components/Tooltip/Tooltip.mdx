@@ -1,0 +1,166 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as TooltipStories from './Tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+Tooltips display brief, helpful information when users hover over or focus on an element. They provide context without cluttering the interface.
+
+<Story of={TooltipStories.Default} />
+
+
+## Overview
+
+The Tooltip component shows supplementary information on hover or focus. It's perfect for explaining icons, providing additional context, or displaying full text for truncated content. Tooltips appear temporarily and don't require user interaction.
+
+## When to Use
+
+### Use Tooltip when:
+
+- **Icon buttons**: Explain icon-only actions
+- **Truncated text**: Show full content
+- **Additional context**: Helpful hints or tips
+- **Disabled elements**: Explain why disabled
+- **Abbreviations**: Expand shortened terms
+- **Complex UI**: Clarify unfamiliar interfaces
+
+### Don't use Tooltip when:
+
+- **Critical information**: Use visible text instead
+- **Long content**: Use popover or modal
+- **Mobile-first**: Tooltips don't work well on touch
+- **Actionable content**: Use popover for clickable content
+- **Form errors**: Use inline error messages
+
+## Positions
+
+<Canvas of={TooltipStories.AllSides} />
+
+## Real World Examples
+
+### Icon Buttons
+
+<Canvas of={TooltipStories.OnIconButton} />
+
+### With Icon
+
+<Canvas of={TooltipStories.WithIcon} />
+
+### Disabled Elements
+
+<Canvas of={TooltipStories.OnDisabledButton} />
+
+### Long Content
+
+<Canvas of={TooltipStories.LongContent} />
+
+### Multiline Content
+
+<Canvas of={TooltipStories.MultilineContent} />
+
+### Custom Delay
+
+<Canvas of={TooltipStories.CustomDelay} />
+
+### In Form
+
+<Canvas of={TooltipStories.InForm} />
+
+### In Table
+
+<Canvas of={TooltipStories.InTable} />
+
+## Accessibility
+
+- **Keyboard Accessible**: Shows on focus, hides on blur
+- **ARIA Attributes**: `aria-describedby` links tooltip to trigger
+- **Screen Readers**: Tooltip content announced
+- **Dismissible**: Escape key closes tooltip
+- **Focus Management**: Doesn't trap focus
+
+## Best Practices
+
+### Do
+
+- Keep content brief (1-2 lines)
+- Use for supplementary info only
+- Show on both hover and focus
+- Position appropriately (avoid edges)
+- Use consistent delay timing
+- Make tooltips dismissible
+
+### Don't
+
+- Put critical info in tooltips
+- Use for long content
+- Nest interactive elements
+- Show tooltips automatically
+- Use on mobile as primary pattern
+- Put important actions in tooltips
+
+## API Reference
+
+### Tooltip Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `content` | `string \| ReactNode` | required | Tooltip content |
+| `position` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'top'` | Tooltip position |
+| `variant` | `'default' \| 'dark' \| 'light'` | `'default'` | Visual style |
+| `showArrow` | `boolean` | `true` | Show pointing arrow |
+| `delay` | `number` | `200` | Show delay in ms |
+| `children` | `ReactNode` | required | Trigger element |
+
+### Usage Examples
+
+```tsx
+import { Tooltip } from '@/components';
+
+// Basic tooltip
+<Tooltip content="Delete">
+  <Button variant="ghost">
+    <TrashIcon />
+  </Button>
+</Tooltip>
+
+// Different positions
+<Tooltip content="Top tooltip" position="top">
+  <Button>Top</Button>
+</Tooltip>
+
+// Custom delay
+<Tooltip content="Quick tip" delay={0}>
+  <Button>No delay</Button>
+</Tooltip>
+
+// With arrow
+<Tooltip content="Helpful hint" showArrow>
+  <Button>With arrow</Button>
+</Tooltip>
+
+// For disabled elements
+<Tooltip content="Feature not available">
+  <span>
+    <Button disabled>Disabled</Button>
+  </span>
+</Tooltip>
+
+// Rich content
+<Tooltip
+  content={
+    <div>
+      <strong>Pro Tip:</strong>
+      <p>Use keyboard shortcuts</p>
+    </div>
+  }
+>
+  <HelpIcon />
+</Tooltip>
+```
+
+## Related Components
+
+- **Popover** - Interactive content
+- **Toast** - Temporary notifications
+- **Alert** - Persistent messages

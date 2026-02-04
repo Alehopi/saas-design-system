@@ -1,0 +1,208 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as HelperTextStories from './HelperText.stories';
+
+<Meta of={HelperTextStories} />
+
+# HelperText
+
+Helper text provides additional context, instructions, or hints about a form field. It appears below the input to guide users.
+
+<Canvas of={HelperTextStories.Playground} />
+
+<Controls of={HelperTextStories.Playground} />
+
+## Overview
+
+The HelperText component displays supplementary information below form fields to help users understand what input is expected, provide examples, or explain constraints. It uses muted colors to distinguish it from error messages and labels.
+
+## When to Use
+
+### Use HelperText when:
+
+- **Instructions**: Explain what format or type of input is expected
+- **Examples**: Show example input (e.g., john@example.com)
+- **Constraints**: Describe length limits or requirements
+- **Context**: Provide additional information about the field
+- **Formatting**: Explain special formatting rules
+
+### Don't use HelperText when:
+
+- **Validation errors**: Use ErrorMessage component instead
+- **Required indicators**: Use Label with required prop
+- **Field labels**: Use Label component
+- **Long explanations**: Consider tooltip or help dialog
+
+## Variants
+
+### Default Variant
+
+The standard helper text style with default muted color.
+
+<Canvas of={HelperTextStories.Default} />
+
+### Muted Variant
+
+Even softer styling for less critical information.
+
+<Canvas of={HelperTextStories.Muted} />
+
+## Sizes
+
+HelperText supports two sizes: small (sm) and medium (md - default).
+
+<Canvas of={HelperTextStories.AllSizes} />
+
+## All Variants
+
+Compare all variant options side by side.
+
+<Canvas of={HelperTextStories.AllVariants} />
+
+## States
+
+View all helper text states and use cases in one place.
+
+<Canvas of={HelperTextStories.AllStates} />
+
+## With Input
+
+HelperText appears below the input field to provide guidance.
+
+<Canvas of={HelperTextStories.WithInput} />
+
+## Real World Examples
+
+Practical examples showing common use cases.
+
+<Canvas of={HelperTextStories.RealWorldExamples} />
+
+## Accessibility
+
+The HelperText component follows WCAG 2.1 guidelines and implements the following accessibility features:
+
+- **Semantic HTML**: Uses `<p>` paragraph element
+- **Color Contrast**: Meets WCAG AA standards even with muted styling
+- **ARIA Support**: Can be associated with inputs via `aria-describedby`
+- **Screen Reader Friendly**: Announced when input receives focus (if linked)
+- **Non-intrusive**: Doesn't interfere with form validation messages
+
+### Associating with Inputs
+
+For better accessibility, link helper text to inputs using `aria-describedby`:
+
+```tsx
+<Label htmlFor="email">Email</Label>
+<Input id="email" aria-describedby="email-helper" />
+<HelperText id="email-helper">We'll never share your email.</HelperText>
+```
+
+### Testing Recommendations
+
+- Test with screen readers to ensure helper text is announced
+- Verify color contrast in both light and dark modes
+- Ensure helper text doesn't conflict with error messages
+- Check that information is available before user interaction
+
+## Best Practices
+
+### Do
+
+- Keep it concise (one sentence when possible)
+- Provide helpful, actionable information
+- Use consistent tone and voice
+- Show before user interacts (not on error)
+- Make it easy to scan and understand
+
+### Don't
+
+- Don't duplicate the label text
+- Don't use for error messages (use ErrorMessage)
+- Don't write overly technical jargon
+- Don't hide critical information in helper text
+- Don't make it too long (more than 2 sentences)
+
+## API Reference
+
+### HelperText Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Helper text content |
+| `variant` | `'default' \| 'muted'` | `'default'` | Visual style variant |
+| `size` | `'sm' \| 'md'` | `'md'` | Text size |
+| `className` | `string` | - | Additional CSS classes |
+| `id` | `string` | - | ID for aria-describedby linking |
+
+### Usage Examples
+
+#### Basic Helper Text
+
+```tsx
+import { Label, Input, HelperText } from '@/components';
+
+function MyForm() {
+  return (
+    <div>
+      <Label htmlFor="email">Email address</Label>
+      <Input id="email" type="email" />
+      <HelperText>We'll never share your email.</HelperText>
+    </div>
+  );
+}
+```
+
+#### With aria-describedby for Accessibility
+
+```tsx
+<Label htmlFor="password">Password</Label>
+<Input
+  id="password"
+  type="password"
+  aria-describedby="password-helper"
+/>
+<HelperText id="password-helper">
+  Must be at least 8 characters with uppercase, lowercase, and numbers.
+</HelperText>
+```
+
+#### Different Sizes
+
+```tsx
+<HelperText size="sm">Compact helper text.</HelperText>
+<HelperText size="md">Standard helper text.</HelperText>
+```
+
+#### Muted Variant for Optional Fields
+
+```tsx
+<Label htmlFor="company">Company name</Label>
+<Input id="company" />
+<HelperText variant="muted">Optional field.</HelperText>
+```
+
+#### Providing Examples
+
+```tsx
+<Label htmlFor="website">Website</Label>
+<Input id="website" type="url" placeholder="https://example.com" />
+<HelperText variant="muted">
+  Optional. Include https:// for external links.
+</HelperText>
+```
+
+#### Explaining Constraints
+
+```tsx
+<Label htmlFor="username" required>Username</Label>
+<Input id="username" />
+<HelperText>
+  3-20 characters. Letters, numbers, and underscores only.
+</HelperText>
+```
+
+## Related Components
+
+- **Label** - Field labels that identify inputs
+- **ErrorMessage** - Validation error messages
+- **FieldGroup** - Wrapper combining label, input, and helper text
+- **Input** - Text input fields

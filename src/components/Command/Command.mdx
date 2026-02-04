@@ -1,0 +1,168 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as CommandStories from './Command.stories';
+
+<Meta of={CommandStories} />
+
+# Command
+
+Command (also known as Command Palette or Command Menu) provides fast keyboard-driven navigation and actions. Users can search and execute commands without leaving the keyboard.
+
+<Story of={CommandStories.Default} />
+
+
+## Overview
+
+The Command component creates a searchable command palette that allows users to quickly find and execute actions. It's triggered by keyboard shortcuts (typically Cmd+K or Ctrl+K) and provides instant search through available commands.
+
+## When to Use
+
+### Use Command when:
+
+- **Power users**: Keyboard-first workflows
+- **Many actions**: Too many menu items to navigate
+- **Quick access**: Fast navigation and search
+- **Complex apps**: Applications with many features
+- **Productivity tools**: IDEs, design tools, dashboards
+- **Global search**: Site-wide search and navigation
+
+### Don't use Command when:
+
+- **Simple apps**: Few actions (use regular menus)
+- **Mobile-first**: Touch interfaces don't benefit
+- **Casual users**: Learning curve for non-technical users
+- **Always visible**: Commands are typically hidden
+
+## Features
+
+### With Categories
+
+<Canvas of={CommandStories.WithCategories} />
+
+### Inline Search
+
+<Canvas of={CommandStories.InlineSearch} />
+
+## Real World Examples
+
+<Canvas of={CommandStories.RealWorldExamples} />
+
+## Accessibility
+
+- **Keyboard First**: Designed for keyboard navigation
+- **Arrow Keys**: Navigate through options
+- **Enter**: Execute selected command
+- **Escape**: Close command palette
+- **Type Ahead**: Search by typing
+- **Screen Readers**: Options announced correctly
+
+## Best Practices
+
+### Do
+
+- Include keyboard shortcut hints
+- Group related commands
+- Show recent/frequent commands
+- Provide fuzzy search
+- Include visual icons
+- Update based on context
+- Show keyboard shortcuts
+
+### Don't
+
+- Make it only way to access features
+- Include too many commands (prioritize)
+- Forget mobile alternative
+- Use unclear command names
+- Hide important actions exclusively
+
+## API Reference
+
+### Command Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `open` | `boolean` | - | Whether command is open (controlled) |
+| `onOpenChange` | `(open: boolean) => void` | - | Open state change callback |
+| `shouldFilter` | `boolean` | `true` | Enable built-in filtering |
+| `filter` | `(value: string, search: string) => number` | - | Custom filter function |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import {
+  Command,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+} from '@/components';
+
+<Command>
+  <CommandInput placeholder="Type a command or search..." />
+  <CommandList>
+    <CommandEmpty>No results found.</CommandEmpty>
+    <CommandGroup heading="Suggestions">
+      <CommandItem>
+        <FileIcon />
+        <span>New File</span>
+        <CommandShortcut>⌘N</CommandShortcut>
+      </CommandItem>
+      <CommandItem>
+        <FolderIcon />
+        <span>New Folder</span>
+      </CommandItem>
+    </CommandGroup>
+    <CommandGroup heading="Settings">
+      <CommandItem>
+        <SettingsIcon />
+        <span>Preferences</span>
+        <CommandShortcut>⌘,</CommandShortcut>
+      </CommandItem>
+    </CommandGroup>
+  </CommandList>
+</Command>
+
+// With dialog
+function CommandPalette() {
+  const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener('keydown', down);
+    return () => document.removeEventListener('keydown', down);
+  }, []);
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent>
+        <Command>
+          <CommandInput placeholder="Search..." />
+          <CommandList>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup heading="Actions">
+              <CommandItem onSelect={() => { /* action */ }}>
+                Create New
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
+## Related Components
+
+- **Dialog** - Modal container
+- **DropdownMenu** - Simpler menus
+- **Search** - Search input
+- **Autocomplete** - Search suggestions

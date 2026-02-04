@@ -1,0 +1,137 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as AlertStories from './Alert.stories';
+
+<Meta of={AlertStories} />
+
+# Alert
+
+Alerts display important messages that require user attention. They come in multiple variants to indicate different types of information: default, info, success, warning, and error.
+
+<Story of={AlertStories.Default} />
+
+
+## Overview
+
+The Alert component communicates important information to users in a visually distinct way. Alerts can contain titles, descriptions, icons, and optional close buttons. They remain visible until dismissed or the condition changes.
+
+## When to Use
+
+### Use Alert when:
+
+- **Important information**: System status, feature announcements
+- **Persistent feedback**: Information that stays visible until acknowledged
+- **Context-specific messages**: Warnings or tips for the current page
+- **Status updates**: Success, error, or informational states
+- **Inline notifications**: Messages within page content (not overlays)
+
+### Don't use Alert when:
+
+- **Temporary feedback**: Use Toast for auto-dismissing messages
+- **Blocking actions**: Use Dialog for confirmations
+- **Form validation**: Use inline error messages with form fields
+- **Too many alerts**: Multiple alerts reduce impact and overwhelm users
+
+## Variants
+
+### Default
+
+<Story of={AlertStories.Default} />
+
+### Info
+
+<Canvas of={AlertStories.Info} />
+
+### Success
+
+<Canvas of={AlertStories.Success} />
+
+### Warning
+
+<Canvas of={AlertStories.Warning} />
+
+### Error
+
+<Canvas of={AlertStories.Error} />
+
+## Features
+
+### Closable Alerts
+
+<Canvas of={AlertStories.Closable} />
+
+### With Custom Icon
+
+<Canvas of={AlertStories.CustomIcon} />
+
+### Without Icon
+
+<Canvas of={AlertStories.WithoutIcon} />
+
+## Accessibility
+
+- **ARIA Roles**: Uses `role="alert"` for important messages
+- **Screen Readers**: Content announced when alert appears
+- **Keyboard Support**: Close button is keyboard accessible
+- **Focus Management**: Focus moves appropriately when dismissed
+- **Color Independence**: Icons and text, not just color, convey meaning
+
+## Best Practices
+
+### Do
+
+- Use appropriate variant for the message type
+- Keep messages concise and actionable
+- Include helpful context in descriptions
+- Use icons to reinforce message type
+- Make dismissible when appropriate
+- Place alerts near relevant content
+
+### Don't
+
+- Show too many alerts at once
+- Use for temporary feedback (use Toast)
+- Hide critical information in dismissible alerts
+- Use alerts for promotional content
+- Rely solely on color to convey meaning
+
+## API Reference
+
+### Alert Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'info' \| 'success' \| 'warning' \| 'error'` | `'default'` | Visual style indicating type |
+| `showIcon` | `boolean` | `true` | Whether to show variant icon |
+| `closable` | `boolean` | `false` | Whether alert can be dismissed |
+| `onClose` | `() => void` | - | Callback when close button clicked |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { Alert, AlertTitle, AlertDescription } from '@/components';
+
+// Basic alert
+<Alert variant="info">
+  <AlertTitle>Information</AlertTitle>
+  <AlertDescription>This is an informational message.</AlertDescription>
+</Alert>
+
+// Closable alert
+<Alert variant="success" closable onClose={() => console.log('Dismissed')}>
+  <AlertTitle>Success!</AlertTitle>
+  <AlertDescription>Changes saved.</AlertDescription>
+</Alert>
+
+// Without icon
+<Alert variant="warning" showIcon={false}>
+  <AlertTitle>Warning</AlertTitle>
+  <AlertDescription>Trial expires soon.</AlertDescription>
+</Alert>
+```
+
+## Related Components
+
+- **Toast** - Temporary notifications
+- **Dialog** - Modal confirmations
+- **Banner** - Page-level announcements

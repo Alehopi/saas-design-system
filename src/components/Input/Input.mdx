@@ -1,0 +1,390 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as InputStories from './Input.stories';
+
+<Meta of={InputStories} />
+
+# Input
+
+Text input fields allow users to enter and edit text. They support various types (text, email, password, number, etc.), validation states, and can include helper text, icons, and labels.
+
+<Canvas of={InputStories.Default} />
+
+<Controls of={InputStories.Playground} />
+
+## Overview
+
+The Input component is a fundamental form element that enables users to enter single-line text data. It supports multiple input types for better mobile keyboards, includes built-in validation states, and can be enhanced with icons and contextual help text.
+
+## When to Use
+
+### Use Input when:
+
+- **Single-line text entry**: Names, emails, search queries, short answers
+- **Structured data**: Phone numbers, dates, numbers with specific formats
+- **Credentials**: Passwords, API keys, tokens
+- **Search**: Quick filtering and finding content
+- **Form fields**: Any single-line data collection
+
+### Don't use Input when:
+
+- **Long-form text**: Use Textarea for multi-line content (descriptions, comments, messages)
+- **Predefined options**: Use Select, Radio, or Checkbox for choosing from a list
+- **Yes/No choices**: Use Switch or Checkbox for binary selections
+- **Rich text**: Use a rich text editor component for formatted content
+- **File selection**: Use a file upload component
+
+## Variants
+
+### Default Variant
+
+Standard input style for normal states.
+
+<Canvas of={InputStories.WithLabel} />
+
+### Error Variant
+
+Displays validation errors with clear visual feedback.
+
+<Canvas of={InputStories.Error} />
+
+## Sizes
+
+Input supports three sizes to fit different contexts.
+
+### Small (sm)
+
+For compact forms, table filters, and tight spaces.
+
+<Canvas of={InputStories.Small} />
+
+### Medium (md)
+
+Default size for most forms and use cases.
+
+<Canvas of={InputStories.Medium} />
+
+### Large (lg)
+
+For hero sections, primary search, and prominent inputs.
+
+<Canvas of={InputStories.Large} />
+
+## With Helper Text
+
+Provide context and guidance before users interact with the field.
+
+<Canvas of={InputStories.WithHelperText} />
+
+## Required Fields
+
+Mark required fields clearly to guide users.
+
+<Canvas of={InputStories.Required} />
+
+## States
+
+### Disabled State
+
+Prevent interaction when the field is not available.
+
+<Canvas of={InputStories.Disabled} />
+
+## With Icons
+
+Enhance inputs with visual indicators for better context.
+
+### Left Icon
+
+<Canvas of={InputStories.WithLeftIcon} />
+
+### Right Icon
+
+<Canvas of={InputStories.WithRightIcon} />
+
+### Both Icons
+
+<Canvas of={InputStories.WithBothIcons} />
+
+## Input Types
+
+Different input types provide better mobile keyboards and native validation.
+
+### Email Input
+
+<Canvas of={InputStories.EmailInput} />
+
+### Password Input
+
+<Canvas of={InputStories.PasswordInput} />
+
+### Number Input
+
+<Canvas of={InputStories.NumberInput} />
+
+### Search Input
+
+<Canvas of={InputStories.SearchInput} />
+
+## Real World Examples
+
+### Login Form
+
+<Canvas of={InputStories.LoginForm} />
+
+### Validation States
+
+<Canvas of={InputStories.ValidationStates} />
+
+### Form With Validation
+
+<Canvas of={InputStories.FormWithValidation} />
+
+### Search Interface
+
+<Canvas of={InputStories.SearchInterface} />
+
+### Compact Table Filter
+
+<Canvas of={InputStories.CompactTableFilter} />
+
+## Accessibility
+
+The Input component follows WCAG 2.1 guidelines and implements the following accessibility features:
+
+- **Label Association**: Labels are properly associated with inputs using `htmlFor`/`id`
+- **Native Attributes**: Supports all native input attributes (`required`, `disabled`, `readonly`, etc.)
+- **Error Messages**: Linked via `aria-describedby` for screen readers
+- **Focus Indicators**: Visible focus rings meet WCAG 2.1 AA standards
+- **Helper Text**: Provides context before validation errors
+- **Keyboard Accessible**: Full keyboard navigation support (Tab, Shift+Tab)
+- **Input Types**: Proper types trigger appropriate mobile keyboards
+- **Screen Reader Friendly**: All states announced correctly
+
+### Associating with Labels
+
+Always provide a visible label for accessibility:
+
+```tsx
+<Label htmlFor="email">Email address</Label>
+<Input id="email" type="email" aria-describedby="email-helper" />
+<HelperText id="email-helper">We'll never share your email.</HelperText>
+```
+
+### Error State Accessibility
+
+Error messages are automatically linked to the input for screen reader support:
+
+```tsx
+<Input
+  id="email"
+  type="email"
+  variant="error"
+  errorMessage="Please enter a valid email address"
+  aria-describedby="email-error"
+/>
+```
+
+## Best Practices
+
+### Do
+
+- Always provide a visible label (not just placeholder)
+- Use appropriate input types (email, tel, number) for better mobile keyboards
+- Include helper text to explain format or requirements before errors occur
+- Show clear error messages that explain what's wrong and how to fix it
+- Mark required fields with asterisk (*) or "required" text
+- Use appropriate size for context (sm for compact forms, lg for hero sections)
+- Disable autocomplete when entering sensitive data
+- Include icons to clarify purpose (search, lock for password)
+- Validate on blur, not on every keystroke (unless real-time feedback is needed)
+
+### Don't
+
+- Use placeholder as the only label (disappears when typing)
+- Show error messages before user has finished typing
+- Use vague error messages like "Invalid input"
+- Make inputs too narrow for expected content
+- Forget to associate labels with inputs (use htmlFor/id)
+- Disable paste functionality (frustrates users with password managers)
+- Use input fields for actions (use buttons)
+- Rely on color alone to show validation state (include icons/text)
+
+## Common Mistakes
+
+1. **Placeholder instead of label**: Placeholders disappear and don't work with screen readers as labels
+2. **Validating too early**: Show errors after blur/submit, not on every keystroke
+3. **Generic error messages**: "Invalid" doesn't help users fix the problem
+4. **Missing helper text**: Users shouldn't have to guess format requirements
+5. **Wrong input type**: `type="text"` for email loses mobile keyboard optimization
+6. **No loading state**: Show loading for async validation (username availability)
+7. **Too narrow inputs**: Input should be wide enough for expected content
+
+## Input Types Guide
+
+- **text**: Default for general text entry
+- **email**: Email addresses (shows @ on mobile keyboard)
+- **password**: Masked password entry
+- **number**: Numeric values with increment/decrement
+- **tel**: Phone numbers (numeric keyboard on mobile)
+- **search**: Search queries (shows X to clear)
+- **url**: Web addresses (shows .com on mobile keyboard)
+- **date/time**: Date/time pickers (native browser UI)
+
+## Validation Guidelines
+
+- Show success state only when necessary (password strength, username availability)
+- Error state should appear after blur or form submission
+- Include specific, actionable error messages
+- Don't validate empty required fields until blur/submit
+- For complex formats, provide examples in helper text
+- Use helper text for format guidance, not just for errors
+
+## API Reference
+
+### Input Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'error'` | `'default'` | Visual style variant for validation states |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the input field |
+| `type` | `'text' \| 'email' \| 'password' \| 'number' \| 'tel' \| 'search' \| 'url'` | `'text'` | HTML input type for appropriate keyboard and validation |
+| `disabled` | `boolean` | `false` | Disabled state - prevents interaction |
+| `required` | `boolean` | `false` | Marks field as required with asterisk |
+| `label` | `string` | - | Label text for the input |
+| `placeholder` | `string` | - | Placeholder text when input is empty |
+| `helperText` | `string` | - | Helper text below the input |
+| `errorMessage` | `string` | - | Error message shown when variant is "error" |
+| `leftIcon` | `ReactNode` | - | Icon displayed on the left side |
+| `rightIcon` | `ReactNode` | - | Icon displayed on the right side |
+| `className` | `string` | - | Additional CSS classes |
+| `id` | `string` | - | HTML id for label association |
+| `value` | `string` | - | Controlled input value |
+| `defaultValue` | `string` | - | Uncontrolled default value |
+| `onChange` | `(e: ChangeEvent) => void` | - | Function called when value changes |
+| `onBlur` | `(e: FocusEvent) => void` | - | Function called when input loses focus |
+| `onFocus` | `(e: FocusEvent) => void` | - | Function called when input gains focus |
+
+### Usage Examples
+
+#### Basic Input
+
+```tsx
+import { Input } from '@/components';
+
+function MyForm() {
+  return (
+    <Input
+      label="Email address"
+      type="email"
+      placeholder="you@example.com"
+    />
+  );
+}
+```
+
+#### With Helper Text
+
+```tsx
+<Input
+  label="Username"
+  placeholder="johndoe"
+  helperText="Choose a unique username for your account"
+  required
+/>
+```
+
+#### With Error Validation
+
+```tsx
+<Input
+  label="Email"
+  type="email"
+  variant="error"
+  errorMessage="Please enter a valid email address"
+/>
+```
+
+#### With Icons
+
+```tsx
+<Input
+  label="Search"
+  type="search"
+  placeholder="Search users..."
+  leftIcon={<SearchIcon />}
+/>
+```
+
+#### Password Input
+
+```tsx
+<Input
+  label="Password"
+  type="password"
+  placeholder="Enter your password"
+  leftIcon={<LockIcon />}
+  helperText="Must be at least 8 characters"
+  required
+/>
+```
+
+#### Controlled Input
+
+```tsx
+function ControlledInput() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Input
+      label="Name"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      placeholder="Enter your name"
+    />
+  );
+}
+```
+
+#### Different Sizes
+
+```tsx
+<Input size="sm" placeholder="Small input" />
+<Input size="md" placeholder="Medium input" />
+<Input size="lg" placeholder="Large input" />
+```
+
+#### With Validation on Blur
+
+```tsx
+function ValidatedInput() {
+  const [error, setError] = React.useState('');
+
+  const handleBlur = (e) => {
+    const email = e.target.value;
+    if (!email.includes('@')) {
+      setError('Please enter a valid email address');
+    } else {
+      setError('');
+    }
+  };
+
+  return (
+    <Input
+      label="Email"
+      type="email"
+      onBlur={handleBlur}
+      variant={error ? 'error' : 'default'}
+      errorMessage={error}
+    />
+  );
+}
+```
+
+## Related Components
+
+- **Label** - Field labels that identify inputs
+- **HelperText** - Supplementary text below inputs
+- **ErrorMessage** - Validation error messages
+- **FieldGroup** - Wrapper combining label, input, and helper/error text
+- **Textarea** - Multi-line text input
+- **Select** - Dropdown selection from options

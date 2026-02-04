@@ -1,0 +1,131 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as BadgeStories from './Badge.stories';
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+Badges are small labels that highlight information, indicate status, or show counts. They draw attention to new, important, or categorized items.
+
+<Canvas of={BadgeStories.Default} />
+
+<Controls of={BadgeStories.Default} />
+
+## Overview
+
+The Badge component is a compact visual indicator used to label, categorize, or draw attention to specific elements. Badges can display text, numbers, or status indicators in various colors and sizes.
+
+## When to Use
+
+### Use Badge when:
+
+- **Status indicators**: Active, pending, approved, rejected
+- **Categories/tags**: Labels for content classification
+- **Counts**: Notification counts, unread messages
+- **New items**: Highlight new or updated content
+- **Priority levels**: High, medium, low priority
+- **User roles**: Admin, moderator, member
+- **Version labels**: Beta, alpha, deprecated
+
+### Don't use Badge when:
+
+- **Long text**: Badges are for short labels only
+- **Primary actions**: Use Button instead
+- **Complex information**: Use proper UI components
+- **Decorative purposes**: Use meaningful badges only
+
+## Variants
+
+<Canvas of={BadgeStories.AllVariants} />
+
+## Sizes
+
+<Canvas of={BadgeStories.AllSizes} />
+
+## Real World Examples
+
+<Canvas of={BadgeStories.StatusBadges} />
+
+## Accessibility
+
+- **Color Independence**: Text/icons, not just color
+- **Sufficient Contrast**: Meets WCAG AA standards
+- **Screen Readers**: Meaningful text announced
+- **Aria Labels**: For icon-only badges
+
+## Best Practices
+
+### Do
+
+- Keep text short (1-2 words, ideally)
+- Use consistent colors for same meanings
+- Provide context with surrounding content
+- Use appropriate size for context
+- Make removable when appropriate
+- Use meaningful labels
+
+### Don't
+
+- Use too many badges at once
+- Rely solely on color
+- Use for long text
+- Make badges too large
+- Use badges as buttons
+- Overuse bright colors
+
+## API Reference
+
+### Badge Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'primary' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'default'` | Visual style |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Badge size |
+| `pill` | `boolean` | `false` | Fully rounded (pill shape) |
+| `removable` | `boolean` | `false` | Show remove button |
+| `onRemove` | `() => void` | - | Remove callback |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { Badge } from '@/components';
+
+// Basic badge
+<Badge>New</Badge>
+
+// Different variants
+<Badge variant="success">Active</Badge>
+<Badge variant="error">Error</Badge>
+<Badge variant="warning">Warning</Badge>
+
+// Sizes
+<Badge size="sm">Small</Badge>
+<Badge size="md">Medium</Badge>
+<Badge size="lg">Large</Badge>
+
+// Pill shape
+<Badge pill>Pill Badge</Badge>
+
+// With icon
+<Badge variant="success">
+  <CheckIcon /> Verified
+</Badge>
+
+// Removable
+<Badge removable onRemove={() => console.log('Remove')}>
+  Tag
+</Badge>
+
+// Notification count
+<div className="relative">
+  <BellIcon />
+  <Badge className="absolute -top-1 -right-1">5</Badge>
+</div>
+```
+
+## Related Components
+
+- **Chip** - Interactive tags
+- **Tag** - Alternative name
+- **Tooltip** - Additional context

@@ -1,0 +1,190 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as LabelStories from './Label.stories';
+
+<Meta of={LabelStories} />
+
+# Label
+
+Labels identify form fields and provide context about what input is expected. They are essential for accessibility and usability.
+
+<Canvas of={LabelStories.Playground} />
+
+<Controls of={LabelStories.Playground} />
+
+## Overview
+
+The Label component is built on the native `<label>` element with enhanced styling and accessibility features. It provides consistent visual styling across the design system while maintaining semantic HTML and full keyboard navigation support.
+
+## When to Use
+
+### Use Label when:
+
+- **All form fields**: Every input, select, textarea needs a label
+- **Accessibility**: Screen readers rely on labels to describe fields
+- **Required fields**: Show asterisk for required fields
+- **Field groups**: Label groups of related fields
+
+### Don't use Label when:
+
+- **Placeholder-only fields**: Never replace labels with placeholders
+- **Icon-only buttons**: Use aria-label instead
+
+## Variants
+
+### Default Variant
+
+The standard label style with medium weight and default text color.
+
+<Canvas of={LabelStories.Default} />
+
+### Muted Variant
+
+A softer, lower-contrast label for optional or secondary fields.
+
+<Canvas of={LabelStories.Muted} />
+
+### Required Fields
+
+Labels can show a red asterisk (*) to indicate required fields.
+
+<Canvas of={LabelStories.Required} />
+
+### Disabled State
+
+Labels can be visually disabled to match disabled form fields.
+
+<Canvas of={LabelStories.Disabled} />
+
+## Sizes
+
+Labels support three sizes: small (sm), medium (md - default), and large (lg).
+
+<Canvas of={LabelStories.AllSizes} />
+
+## States
+
+View all label states and combinations in one place.
+
+<Canvas of={LabelStories.AllStates} />
+
+## With Input
+
+Labels should always be associated with their input via the `htmlFor` prop.
+
+<Canvas of={LabelStories.WithInput} />
+
+## Real World Examples
+
+<Canvas of={LabelStories.RealWorldExamples} />
+
+## Accessibility
+
+The Label component follows WCAG 2.1 guidelines and implements the following accessibility features:
+
+- **Semantic HTML**: Uses native `<label>` element
+- **Proper Association**: Associates with input via `htmlFor` attribute
+- **Required Indicator**: Red asterisk has `aria-label="required"` for screen readers
+- **Screen Reader Support**: Works seamlessly with all major screen readers
+- **Color Contrast**: Meets WCAG AA standards (4.5:1 minimum)
+- **Focus Management**: Clicking label focuses associated input
+- **Keyboard Navigation**: Fully navigable via keyboard
+
+### Testing Recommendations
+
+- Verify `htmlFor` matches input `id`
+- Test with screen readers (NVDA, JAWS, VoiceOver)
+- Check color contrast in both light and dark modes
+- Ensure required fields are announced properly
+
+## Best Practices
+
+### Do
+
+- Always associate label with input via htmlFor/id
+- Mark required fields with asterisk (*)
+- Keep labels concise (1-3 words when possible)
+- Use sentence case (not Title Case)
+- Position labels above fields (not beside)
+- Make labels descriptive and clear
+
+### Don't
+
+- Don't use placeholders instead of labels
+- Don't hide labels visually (unless using aria-label)
+- Don't use all caps or excessive styling
+- Don't use vague labels ("Enter text")
+- Don't forget htmlFor attribute
+- Don't use colons after labels (outdated pattern)
+
+## API Reference
+
+### Label Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Label text content |
+| `htmlFor` | `string` | - | ID of associated input element |
+| `variant` | `'default' \| 'muted'` | `'default'` | Visual style variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Label size |
+| `required` | `boolean` | `false` | Show required asterisk |
+| `disabled` | `boolean` | `false` | Disabled state styling |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+#### Basic Label
+
+```tsx
+import { Label, Input } from '@/components';
+
+function MyForm() {
+  return (
+    <div>
+      <Label htmlFor="email">Email address</Label>
+      <Input id="email" type="email" />
+    </div>
+  );
+}
+```
+
+#### Required Field
+
+```tsx
+<Label htmlFor="name" required>
+  Full name
+</Label>
+<Input id="name" />
+```
+
+#### Different Sizes
+
+```tsx
+<Label htmlFor="small" size="sm">Small Label</Label>
+<Label htmlFor="medium" size="md">Medium Label</Label>
+<Label htmlFor="large" size="lg">Large Label</Label>
+```
+
+#### Muted Variant for Optional Fields
+
+```tsx
+<Label htmlFor="company" variant="muted">
+  Company name (optional)
+</Label>
+<Input id="company" />
+```
+
+#### Disabled State
+
+```tsx
+<Label htmlFor="disabled-field" disabled>
+  Disabled field
+</Label>
+<Input id="disabled-field" disabled />
+```
+
+## Related Components
+
+- **Input** - Text input fields that work with labels
+- **HelperText** - Additional context below inputs
+- **ErrorMessage** - Validation error messages
+- **FieldGroup** - Wrapper combining label, input, and helper text

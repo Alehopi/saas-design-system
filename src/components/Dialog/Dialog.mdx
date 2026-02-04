@@ -1,0 +1,133 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as DialogStories from './Dialog.stories';
+
+<Meta of={DialogStories} />
+
+# Dialog
+
+Dialogs (also called modals) are overlay windows that require user interaction. They interrupt the workflow to capture information, confirm actions, or display important messages that demand attention.
+
+<Story of={DialogStories.Default} />
+
+
+## Overview
+
+The Dialog component creates a focused context by overlaying the main content. It's useful for confirmations, forms, or critical information that requires user acknowledgment before proceeding. Dialogs block interaction with the underlying page until closed.
+
+## When to Use
+
+### Use Dialog when:
+
+- **Confirmations**: Destructive actions that need confirmation
+- **Forms**: Data entry that requires focus
+- **Critical decisions**: Choices that significantly impact workflow
+- **Warnings**: Important information requiring acknowledgment
+- **Multi-step processes**: Guided workflows
+- **Detail views**: Focused view of item details
+
+### Don't use Dialog when:
+
+- **Simple feedback**: Use Toast for non-critical messages
+- **Persistent info**: Use Alert for inline messages
+- **Complex tasks**: Consider full page instead
+- **Frequent interruptions**: Too many dialogs frustrate users
+- **Non-critical info**: Don't block workflow unnecessarily
+
+## Types
+
+### Default Dialog
+
+<Canvas of={DialogStories.Default} />
+
+### Delete Confirmation Dialog
+
+<Canvas of={DialogStories.DeleteConfirmation} />
+
+### Form Dialog
+
+<Canvas of={DialogStories.WithForm} />
+
+### Without Close Button
+
+<Canvas of={DialogStories.WithoutCloseButton} />
+
+## Sizes
+
+### Small Dialog
+
+<Canvas of={DialogStories.SmallDialog} />
+
+### Large Dialog
+
+<Canvas of={DialogStories.LargeDialog} />
+
+## Accessibility
+
+- **Focus Trap**: Focus stays within dialog
+- **Keyboard Support**: Escape to close, Tab to navigate
+- **ARIA Attributes**: Proper `role="dialog"`, `aria-labelledby`, `aria-describedby`
+- **Focus Return**: Returns focus to trigger element on close
+- **Screen Reader**: Dialog content announced when opened
+
+## Best Practices
+
+### Do
+
+- Use for important decisions or information
+- Provide clear actions (Primary + Secondary)
+- Keep content focused and concise
+- Allow easy dismissal (X button, Escape key, backdrop click)
+- Return focus to trigger element
+- Use appropriate size for content
+
+### Don't
+
+- Nest dialogs inside dialogs
+- Use for non-critical messages
+- Hide the close button
+- Show dialogs automatically on page load
+- Put too much content in dialogs
+- Use for full forms (consider full page)
+
+## API Reference
+
+### Dialog Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `open` | `boolean` | - | Whether dialog is open (controlled) |
+| `onOpenChange` | `(open: boolean) => void` | - | Callback when open state changes |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Dialog size |
+| `title` | `string` | - | Dialog title |
+| `description` | `string` | - | Dialog description |
+| `children` | `ReactNode` | - | Dialog content |
+
+### Usage Examples
+
+```tsx
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components';
+
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Confirm Deletion</DialogTitle>
+      <DialogDescription>
+        This action cannot be undone.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <Button variant="outline">Cancel</Button>
+      <Button variant="danger">Delete</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+
+## Related Components
+
+- **Alert** - Inline persistent messages
+- **Toast** - Auto-dismissing notifications
+- **Drawer** - Side panel overlay

@@ -1,0 +1,378 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as SwitchStories from './Switch.stories';
+
+<Meta of={SwitchStories} />
+
+# Switch
+
+Switches are toggle controls that allow users to instantly turn settings or features on or off. They provide immediate visual feedback and are ideal for binary state changes that take effect immediately.
+
+<Canvas of={SwitchStories.Default} />
+
+<Controls of={SwitchStories.Default} />
+
+## Overview
+
+The Switch component is a binary toggle that represents an on/off state. Unlike checkboxes which are typically used for form submissions, switches apply changes immediately. They're commonly used in settings panels, preference screens, and anywhere users need instant state toggling.
+
+## When to Use
+
+### Use Switch when:
+
+- **Instant effect**: Changes apply immediately without saving
+- **Binary states**: On/off, enabled/disabled settings
+- **Settings panels**: User preferences, feature toggles
+- **Real-time controls**: Dark mode, notifications, auto-save
+- **Mobile-first interfaces**: Switches are familiar from mobile OSes
+- **Clear on/off states**: No ambiguity about what each position means
+- **Independent toggles**: Each switch works independently
+
+### Don't use Switch when:
+
+- **Form submission required**: Use Checkbox for options that need "Save" or "Submit"
+- **Multiple selections**: Use Checkbox for multi-select scenarios
+- **Mutually exclusive options**: Use Radio buttons when only one can be selected
+- **Requires confirmation**: Use Checkbox with a submit button for consequential actions
+- **Complex states**: Switches are binary only (on/off)
+
+## Basic Examples
+
+### With Description
+
+Descriptions help users understand what the switch controls.
+
+<Canvas of={SwitchStories.WithDescription} />
+
+### Label Position Left
+
+<Canvas of={SwitchStories.LabelLeft} />
+
+## Sizes
+
+Switch supports three sizes for different contexts.
+
+### Small (sm)
+
+<Canvas of={SwitchStories.Small} />
+
+### Medium (md) - Default
+
+<Canvas of={SwitchStories.Default} />
+
+### Large (lg)
+
+<Canvas of={SwitchStories.Large} />
+
+## States
+
+### Disabled
+
+<Canvas of={SwitchStories.Disabled} />
+
+### Default Checked
+
+<Canvas of={SwitchStories.DefaultChecked} />
+
+## Accessibility
+
+The Switch component follows WCAG 2.1 guidelines and implements the following accessibility features:
+
+- **Keyboard Support**: Full keyboard access (Space to toggle, Tab to navigate)
+- **ARIA Attributes**: Proper `role="switch"`, `aria-checked` support
+- **Focus Indicators**: Visible focus rings meet WCAG 2.1 AA standards
+- **Label Association**: Automatically linked labels for screen readers
+- **State Announcement**: On/off states announced correctly
+- **Touch Targets**: Minimum 44x44px for mobile accessibility
+- **Disabled State**: Correctly communicated to assistive technologies
+
+### Keyboard Shortcuts
+
+- **Space**: Toggle switch on/off
+- **Tab**: Move to next focusable element
+- **Shift+Tab**: Move to previous focusable element
+
+### ARIA Labels
+
+Switches should always have a label:
+
+```tsx
+<Switch label="Enable notifications" />
+```
+
+For switches without visible labels, provide `aria-label`:
+
+```tsx
+<Switch aria-label="Toggle dark mode" />
+```
+
+## Best Practices
+
+### Do
+
+- Use for settings that take effect immediately
+- Provide clear labels that describe what's being toggled
+- Add descriptions to explain what happens when switched on/off
+- Make the entire row clickable (label + switch)
+- Use appropriate size for context
+- Group related switches together
+- Provide visual feedback on state change
+- Use consistent switch placement (usually right-aligned)
+
+### Don't
+
+- Use for form submission actions (use Checkbox)
+- Make labels ambiguous ("Enable feature" vs "Feature")
+- Use for destructive actions without confirmation
+- Hide important consequences of toggling
+- Use switches for navigation
+- Stack switches with other form controls in confusing ways
+- Use tiny switches that are hard to click
+- Change states without user's explicit action
+
+## Common Mistakes
+
+1. **Using for form submissions**: Switches apply changes immediately; use Checkbox for form data
+2. **No labels provided**: Every switch needs a clear label
+3. **Ambiguous labels**: "Feature" doesn't tell users what happens when enabled
+4. **Missing descriptions**: Users need to know what the switch controls
+5. **Destructive actions**: Don't use switches for actions that can't be easily undone
+6. **Wrong visual feedback**: State should be instantly clear from appearance
+7. **Not mobile-optimized**: Touch targets must be large enough
+
+## Switch vs Checkbox
+
+### Use Switch when:
+- ✅ Change applies immediately
+- ✅ Binary on/off state
+- ✅ Settings or preferences
+- ✅ Real-time control needed
+- ✅ Mobile-first interface
+
+### Use Checkbox when:
+- ✅ Change requires form submission
+- ✅ Multiple selections allowed
+- ✅ Part of a larger form
+- ✅ Terms acceptance, consent
+- ✅ Desktop-focused interface
+
+## Label Position Guidelines
+
+### Right (Default)
+- Most common pattern
+- Consistent with mobile interfaces
+- Better for scanning down a list of switches
+- Recommended for most use cases
+
+### Left
+- Use when switch is the primary focus
+- Table or compact layouts
+- When right alignment creates layout issues
+
+## Instant Feedback Pattern
+
+When a switch is toggled, users should see:
+1. **Immediate visual change**: Switch animates to new position
+2. **Clear state indication**: Color/position shows on vs off
+3. **Optional confirmation**: Toast message for important changes
+4. **Reversible action**: Users can toggle back easily
+
+## API Reference
+
+### Switch Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the switch |
+| `labelPosition` | `'left' \| 'right'` | `'right'` | Position of label relative to switch |
+| `disabled` | `boolean` | `false` | Disabled state - prevents interaction |
+| `checked` | `boolean` | - | Checked state (controlled) |
+| `defaultChecked` | `boolean` | `false` | Default checked state (uncontrolled) |
+| `label` | `string` | - | Label text for the switch |
+| `description` | `string` | - | Description text below the label |
+| `className` | `string` | - | Additional CSS classes |
+| `id` | `string` | - | HTML id for label association |
+| `aria-label` | `string` | - | Accessible label when no visible label |
+| `onCheckedChange` | `(checked: boolean) => void` | - | Function called when switch state changes |
+
+### Usage Examples
+
+#### Basic Switch
+
+```tsx
+import { Switch } from '@/components';
+
+function MySettings() {
+  return (
+    <Switch label="Enable notifications" />
+  );
+}
+```
+
+#### With Description
+
+```tsx
+<Switch
+  label="Marketing emails"
+  description="Receive emails about new products and features"
+/>
+```
+
+#### Controlled Switch
+
+```tsx
+function ControlledSwitch() {
+  const [enabled, setEnabled] = React.useState(false);
+
+  return (
+    <Switch
+      label="Auto-save"
+      checked={enabled}
+      onCheckedChange={setEnabled}
+      description={enabled ? "Changes save automatically" : "Save changes manually"}
+    />
+  );
+}
+```
+
+#### Different Sizes
+
+```tsx
+<Switch size="sm" label="Small switch" />
+<Switch size="md" label="Medium switch" />
+<Switch size="lg" label="Large switch" />
+```
+
+#### Label Position Left
+
+```tsx
+<Switch
+  label="Dark mode"
+  labelPosition="left"
+/>
+```
+
+#### Default Checked
+
+```tsx
+<Switch
+  label="Enable feature"
+  defaultChecked={true}
+/>
+```
+
+#### Disabled
+
+```tsx
+<Switch
+  label="Coming soon"
+  disabled
+  description="This feature is not yet available"
+/>
+```
+
+#### Settings Panel Example
+
+```tsx
+function SettingsPanel() {
+  const [settings, setSettings] = React.useState({
+    notifications: true,
+    autoSave: true,
+    darkMode: false,
+    analytics: false,
+  });
+
+  const updateSetting = (key: string, value: boolean) => {
+    setSettings(prev => ({ ...prev, [key]: value }));
+  };
+
+  return (
+    <div className="space-y-4">
+      <h3 className="font-semibold">Settings</h3>
+
+      <Switch
+        label="Notifications"
+        description="Receive push notifications"
+        checked={settings.notifications}
+        onCheckedChange={(checked) => updateSetting('notifications', checked)}
+      />
+
+      <Switch
+        label="Auto-save"
+        description="Automatically save your work"
+        checked={settings.autoSave}
+        onCheckedChange={(checked) => updateSetting('autoSave', checked)}
+      />
+
+      <Switch
+        label="Dark mode"
+        description="Use dark color scheme"
+        checked={settings.darkMode}
+        onCheckedChange={(checked) => updateSetting('darkMode', checked)}
+      />
+
+      <Switch
+        label="Analytics"
+        description="Help us improve with usage data"
+        checked={settings.analytics}
+        onCheckedChange={(checked) => updateSetting('analytics', checked)}
+      />
+    </div>
+  );
+}
+```
+
+#### With Instant Feedback
+
+```tsx
+function NotificationSwitch() {
+  const [enabled, setEnabled] = React.useState(false);
+  const [toast, setToast] = React.useState('');
+
+  const handleToggle = (checked: boolean) => {
+    setEnabled(checked);
+    setToast(checked ? 'Notifications enabled' : 'Notifications disabled');
+    setTimeout(() => setToast(''), 3000);
+  };
+
+  return (
+    <>
+      <Switch
+        label="Push notifications"
+        description="Get notified about important updates"
+        checked={enabled}
+        onCheckedChange={handleToggle}
+      />
+      {toast && <Toast message={toast} />}
+    </>
+  );
+}
+```
+
+#### Table Row Switch
+
+```tsx
+function TableRow({ user }) {
+  return (
+    <tr>
+      <td>{user.name}</td>
+      <td>{user.email}</td>
+      <td>
+        <Switch
+          size="sm"
+          labelPosition="left"
+          label="Active"
+          checked={user.isActive}
+          onCheckedChange={(checked) => updateUser(user.id, { isActive: checked })}
+        />
+      </td>
+    </tr>
+  );
+}
+```
+
+## Related Components
+
+- **Checkbox** - For form submissions and multiple selections
+- **Radio** - For mutually exclusive options
+- **Toggle** - Alternative visual style for binary switches
+- **Button** - For actions that require confirmation

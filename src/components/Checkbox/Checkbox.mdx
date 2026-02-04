@@ -1,0 +1,400 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+Checkboxes allow users to select one or more options from a list, toggle settings on/off, or acknowledge information. They support indeterminate states for nested selections and come in multiple sizes.
+
+<Canvas of={CheckboxStories.Default} />
+
+<Controls of={CheckboxStories.Default} />
+
+## Overview
+
+The Checkbox component is a form control that allows users to make binary or multiple selections. Unlike radio buttons which enforce a single choice, checkboxes let users select zero, one, or multiple options. They're perfect for settings, multi-select lists, and consent flows.
+
+## When to Use
+
+### Use Checkbox when:
+
+- **Multiple selections**: Users can select more than one option
+- **Optional selections**: None, one, or multiple items can be chosen
+- **Binary choices**: On/off, yes/no, enable/disable settings
+- **Consent/acknowledgment**: Terms acceptance, newsletter subscription
+- **Filtering**: Applying multiple filter criteria simultaneously
+- **Lists**: Select-all functionality for bulk actions
+- **Independent options**: Each choice doesn't affect others
+
+### Don't use Checkbox when:
+
+- **Single selection only**: Use Radio buttons for mutually exclusive options
+- **Instant actions**: Use Switch for immediate effect toggles
+- **Too many options**: Use multi-select dropdown for 10+ options
+- **Navigation**: Use links or buttons instead
+- **Complex hierarchies**: Consider tree view with expandable checkboxes
+
+## Basic Examples
+
+### With Helper Text
+
+<Canvas of={CheckboxStories.WithHelperText} />
+
+### Without Label (Icon Only)
+
+For cases where context is clear, but always provide `aria-label`.
+
+<Canvas of={CheckboxStories.WithoutLabel} />
+
+### Long Labels
+
+Labels automatically wrap for longer text.
+
+<Canvas of={CheckboxStories.LongLabel} />
+
+## Sizes
+
+Checkbox supports three sizes for different contexts.
+
+### All Sizes
+
+<Canvas of={CheckboxStories.AllSizes} />
+
+## States
+
+### Checked State
+
+<Canvas of={CheckboxStories.Checked} />
+
+### Unchecked State
+
+<Canvas of={CheckboxStories.Unchecked} />
+
+### Indeterminate State
+
+Used for "select all" functionality when some but not all child items are selected.
+
+<Canvas of={CheckboxStories.Indeterminate} />
+
+### Disabled State
+
+<Canvas of={CheckboxStories.Disabled} />
+
+### Disabled Checked
+
+<Canvas of={CheckboxStories.DisabledChecked} />
+
+### Error State
+
+<Canvas of={CheckboxStories.Error} />
+
+## Real World Examples
+
+### Terms and Conditions
+
+<Canvas of={CheckboxStories.TermsAndConditions} />
+
+### Newsletter Subscription
+
+<Canvas of={CheckboxStories.NewsletterSubscription} />
+
+### Permissions Form
+
+<Canvas of={CheckboxStories.PermissionsForm} />
+
+### Task List
+
+<Canvas of={CheckboxStories.TaskList} />
+
+## Accessibility
+
+The Checkbox component follows WCAG 2.1 guidelines and implements the following accessibility features:
+
+- **Keyboard Support**: Full keyboard access (Space to toggle, Tab to navigate)
+- **ARIA Attributes**: Proper `role`, `aria-checked`, `aria-label` support
+- **Focus Indicators**: Visible focus rings meet WCAG 2.1 AA standards
+- **Label Association**: Automatically linked labels for screen readers
+- **State Announcement**: All states announced correctly (checked, unchecked, indeterminate)
+- **Touch Targets**: Minimum 44x44px for mobile accessibility
+- **Error States**: Linked via `aria-describedby` for screen readers
+
+### Keyboard Shortcuts
+
+- **Space**: Toggle checkbox state
+- **Tab**: Move to next focusable element
+- **Shift+Tab**: Move to previous focusable element
+
+### ARIA Labels
+
+For checkboxes without visible labels, always provide `aria-label`:
+
+```tsx
+<Checkbox aria-label="Select this item" />
+```
+
+For checkboxes with helper text or errors:
+
+```tsx
+<Checkbox
+  label="Accept terms"
+  helperText="You must accept to continue"
+  aria-describedby="terms-helper"
+/>
+```
+
+## Best Practices
+
+### Do
+
+- Provide clear, concise labels that describe what's being selected
+- Use helper text to provide additional context when needed
+- Group related checkboxes together logically
+- Use indeterminate state for parent checkboxes when some children are selected
+- Make the entire label clickable, not just the checkbox
+- Mark required fields clearly
+- Use appropriate size for context (sm for compact UIs, lg for emphasis)
+- Keep options independent - each checkbox shouldn't affect others
+
+### Don't
+
+- Use for mutually exclusive options (use Radio instead)
+- Hide critical information in checkbox labels
+- Make labels too long (keep under 2 lines when possible)
+- Use for actions that take immediate effect (use Switch)
+- Forget to provide labels (accessibility requirement)
+- Nest checkboxes too deeply (max 2-3 levels)
+- Use tiny checkboxes that are hard to click
+- Disable checkboxes without explanation
+
+## Common Mistakes
+
+1. **Using for single selection**: Radio buttons are better for mutually exclusive options
+2. **Missing labels**: Every checkbox needs a label or aria-label
+3. **Not using indeterminate**: Parent checkboxes should show partial selection state
+4. **Too small touch targets**: Checkboxes must be at least 44x44px for touch
+5. **Immediate actions**: Checkboxes are for selections, not instant actions (use Switch)
+6. **No visual feedback**: Users need to see checked state clearly
+7. **Validation timing**: Show errors after form submit, not on every click
+
+## Indeterminate State Usage
+
+The indeterminate state is specifically for "select all" scenarios:
+
+```tsx
+function SelectAllExample() {
+  const [checkedItems, setCheckedItems] = React.useState([false, false, false]);
+
+  const allChecked = checkedItems.every(Boolean);
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
+
+  return (
+    <>
+      <Checkbox
+        checked={allChecked}
+        indeterminate={isIndeterminate}
+        onCheckedChange={(checked) => {
+          setCheckedItems([checked, checked, checked]);
+        }}
+        label="Select All"
+      />
+      {checkedItems.map((checked, index) => (
+        <Checkbox
+          key={index}
+          checked={checked}
+          onCheckedChange={(newChecked) => {
+            const newItems = [...checkedItems];
+            newItems[index] = newChecked;
+            setCheckedItems(newItems);
+          }}
+          label={`Item ${index + 1}`}
+        />
+      ))}
+    </>
+  );
+}
+```
+
+## API Reference
+
+### Checkbox Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the checkbox |
+| `checked` | `boolean \| 'indeterminate'` | `false` | Checked state |
+| `defaultChecked` | `boolean` | `false` | Default checked state (uncontrolled) |
+| `disabled` | `boolean` | `false` | Disabled state - prevents interaction |
+| `error` | `boolean` | `false` | Error state styling |
+| `label` | `string` | - | Label text for the checkbox |
+| `helperText` | `string` | - | Helper text below the checkbox |
+| `errorMessage` | `string` | - | Error message shown when error is true |
+| `className` | `string` | - | Additional CSS classes |
+| `id` | `string` | - | HTML id for label association |
+| `aria-label` | `string` | - | Accessible label when no visible label |
+| `aria-describedby` | `string` | - | ID of element describing the checkbox |
+| `onCheckedChange` | `(checked: boolean \| 'indeterminate') => void` | - | Function called when checkbox state changes |
+
+### Usage Examples
+
+#### Basic Checkbox
+
+```tsx
+import { Checkbox } from '@/components';
+
+function MyForm() {
+  return (
+    <Checkbox label="Accept terms and conditions" />
+  );
+}
+```
+
+#### With Helper Text
+
+```tsx
+<Checkbox
+  label="Enable notifications"
+  helperText="Receive email notifications about your account activity"
+/>
+```
+
+#### Controlled Checkbox
+
+```tsx
+function ControlledCheckbox() {
+  const [checked, setChecked] = React.useState(false);
+
+  return (
+    <Checkbox
+      label="Subscribe to newsletter"
+      checked={checked}
+      onCheckedChange={setChecked}
+    />
+  );
+}
+```
+
+#### Indeterminate State
+
+```tsx
+<Checkbox
+  checked="indeterminate"
+  label="Select All"
+/>
+```
+
+#### Different Sizes
+
+```tsx
+<Checkbox size="sm" label="Small checkbox" />
+<Checkbox size="md" label="Medium checkbox" />
+<Checkbox size="lg" label="Large checkbox" />
+```
+
+#### With Error
+
+```tsx
+<Checkbox
+  label="I agree to the terms"
+  error
+  errorMessage="You must accept the terms to continue"
+/>
+```
+
+#### Without Label (Accessible)
+
+```tsx
+<Checkbox aria-label="Select this item" />
+```
+
+#### Group of Checkboxes
+
+```tsx
+function CheckboxGroup() {
+  const [selections, setSelections] = React.useState({
+    email: true,
+    sms: false,
+    push: false,
+  });
+
+  return (
+    <div className="space-y-3">
+      <h3 className="font-semibold">Notification Preferences</h3>
+      <Checkbox
+        label="Email notifications"
+        checked={selections.email}
+        onCheckedChange={(checked) =>
+          setSelections(prev => ({ ...prev, email: checked }))
+        }
+      />
+      <Checkbox
+        label="SMS notifications"
+        checked={selections.sms}
+        onCheckedChange={(checked) =>
+          setSelections(prev => ({ ...prev, sms: checked }))
+        }
+      />
+      <Checkbox
+        label="Push notifications"
+        checked={selections.push}
+        onCheckedChange={(checked) =>
+          setSelections(prev => ({ ...prev, push: checked }))
+        }
+      />
+    </div>
+  );
+}
+```
+
+#### Select All Pattern
+
+```tsx
+function SelectAll() {
+  const items = ['Item 1', 'Item 2', 'Item 3'];
+  const [selected, setSelected] = React.useState<string[]>([]);
+
+  const allSelected = items.length === selected.length;
+  const someSelected = selected.length > 0 && !allSelected;
+
+  const toggleAll = () => {
+    setSelected(allSelected ? [] : items);
+  };
+
+  const toggleItem = (item: string) => {
+    setSelected(prev =>
+      prev.includes(item)
+        ? prev.filter(i => i !== item)
+        : [...prev, item]
+    );
+  };
+
+  return (
+    <div className="space-y-2">
+      <Checkbox
+        label="Select All"
+        checked={allSelected}
+        indeterminate={someSelected}
+        onCheckedChange={toggleAll}
+      />
+      <div className="ml-6 space-y-2">
+        {items.map(item => (
+          <Checkbox
+            key={item}
+            label={item}
+            checked={selected.includes(item)}
+            onCheckedChange={() => toggleItem(item)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+## Related Components
+
+- **Radio** - For mutually exclusive single selections
+- **Switch** - For instant on/off toggles
+- **Select** - For single selection from many options
+- **Label** - For custom checkbox labels
+- **FieldGroup** - For grouping form controls

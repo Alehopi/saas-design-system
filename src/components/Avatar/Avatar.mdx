@@ -1,0 +1,161 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as AvatarStories from './Avatar.stories';
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+Avatars are visual representations of users or entities. They display profile images, initials, or placeholder icons in a circular or rounded container.
+
+<Canvas of={AvatarStories.Default} />
+
+<Controls of={AvatarStories.Default} />
+
+## Overview
+
+The Avatar component provides a consistent way to display user identity throughout your application. It supports images, initials fallback, and placeholder icons with multiple size options.
+
+## When to Use
+
+### Use Avatar when:
+
+- **User identification**: Profile pictures, user lists
+- **Author attribution**: Comments, posts, articles
+- **Team members**: Collaborator lists, mentions
+- **Recent activity**: Who performed an action
+- **User menus**: Account dropdown, profile navigation
+- **Chat interfaces**: Message senders
+
+### Don't use Avatar when:
+
+- **Decorative images**: Use Image component
+- **Brand logos**: Use appropriate logo component
+- **Large profile photos**: Use full Image component
+- **Non-identity purposes**: Avatars represent people/entities
+
+## Sizes
+
+<Canvas of={AvatarStories.AllSizes} />
+
+## Types
+
+### With Image
+
+<Canvas of={AvatarStories.Default} />
+
+### With Initials Fallback
+
+<Canvas of={AvatarStories.WithFallback} />
+
+### With Label
+
+<Canvas of={AvatarStories.WithLabel} />
+
+### With Label and Description
+
+<Canvas of={AvatarStories.WithLabelAndDescription} />
+
+## Features
+
+### Status Indicators
+
+<Canvas of={AvatarStories.OnlineStatus} />
+
+<Canvas of={AvatarStories.AwayStatus} />
+
+<Canvas of={AvatarStories.BusyStatus} />
+
+<Canvas of={AvatarStories.OfflineStatus} />
+
+## Real World Examples
+
+<Canvas of={AvatarStories.UserList} />
+
+<Canvas of={AvatarStories.CustomAvatar} />
+
+## Accessibility
+
+- **Alt Text**: Meaningful alt text for images
+- **ARIA Labels**: Identify user when no text present
+- **Focus Indicators**: For interactive avatars
+- **Screen Readers**: User name announced
+
+## Best Practices
+
+### Do
+
+- Use consistent sizes across same context
+- Provide alt text for images
+- Use initials as fallback
+- Show status indicators when relevant
+- Keep avatar groups to 3-5 visible
+- Use appropriate size for context
+
+### Don't
+
+- Use low-quality or pixelated images
+- Show too many avatars in a group
+- Forget fallback for missing images
+- Use avatars for non-identity purposes
+- Make avatars too large or too small
+
+## API Reference
+
+### Avatar Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `src` | `string` | - | Image source URL |
+| `alt` | `string` | - | Image alt text |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Avatar size |
+| `initials` | `string` | - | Fallback initials (max 2 chars) |
+| `status` | `'online' \| 'offline' \| 'away' \| 'busy'` | - | Status indicator |
+| `shape` | `'circle' \| 'square'` | `'circle'` | Avatar shape |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { Avatar } from '@/components';
+
+// With image
+<Avatar src="/user.jpg" alt="John Doe" />
+
+// With initials fallback
+<Avatar
+  src="/user.jpg"
+  alt="John Doe"
+  initials="JD"
+/>
+
+// Initials only
+<Avatar initials="AB" alt="Alice Brown" />
+
+// Different sizes
+<Avatar size="xs" initials="XS" />
+<Avatar size="sm" initials="SM" />
+<Avatar size="md" initials="MD" />
+<Avatar size="lg" initials="LG" />
+<Avatar size="xl" initials="XL" />
+
+// With status
+<Avatar
+  src="/user.jpg"
+  alt="John Doe"
+  status="online"
+/>
+
+// Avatar group
+<AvatarGroup>
+  <Avatar src="/user1.jpg" alt="User 1" />
+  <Avatar src="/user2.jpg" alt="User 2" />
+  <Avatar src="/user3.jpg" alt="User 3" />
+  <Avatar initials="+5" alt="5 more users" />
+</AvatarGroup>
+```
+
+## Related Components
+
+- **AvatarGroup** - Multiple avatars
+- **Badge** - Status indicators
+- **Tooltip** - Show full name on hover

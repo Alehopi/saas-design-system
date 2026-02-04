@@ -1,0 +1,191 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as EmptyStateStories from './EmptyState.stories';
+
+<Meta of={EmptyStateStories} />
+
+# EmptyState
+
+Empty states guide users when there's no content to display. They explain why content is missing and often suggest actions to resolve the situation.
+
+<Canvas of={EmptyStateStories.Default} />
+
+<Controls of={EmptyStateStories.Default} />
+
+## Overview
+
+The EmptyState component appears when lists, search results, or data tables have no content. Instead of showing blank space, it provides context and guides users toward productive actions.
+
+## When to Use
+
+### Use EmptyState when:
+
+- **Empty lists**: No items created yet
+- **No search results**: Query returned nothing
+- **First-time use**: Onboarding new users
+- **Filtered views**: Filters exclude all items
+- **Error states**: Data failed to load
+- **Deleted content**: All items removed
+- **Permissions**: User can't access content
+
+### Don't use EmptyState when:
+
+- **Loading**: Use Skeleton or Spinner instead
+- **Temporary states**: Use appropriate loading UI
+- **Errors**: Use Error component for system errors
+- **Has content**: Never show over existing content
+
+## Types
+
+### No Search Results
+
+<Canvas of={EmptyStateStories.NoSearchResults} />
+
+### No Data
+
+<Canvas of={EmptyStateStories.NoData} />
+
+## With Action
+
+<Canvas of={EmptyStateStories.WithAction} />
+
+## All Variants
+
+<Canvas of={EmptyStateStories.AllVariants} />
+
+## Real World Examples
+
+<Canvas of={EmptyStateStories.AllStates} />
+
+<Canvas of={EmptyStateStories.RealWorldExamples} />
+
+## Accessibility
+
+- **Headings**: Proper heading hierarchy
+- **Descriptions**: Clear, helpful explanations
+- **Actionable**: Primary action is keyboard accessible
+- **Screen Readers**: Content announced correctly
+
+## Best Practices
+
+### Do
+
+- Provide clear explanation
+- Suggest actionable next steps
+- Use friendly, helpful tone
+- Include relevant illustration/icon
+- Keep messaging concise
+- Match brand voice
+- Offer primary action when appropriate
+
+### Don't
+
+- Show blank white space
+- Use technical jargon
+- Blame the user
+- Make it look like an error (unless it is)
+- Forget to handle this state
+- Show empty state while loading
+
+## Empty State Categories
+
+### First Use
+- **Message**: "Welcome! Get started by..."
+- **Action**: Create first item
+- **Tone**: Encouraging, welcoming
+
+### User Action
+- **Message**: "No items yet"
+- **Action**: Add item button
+- **Tone**: Neutral, helpful
+
+### No Results
+- **Message**: "No results for '[query]'"
+- **Action**: Clear filters, try different search
+- **Tone**: Helpful, suggestive
+
+### Error
+- **Message**: "Something went wrong"
+- **Action**: Retry, contact support
+- **Tone**: Apologetic, helpful
+
+### No Permission
+- **Message**: "You don't have access"
+- **Action**: Request access, contact admin
+- **Tone**: Informative, not accusatory
+
+## API Reference
+
+### EmptyState Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | required | Empty state heading |
+| `description` | `string` | - | Explanation text |
+| `icon` | `ReactNode` | - | Icon or illustration |
+| `action` | `ReactNode` | - | Primary action button |
+| `secondaryAction` | `ReactNode` | - | Secondary action |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { EmptyState } from '@/components';
+
+// Basic empty state
+<EmptyState
+  title="No items yet"
+  description="Get started by creating your first item"
+/>
+
+// With action
+<EmptyState
+  title="No projects"
+  description="Create your first project to get started"
+  action={
+    <Button onClick={createProject}>
+      Create Project
+    </Button>
+  }
+/>
+
+// No search results
+<EmptyState
+  icon={<SearchIcon />}
+  title="No results found"
+  description={`No results for "${searchQuery}". Try different keywords.`}
+  action={
+    <Button onClick={clearSearch}>
+      Clear Search
+    </Button>
+  }
+/>
+
+// Error state
+<EmptyState
+  icon={<AlertIcon />}
+  title="Failed to load"
+  description="We couldn't load your data. Please try again."
+  action={
+    <Button onClick={retry}>Retry</Button>
+  }
+  secondaryAction={
+    <Button variant="outline" onClick={contactSupport}>
+      Contact Support
+    </Button>
+  }
+/>
+
+// With illustration
+<EmptyState
+  icon={<CustomIllustration />}
+  title="Empty inbox"
+  description="You're all caught up! No new messages."
+/>
+```
+
+## Related Components
+
+- **Skeleton** - Loading placeholder
+- **Spinner** - Loading indicator
+- **Alert** - Error messages
+- **Card** - Container for empty states

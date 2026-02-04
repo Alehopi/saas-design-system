@@ -1,0 +1,411 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as SelectStories from './Select.stories';
+
+<Meta of={SelectStories} />
+
+# Select
+
+The Select component allows users to choose a single option from a dropdown list. It provides an accessible, customizable alternative to the native HTML select element with support for groups, disabled options, and validation states.
+
+<Canvas of={SelectStories.Default} />
+
+<Controls of={SelectStories.Default} />
+
+## Overview
+
+Select components present users with a list of options in a compact dropdown format. They're ideal when you have a predefined set of choices and need users to pick one. The component supports grouping, custom styling, validation states, and accessibility features.
+
+## When to Use
+
+### Use Select when:
+
+- **Choosing from a list**: Users need to select one option from 4+ predefined choices
+- **Saving space**: Multiple radio buttons would take too much vertical space
+- **Structured data**: Countries, states, categories, roles, priorities
+- **Form fields**: Dropdowns for job titles, departments, time zones
+- **Filtering**: Sorting options, filter criteria, display preferences
+- **Settings**: Configuration options with defined values
+
+### Don't use Select when:
+
+- **2-3 options**: Use Radio buttons instead for better visibility
+- **Yes/No choice**: Use Switch or Checkbox for binary selections
+- **Multiple selections**: Use multi-select dropdown or checkboxes
+- **Very long lists**: Consider autocomplete or searchable select for 50+ items
+- **Custom inputs**: Use Input if users need to type their own value
+- **Action triggers**: Use Button or DropdownMenu for actions
+
+## Basic Examples
+
+### With Label
+
+<Canvas of={SelectStories.WithLabel} />
+
+### With Helper Text
+
+<Canvas of={SelectStories.WithHelperText} />
+
+### Required Field
+
+<Canvas of={SelectStories.Required} />
+
+## Sizes
+
+Select supports three sizes to fit different contexts.
+
+### Small (sm)
+
+For compact forms, table filters, and tight spaces.
+
+<Canvas of={SelectStories.Small} />
+
+### Medium (md)
+
+Default size for most use cases.
+
+<Canvas of={SelectStories.Medium} />
+
+### Large (lg)
+
+For prominent selections and hero sections.
+
+<Canvas of={SelectStories.Large} />
+
+## States
+
+### Error State
+
+Display validation errors with clear visual feedback.
+
+<Canvas of={SelectStories.Error} />
+
+### Disabled State
+
+Prevent interaction when the field is not available.
+
+<Canvas of={SelectStories.Disabled} />
+
+## Advanced Features
+
+### With Groups
+
+Organize options into logical sections with separators.
+
+<Canvas of={SelectStories.WithGroups} />
+
+### Long Lists
+
+Automatically scrollable for lists with many options.
+
+<Canvas of={SelectStories.LongList} />
+
+### Disabled Options
+
+Mark specific options as unavailable while keeping others selectable.
+
+<Canvas of={SelectStories.WithDisabledOptions} />
+
+## Real World Examples
+
+### Time Zone Selector
+
+<Canvas of={SelectStories.TimeZoneSelector} />
+
+### Priority Selector
+
+<Canvas of={SelectStories.PrioritySelector} />
+
+## Accessibility
+
+The Select component follows WCAG 2.1 guidelines and implements the following accessibility features:
+
+- **Keyboard Support**: Full keyboard navigation (Arrow keys, Enter, Escape, Tab)
+- **ARIA Labels**: Proper ARIA attributes for screen reader support
+- **Focus Management**: Visible focus indicators and logical focus flow
+- **Label Association**: Properly linked labels for form field identification
+- **Screen Reader Support**: All options and states announced correctly
+- **Touch Targets**: Minimum size requirements for mobile accessibility
+- **Disabled State**: Correctly communicated to assistive technologies
+
+### Keyboard Shortcuts
+
+- **Space/Enter**: Open dropdown when focused on trigger
+- **Arrow Up/Down**: Navigate through options
+- **Enter**: Select highlighted option and close dropdown
+- **Escape**: Close dropdown without selecting
+- **Tab**: Move to next focusable element
+- **Type**: Jump to option starting with typed letter
+
+### ARIA Labels
+
+Always provide an accessible label for the select:
+
+```tsx
+<SelectWrapper label="Country">
+  <Select>
+    <SelectTrigger aria-label="Country">
+      <SelectValue placeholder="Choose country" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="us">United States</SelectItem>
+    </SelectContent>
+  </Select>
+</SelectWrapper>
+```
+
+## Best Practices
+
+### Do
+
+- Provide a clear label that describes what the user is selecting
+- Use helper text to provide context or examples
+- Group related options with SelectGroup for better organization
+- Sort options logically (alphabetically, by frequency, or by importance)
+- Provide a default placeholder that prompts action ("Select country...")
+- Mark required fields clearly with asterisk or "required" text
+- Keep option labels concise and scannable
+- Use disabled state when selection is temporarily unavailable
+- Validate after selection change or on form submit
+
+### Don't
+
+- Use select for 2-3 options (use radio buttons instead)
+- Hide required selections in long dropdown lists
+- Forget to provide a label (placeholder alone isn't accessible)
+- Make lists excessively long without search functionality
+- Use technical jargon in option labels
+- Change content elsewhere on the page when selection changes (unless expected)
+- Nest selects inside other interactive elements
+- Use selects for navigation (use links or navigation components)
+
+## Common Mistakes
+
+1. **No label provided**: Placeholders aren't sufficient for accessibility
+2. **Too many options**: Lists over 50 items should use searchable select
+3. **Poor option ordering**: Random order makes finding options difficult
+4. **Missing default**: Not pre-selecting a sensible default when appropriate
+5. **Validation too early**: Don't show errors before user has made a selection
+6. **No groups in long lists**: Ungrouped long lists are hard to scan
+7. **Generic placeholders**: "Select..." doesn't tell users what to select
+
+## Component Composition
+
+The Select component uses a composition pattern with multiple subcomponents:
+
+```tsx
+<SelectWrapper label="Label" helperText="Helper" error errorMessage="Error">
+  <Select>
+    <SelectTrigger>
+      <SelectValue placeholder="Placeholder" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectGroup>
+        <SelectLabel>Group Label</SelectLabel>
+        <SelectItem value="1">Option 1</SelectItem>
+        <SelectItem value="2">Option 2</SelectItem>
+      </SelectGroup>
+      <SelectSeparator />
+      <SelectItem value="3">Option 3</SelectItem>
+    </SelectContent>
+  </Select>
+</SelectWrapper>
+```
+
+## API Reference
+
+### Select Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `disabled` | `boolean` | `false` | Whether the select is disabled |
+| `defaultValue` | `string` | - | Default selected value (uncontrolled) |
+| `value` | `string` | - | Selected value (controlled) |
+| `onValueChange` | `(value: string) => void` | - | Function called when selection changes |
+| `open` | `boolean` | - | Whether the dropdown is open (controlled) |
+| `onOpenChange` | `(open: boolean) => void` | - | Function called when dropdown opens/closes |
+
+### SelectTrigger Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the trigger button |
+| `error` | `boolean` | `false` | Error state styling |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `aria-label` | `string` | - | Accessible label for the trigger |
+
+### SelectWrapper Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | - | Label text for the select |
+| `required` | `boolean` | `false` | Mark field as required |
+| `helperText` | `string` | - | Helper text below the select |
+| `error` | `boolean` | `false` | Error state |
+| `errorMessage` | `string` | - | Error message to display |
+
+### SelectItem Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | required | Value of the option |
+| `disabled` | `boolean` | `false` | Whether option is disabled |
+| `children` | `ReactNode` | required | Display text for the option |
+
+### Usage Examples
+
+#### Basic Select
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectWrapper,
+} from '@/components';
+
+function FruitSelector() {
+  return (
+    <SelectWrapper label="Favorite Fruit">
+      <Select>
+        <SelectTrigger aria-label="Favorite Fruit">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+          <SelectItem value="orange">Orange</SelectItem>
+        </SelectContent>
+      </Select>
+    </SelectWrapper>
+  );
+}
+```
+
+#### With Groups
+
+```tsx
+<SelectWrapper label="Team Member">
+  <Select>
+    <SelectTrigger aria-label="Team Member">
+      <SelectValue placeholder="Choose a team member" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectGroup>
+        <SelectLabel>Design Team</SelectLabel>
+        <SelectItem value="alice">Alice Johnson</SelectItem>
+        <SelectItem value="bob">Bob Smith</SelectItem>
+      </SelectGroup>
+      <SelectSeparator />
+      <SelectGroup>
+        <SelectLabel>Engineering Team</SelectLabel>
+        <SelectItem value="charlie">Charlie Brown</SelectItem>
+        <SelectItem value="diana">Diana Prince</SelectItem>
+      </SelectGroup>
+    </SelectContent>
+  </Select>
+</SelectWrapper>
+```
+
+#### Controlled Select
+
+```tsx
+function ControlledSelect() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <SelectWrapper label="Country">
+      <Select value={value} onValueChange={setValue}>
+        <SelectTrigger aria-label="Country">
+          <SelectValue placeholder="Select country" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="us">United States</SelectItem>
+          <SelectItem value="uk">United Kingdom</SelectItem>
+          <SelectItem value="ca">Canada</SelectItem>
+        </SelectContent>
+      </Select>
+    </SelectWrapper>
+  );
+}
+```
+
+#### With Validation
+
+```tsx
+function ValidatedSelect() {
+  const [value, setValue] = React.useState('');
+  const [error, setError] = React.useState('');
+
+  const handleChange = (newValue: string) => {
+    setValue(newValue);
+    setError('');
+  };
+
+  const handleSubmit = () => {
+    if (!value) {
+      setError('Please select a country');
+    }
+  };
+
+  return (
+    <SelectWrapper
+      label="Country"
+      required
+      error={!!error}
+      errorMessage={error}
+    >
+      <Select value={value} onValueChange={handleChange}>
+        <SelectTrigger error={!!error} aria-label="Country, required">
+          <SelectValue placeholder="Select country" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="us">United States</SelectItem>
+          <SelectItem value="uk">United Kingdom</SelectItem>
+        </SelectContent>
+      </Select>
+    </SelectWrapper>
+  );
+}
+```
+
+#### Different Sizes
+
+```tsx
+<SelectWrapper label="Small">
+  <Select>
+    <SelectTrigger size="sm" aria-label="Small Select">
+      <SelectValue placeholder="Small" />
+    </SelectTrigger>
+    <SelectContent>...</SelectContent>
+  </Select>
+</SelectWrapper>
+
+<SelectWrapper label="Medium">
+  <Select>
+    <SelectTrigger size="md" aria-label="Medium Select">
+      <SelectValue placeholder="Medium" />
+    </SelectTrigger>
+    <SelectContent>...</SelectContent>
+  </Select>
+</SelectWrapper>
+
+<SelectWrapper label="Large">
+  <Select>
+    <SelectTrigger size="lg" aria-label="Large Select">
+      <SelectValue placeholder="Large" />
+    </SelectTrigger>
+    <SelectContent>...</SelectContent>
+  </Select>
+</SelectWrapper>
+```
+
+## Related Components
+
+- **Radio** - For 2-4 options that should be visible
+- **Checkbox** - For multiple selections
+- **Input** - For custom text entry
+- **Label** - For field labels
+- **HelperText** - For additional context
+- **ErrorMessage** - For validation errors

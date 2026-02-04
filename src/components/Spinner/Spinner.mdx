@@ -1,0 +1,142 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as SpinnerStories from './Spinner.stories';
+
+<Meta of={SpinnerStories} />
+
+# Spinner
+
+Spinners indicate loading states for indeterminate-duration operations. They communicate that the system is working without showing specific progress.
+
+<Canvas of={SpinnerStories.Default} />
+
+<Controls of={SpinnerStories.Default} />
+
+## Overview
+
+The Spinner component provides visual feedback during loading operations. Unlike progress bars which show specific completion percentages, spinners indicate ongoing activity when the duration is unknown or very short.
+
+## When to Use
+
+### Use Spinner when:
+
+- **Loading content**: Fetching data, API calls
+- **Quick operations**: 1-5 seconds duration
+- **Unknown duration**: Can't calculate percentage
+- **Button loading states**: Async button actions
+- **Page transitions**: Loading new content
+- **Refreshing data**: Pull-to-refresh, auto-refresh
+
+### Don't use Spinner when:
+
+- **Known progress**: Use Progress bar instead
+- **Long operations**: Use Progress for tasks over 10 seconds
+- **Instant actions**: Under 500ms (no indicator needed)
+- **Multiple simultaneous loads**: Consider skeleton screens
+
+## Sizes
+
+<Canvas of={SpinnerStories.AllSizes} />
+
+## Variants
+
+<Canvas of={SpinnerStories.AllVariants} />
+
+## Usage Contexts
+
+### In Button
+
+<Canvas of={SpinnerStories.InButton} />
+
+### Centered Loading
+
+<Canvas of={SpinnerStories.Centered} />
+
+### Overlay Example
+
+<Canvas of={SpinnerStories.OverlayExample} />
+
+## Accessibility
+
+- **ARIA Labels**: `aria-label="Loading"` or `aria-labelledby`
+- **Live Region**: `aria-live="polite"` for status updates
+- **Hidden When Complete**: Remove from DOM when done
+- **Screen Readers**: Announces loading state
+
+## Best Practices
+
+### Do
+
+- Use appropriate size for context
+- Provide accessible labels
+- Center in loading area
+- Remove when loading completes
+- Use with descriptive text when possible
+- Show immediately for operations over 500ms
+
+### Don't
+
+- Show for very quick operations (under 500ms)
+- Use multiple spinners simultaneously
+- Block entire UI for small operations
+- Forget to handle error states
+- Use without any context (add label)
+
+## API Reference
+
+### Spinner Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Spinner size |
+| `variant` | `'default' \| 'primary' \| 'secondary'` | `'default'` | Color style |
+| `label` | `string` | `'Loading...'` | Accessible label |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { Spinner } from '@/components';
+
+// Basic spinner
+<Spinner />
+
+// Different sizes
+<Spinner size="sm" />
+<Spinner size="lg" />
+
+// With custom label
+<Spinner label="Loading data..." />
+
+// In button
+<Button disabled isLoading>
+  <Spinner size="sm" />
+  Loading...
+</Button>
+
+// Page loading
+function PageContent() {
+  const { data, isLoading } = useQuery();
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center p-8">
+        <Spinner size="lg" label="Loading content" />
+      </div>
+    );
+  }
+
+  return <div>{data}</div>;
+}
+
+// Inline loading
+<div className="flex items-center gap-2">
+  <Spinner size="sm" />
+  <span>Refreshing...</span>
+</div>
+```
+
+## Related Components
+
+- **Progress** - Determinate loading
+- **Skeleton** - Content placeholders
+- **Button** - Loading button states

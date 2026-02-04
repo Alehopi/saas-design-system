@@ -1,0 +1,153 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as BreadcrumbStories from './Breadcrumb.stories';
+
+<Meta of={BreadcrumbStories} />
+
+# Breadcrumb
+
+Breadcrumbs show users their current location within a website's hierarchy and provide navigation back to parent pages.
+
+<Story of={BreadcrumbStories.Default} />
+
+
+## Overview
+
+The Breadcrumb component displays the path from the homepage to the current page. It helps users understand their location and navigate back through the site hierarchy efficiently.
+
+## When to Use
+
+### Use Breadcrumb when:
+
+- **Deep hierarchies**: Sites with 3 or more levels
+- **Multi-level navigation**: Complex information architecture
+- **E-commerce**: Product category paths
+- **Documentation**: Nested content structure
+- **File systems**: Folder navigation
+- **Settings**: Multi-level settings pages
+
+### Don't use Breadcrumb when:
+
+- **Flat structure**: Single-level sites
+- **Linear flows**: Step-by-step processes (use stepper)
+- **Mobile**: Limited space (consider alternative)
+- **Homepage**: No parent pages to show
+
+## Separator Variants
+
+### Default (Chevron)
+
+<Canvas of={BreadcrumbStories.Default} />
+
+### With Slash Separator
+
+<Canvas of={BreadcrumbStories.WithSlashSeparator} />
+
+### With Custom Separator
+
+<Canvas of={BreadcrumbStories.WithCustomSeparator} />
+
+## With Icons
+
+<Canvas of={BreadcrumbStories.WithIcon} />
+
+## Collapsed (Ellipsis)
+
+For long paths, collapse middle items.
+
+<Canvas of={BreadcrumbStories.WithEllipsis} />
+
+## Path Lengths
+
+### Single Level
+
+<Canvas of={BreadcrumbStories.SingleLevel} />
+
+### Two Levels
+
+<Canvas of={BreadcrumbStories.TwoLevels} />
+
+### Long Path
+
+<Canvas of={BreadcrumbStories.LongPath} />
+
+## Real World Examples
+
+<Canvas of={BreadcrumbStories.InHeader} />
+
+<Canvas of={BreadcrumbStories.Responsive} />
+
+## Accessibility
+
+- **ARIA Labels**: `aria-label="Breadcrumb"` on nav
+- **Current Page**: `aria-current="page"` on last item
+- **Keyboard Navigation**: Tab through links
+- **Screen Readers**: Path announced correctly
+
+## Best Practices
+
+### Do
+
+- Show full path to current page
+- Make all items except last clickable
+- Use consistent separators
+- Keep labels concise
+- Start with "Home" or site name
+- Update breadcrumbs dynamically
+
+### Don't
+
+- Use as primary navigation
+- Include current page as link
+- Make breadcrumbs too long (collapse if needed)
+- Show breadcrumbs on homepage
+- Use inconsistent separators
+
+## API Reference
+
+### Breadcrumb Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `separator` | `ReactNode` | `'/'` | Custom separator |
+| `maxItems` | `number` | - | Max visible items (collapse rest) |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from '@/components';
+
+<Breadcrumb>
+  <BreadcrumbItem>
+    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+  </BreadcrumbItem>
+  <BreadcrumbSeparator />
+  <BreadcrumbItem>
+    <BreadcrumbLink href="/products">Products</BreadcrumbLink>
+  </BreadcrumbItem>
+  <BreadcrumbSeparator />
+  <BreadcrumbItem>
+    <BreadcrumbLink href="/products/electronics">Electronics</BreadcrumbLink>
+  </BreadcrumbItem>
+  <BreadcrumbSeparator />
+  <BreadcrumbItem isCurrentPage>
+    <span>Laptops</span>
+  </BreadcrumbItem>
+</Breadcrumb>
+
+// With custom separator
+<Breadcrumb separator={<ChevronRightIcon />}>
+  ...
+</Breadcrumb>
+
+// With max items (collapse)
+<Breadcrumb maxItems={4}>
+  ...
+</Breadcrumb>
+```
+
+## Related Components
+
+- **Navigation** - Primary navigation
+- **Pagination** - Page navigation
+- **Stepper** - Step-by-step progress

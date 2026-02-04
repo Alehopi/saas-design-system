@@ -1,0 +1,114 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} />
+
+# Card
+
+Cards are flexible containers that group related content and actions. They provide a contained, scannable format for displaying information about a single subject.
+
+<Story of={CardStories.Default} />
+
+
+## Overview
+
+The Card component is a versatile container for organizing content. It creates a visual grouping with optional headers, footers, and actions. Cards help users scan and organize information quickly.
+
+## When to Use
+
+### Use Card when:
+
+- **Grouping related content**: Product info, user profiles, articles
+- **Grid layouts**: Dashboard widgets, product galleries
+- **Action containers**: Forms, settings panels
+- **Preview content**: Summaries that link to details
+- **Lists of items**: Each item has multiple attributes
+
+### Don't use Card when:
+
+- **Single piece of info**: Use simple containers
+- **Table data**: Use Table component
+- **Navigation**: Use navigation components
+- **Entire page**: Cards are for sections, not full pages
+
+## Variants
+
+### Elevated
+
+<Canvas of={CardStories.Elevated} />
+
+### Outlined
+
+<Canvas of={CardStories.Outlined} />
+
+### With Hover Effect
+
+<Canvas of={CardStories.WithHover} />
+
+## Padding Options
+
+### Small Padding
+
+<Canvas of={CardStories.SmallPadding} />
+
+### Large Padding
+
+<Canvas of={CardStories.LargePadding} />
+
+### No Padding
+
+<Canvas of={CardStories.NoPadding} />
+
+## Real World Examples
+
+### Product Card
+
+<Canvas of={CardStories.ProductCard} />
+
+### User Profile Card
+
+<Canvas of={CardStories.UserProfileCard} />
+
+### Stat Card
+
+<Canvas of={CardStories.StatCard} />
+
+### Card Grid
+
+<Canvas of={CardStories.CardGrid} />
+
+## API Reference
+
+### Card Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'outlined' \| 'elevated'` | `'default'` | Visual style |
+| `clickable` | `boolean` | `false` | Whether card is clickable |
+| `onClick` | `() => void` | - | Click handler |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components';
+
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card description</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Card content goes here</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+## Related Components
+
+- **Table** - Tabular data
+- **List** - Simple item lists
+- **Grid** - Card layouts

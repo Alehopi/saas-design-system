@@ -1,0 +1,412 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as TextareaStories from './Textarea.stories';
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+Textarea is a multi-line text input field that allows users to enter longer form content such as comments, descriptions, messages, and feedback. It supports character counting, resize options, and validation states.
+
+<Canvas of={TextareaStories.Default} />
+
+<Controls of={TextareaStories.Playground} />
+
+## Overview
+
+The Textarea component provides a spacious input area for multi-line text entry. Unlike single-line inputs, textareas are designed for longer content and can be resized to accommodate varying amounts of text. They include features like character counting, validation states, and customizable sizing.
+
+## When to Use
+
+### Use Textarea when:
+
+- **Long-form content**: Descriptions, comments, feedback, messages
+- **Multi-line input**: Content that naturally spans multiple lines
+- **Unlimited text**: Essays, notes, articles, documentation
+- **User feedback**: Reviews, testimonials, survey responses
+- **Code snippets**: Entering or displaying code blocks
+- **Addresses**: Multi-line address fields
+- **Descriptions**: Product descriptions, bio fields
+
+### Don't use Textarea when:
+
+- **Single-line input**: Use Input for names, emails, single words
+- **Predefined options**: Use Select or Radio for choosing from a list
+- **Rich formatting needed**: Use a rich text editor component
+- **Very short input**: One or two words (use Input instead)
+- **Structured data**: Phone numbers, dates (use Input with proper type)
+
+## Basic Examples
+
+### With Label
+
+<Canvas of={TextareaStories.WithLabel} />
+
+### With Helper Text
+
+<Canvas of={TextareaStories.WithHelperText} />
+
+### Required Field
+
+<Canvas of={TextareaStories.Required} />
+
+## Sizes
+
+Textarea supports three sizes that affect the initial height.
+
+### Small (sm)
+
+Compact height for brief multi-line inputs.
+
+<Canvas of={TextareaStories.Small} />
+
+### Medium (md)
+
+Default size for most use cases.
+
+<Canvas of={TextareaStories.Medium} />
+
+### Large (lg)
+
+More space for longer content.
+
+<Canvas of={TextareaStories.Large} />
+
+## States
+
+### Error State
+
+Display validation errors with clear visual feedback.
+
+<Canvas of={TextareaStories.Error} />
+
+### Disabled State
+
+Prevent interaction when the field is not editable.
+
+<Canvas of={TextareaStories.Disabled} />
+
+## Character Count
+
+Show character counter to help users stay within limits.
+
+### With Character Count
+
+<Canvas of={TextareaStories.WithCharacterCount} />
+
+### Near Limit Warning
+
+The counter changes color when approaching the maximum.
+
+<Canvas of={TextareaStories.CharacterCountNearLimit} />
+
+## Resize Options
+
+Control how users can resize the textarea.
+
+### Resize None
+
+Fixed size, cannot be resized.
+
+<Canvas of={TextareaStories.ResizeNone} />
+
+### Resize Vertical
+
+Can be resized vertically only (recommended default).
+
+<Canvas of={TextareaStories.ResizeVertical} />
+
+### Resize Both
+
+Can be resized in any direction.
+
+<Canvas of={TextareaStories.ResizeBoth} />
+
+## Real World Examples
+
+### Feedback Form
+
+<Canvas of={TextareaStories.FeedbackForm} />
+
+### Comment Box
+
+<Canvas of={TextareaStories.CommentBox} />
+
+### Code Snippet
+
+<Canvas of={TextareaStories.CodeSnippet} />
+
+## Accessibility
+
+The Textarea component follows WCAG 2.1 guidelines and implements the following accessibility features:
+
+- **Label Association**: Labels properly linked using `htmlFor`/`id`
+- **Keyboard Accessible**: Full keyboard support (Tab, Shift+Tab, arrow keys)
+- **Focus Indicators**: Visible focus rings meet WCAG 2.1 AA standards
+- **Error Messages**: Linked via `aria-describedby` for screen readers
+- **Helper Text**: Provides context before validation errors
+- **Character Counter**: Announced to screen readers
+- **Disabled State**: Correctly communicated to assistive technologies
+- **Required Fields**: Properly marked for form validation
+
+### Label Association
+
+Always provide a visible label:
+
+```tsx
+<Label htmlFor="description">Description</Label>
+<Textarea
+  id="description"
+  aria-describedby="description-helper"
+  placeholder="Enter description..."
+/>
+<HelperText id="description-helper">
+  Provide a detailed description.
+</HelperText>
+```
+
+### Character Counter Accessibility
+
+The character counter is automatically announced to screen readers:
+
+```tsx
+<Textarea
+  label="Tweet"
+  showCount
+  maxLength={280}
+  aria-label="Tweet, 280 characters maximum"
+/>
+```
+
+## Best Practices
+
+### Do
+
+- Provide a clear label that describes the expected content
+- Use helper text to explain format, length, or content requirements
+- Show character counter for fields with length limits
+- Set appropriate default height with `rows` prop
+- Allow vertical resize for user preference (default behavior)
+- Mark required fields clearly
+- Validate after blur or form submit, not on every keystroke
+- Use appropriate size for the expected content length
+- Provide clear, actionable error messages
+
+### Don't
+
+- Use placeholder as the only label (not accessible)
+- Make textarea too small for expected content
+- Show errors before user has finished typing
+- Disable resize completely unless necessary
+- Use textarea for single-line inputs
+- Forget to set maxLength when showing character count
+- Use generic error messages like "Invalid"
+- Make resize="both" the default (can break layouts)
+
+## Common Mistakes
+
+1. **No label provided**: Placeholders aren't sufficient for accessibility
+2. **Too short by default**: Users shouldn't have to resize to see their content
+3. **No character limit**: Showing count without maxLength is confusing
+4. **Validating too early**: Show errors after blur/submit, not while typing
+5. **Fixed size when resizable would help**: Let users adjust for their needs
+6. **Using for short inputs**: Single-line inputs should use Input component
+7. **Missing helper text for format**: Users need guidance on what to write
+
+## Resize Behavior Guide
+
+- **none**: Use for fixed-layout forms where resizing would break design
+- **vertical**: Default and recommended - allows users to see more content without breaking layouts
+- **both**: Use cautiously - can break page layouts if user expands too much
+
+## Character Count Guidelines
+
+- Show character counter when field has a maximum length
+- Counter turns orange/yellow at 90% of limit
+- Counter turns red at/near 100% of limit
+- Always set `maxLength` when using `showCount`
+- Provide helpful helper text about the limit
+
+## API Reference
+
+### Textarea Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the textarea (affects height) |
+| `error` | `boolean` | `false` | Error state styling |
+| `disabled` | `boolean` | `false` | Disabled state - prevents interaction |
+| `required` | `boolean` | `false` | Marks field as required |
+| `label` | `string` | - | Label text for the textarea |
+| `placeholder` | `string` | - | Placeholder text when empty |
+| `helperText` | `string` | - | Helper text below the textarea |
+| `errorMessage` | `string` | - | Error message shown when error is true |
+| `showCount` | `boolean` | `false` | Show character counter |
+| `maxLength` | `number` | - | Maximum character length |
+| `rows` | `number` | `4` | Number of visible text rows |
+| `resize` | `'none' \| 'vertical' \| 'both'` | `'vertical'` | Resize behavior |
+| `className` | `string` | - | Additional CSS classes |
+| `id` | `string` | - | HTML id for label association |
+| `value` | `string` | - | Controlled textarea value |
+| `defaultValue` | `string` | - | Uncontrolled default value |
+| `onChange` | `(e: ChangeEvent) => void` | - | Function called when value changes |
+| `onBlur` | `(e: FocusEvent) => void` | - | Function called when loses focus |
+| `onFocus` | `(e: FocusEvent) => void` | - | Function called when gains focus |
+
+### Usage Examples
+
+#### Basic Textarea
+
+```tsx
+import { Textarea } from '@/components';
+
+function CommentForm() {
+  return (
+    <Textarea
+      label="Comment"
+      placeholder="Write a comment..."
+      helperText="Be respectful and constructive"
+    />
+  );
+}
+```
+
+#### With Character Count
+
+```tsx
+<Textarea
+  label="Tweet"
+  placeholder="What's happening?"
+  showCount
+  maxLength={280}
+  helperText="Share your thoughts in 280 characters"
+/>
+```
+
+#### Required Field
+
+```tsx
+<Textarea
+  label="Feedback"
+  placeholder="Please share your thoughts..."
+  required
+  helperText="This field is required"
+/>
+```
+
+#### With Error Validation
+
+```tsx
+<Textarea
+  label="Description"
+  error
+  errorMessage="Description must be at least 20 characters"
+/>
+```
+
+#### Different Sizes
+
+```tsx
+<Textarea size="sm" label="Brief Note" />
+<Textarea size="md" label="Standard Comment" />
+<Textarea size="lg" label="Detailed Feedback" />
+```
+
+#### Controlled Textarea
+
+```tsx
+function ControlledTextarea() {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <Textarea
+      label="Message"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      showCount
+      maxLength={500}
+    />
+  );
+}
+```
+
+#### Resize Options
+
+```tsx
+// Fixed size
+<Textarea resize="none" label="Fixed Size" />
+
+// Vertical only (recommended)
+<Textarea resize="vertical" label="Resizable Height" />
+
+// Both directions
+<Textarea resize="both" label="Fully Resizable" />
+```
+
+#### Custom Rows
+
+```tsx
+// Small initial height
+<Textarea rows={3} label="Quick Note" />
+
+// Large initial height
+<Textarea rows={10} label="Detailed Content" />
+```
+
+#### Code Input
+
+```tsx
+<Textarea
+  label="Code Snippet"
+  placeholder="Paste your code here..."
+  resize="both"
+  className="font-mono"
+  rows={8}
+/>
+```
+
+#### Feedback Form Example
+
+```tsx
+function FeedbackForm() {
+  const [feedback, setFeedback] = React.useState('');
+  const [error, setError] = React.useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (feedback.length < 20) {
+      setError('Feedback must be at least 20 characters');
+      return;
+    }
+    submitFeedback(feedback);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Textarea
+        label="Feedback"
+        placeholder="Share your experience..."
+        value={feedback}
+        onChange={(e) => {
+          setFeedback(e.target.value);
+          setError('');
+        }}
+        showCount
+        maxLength={500}
+        required
+        error={!!error}
+        errorMessage={error}
+        helperText="Help us improve by sharing your thoughts"
+      />
+      <Button type="submit">Submit Feedback</Button>
+    </form>
+  );
+}
+```
+
+## Related Components
+
+- **Input** - For single-line text entry
+- **Label** - Field labels for form fields
+- **HelperText** - Supplementary text below fields
+- **ErrorMessage** - Validation error messages
+- **FieldGroup** - Wrapper for label, textarea, and helper/error text
