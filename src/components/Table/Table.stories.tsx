@@ -333,6 +333,82 @@ export const Compact: Story = {
   ),
 };
 
+export const ResponsiveMobile: Story = {
+  render: () => {
+    const users = [
+      { name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active' },
+      { name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'Active' },
+      { name: 'Bob Johnson', email: 'bob@example.com', role: 'User', status: 'Inactive' },
+    ];
+
+    return (
+      <div>
+        {/* Desktop: Traditional table */}
+        <div className="hidden md:block">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Role</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {users.map((user) => (
+                <TableRow key={user.email}>
+                  <TableCell className="font-medium">{user.name}</TableCell>
+                  <TableCell>{user.email}</TableCell>
+                  <TableCell>{user.role}</TableCell>
+                  <TableCell>
+                    <Badge variant={user.status === 'Active' ? 'success' : 'secondary'}>
+                      {user.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Button size="sm" variant="outline">Edit</Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+
+        {/* Mobile: Card view */}
+        <div className="md:hidden space-y-3">
+          {users.map((user) => (
+            <div
+              key={user.email}
+              className="rounded-lg border border-slate-200 bg-white p-4 space-y-3 dark:border-slate-700 dark:bg-slate-900"
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-medium text-slate-900 dark:text-slate-100">{user.name}</span>
+                <Badge variant={user.status === 'Active' ? 'success' : 'secondary'} size="sm">
+                  {user.status}
+                </Badge>
+              </div>
+              <div className="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+                <div className="flex justify-between">
+                  <span className="text-slate-500 dark:text-slate-500">Email</span>
+                  <span>{user.email}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500 dark:text-slate-500">Role</span>
+                  <span>{user.role}</span>
+                </div>
+              </div>
+              <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+                <Button size="sm" variant="outline" className="w-full">Edit</Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  },
+};
+
 export const LargeData: Story = {
   render: () => (
     <Table>

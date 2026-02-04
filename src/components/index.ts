@@ -158,3 +158,6 @@ export { Label, labelVariants, type LabelProps } from './Label/Label';
 export { HelperText, helperTextVariants, type HelperTextProps } from './HelperText/HelperText';
 export { ErrorMessage, errorMessageVariants, type ErrorMessageProps } from './ErrorMessage/ErrorMessage';
 export { FieldGroup, fieldGroupVariants, type FieldGroupProps } from './FieldGroup/FieldGroup';
+
+// ThemeToggler
+export { ThemeToggler, type ThemeTogglerProps } from './ThemeToggler';

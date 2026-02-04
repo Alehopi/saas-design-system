@@ -113,6 +113,54 @@ export const LineHeights: Story = {
   ),
 };
 
+export const ResponsiveScale: Story = {
+  render: () => (
+    <div className="p-8">
+      <h1 className="text-3xl font-bold mb-2">Responsive Typography</h1>
+      <p className="text-sm text-slate-600 dark:text-slate-400 mb-8">
+        These classes automatically scale font sizes across breakpoints. Resize the browser to see them change.
+      </p>
+      <div className="space-y-8 max-w-4xl">
+        <div className="border-b border-slate-200 dark:border-slate-700 pb-6">
+          <span className="text-xs font-mono text-slate-500 mb-2 block">.heading-1</span>
+          <p className="heading-1 text-slate-900 dark:text-slate-50">Page Title Heading</p>
+          <p className="text-xs text-slate-500 mt-2">Mobile: text-2xl | Tablet: text-3xl | Desktop: text-4xl</p>
+        </div>
+        <div className="border-b border-slate-200 dark:border-slate-700 pb-6">
+          <span className="text-xs font-mono text-slate-500 mb-2 block">.heading-2</span>
+          <p className="heading-2 text-slate-900 dark:text-slate-50">Section Heading</p>
+          <p className="text-xs text-slate-500 mt-2">Mobile: text-xl | Tablet: text-2xl | Desktop: text-3xl</p>
+        </div>
+        <div className="border-b border-slate-200 dark:border-slate-700 pb-6">
+          <span className="text-xs font-mono text-slate-500 mb-2 block">.heading-3</span>
+          <p className="heading-3 text-slate-900 dark:text-slate-50">Subsection Heading</p>
+          <p className="text-xs text-slate-500 mt-2">Mobile: text-lg | Tablet: text-xl | Desktop: text-2xl</p>
+        </div>
+        <div className="border-b border-slate-200 dark:border-slate-700 pb-6">
+          <span className="text-xs font-mono text-slate-500 mb-2 block">.heading-4</span>
+          <p className="heading-4 text-slate-900 dark:text-slate-50">Card Heading</p>
+          <p className="text-xs text-slate-500 mt-2">Mobile: text-base | Tablet: text-lg | Desktop: text-xl</p>
+        </div>
+        <div className="border-b border-slate-200 dark:border-slate-700 pb-6">
+          <span className="text-xs font-mono text-slate-500 mb-2 block">.body-lg</span>
+          <p className="body-lg text-slate-700 dark:text-slate-300">Large body text for introductions and prominent paragraphs.</p>
+          <p className="text-xs text-slate-500 mt-2">Mobile: text-base | Tablet+: text-lg</p>
+        </div>
+        <div className="border-b border-slate-200 dark:border-slate-700 pb-6">
+          <span className="text-xs font-mono text-slate-500 mb-2 block">.body-base</span>
+          <p className="body-base text-slate-700 dark:text-slate-300">Default body text for content paragraphs and descriptions.</p>
+          <p className="text-xs text-slate-500 mt-2">Mobile: text-sm | Tablet+: text-base</p>
+        </div>
+        <div>
+          <span className="text-xs font-mono text-slate-500 mb-2 block">.body-sm</span>
+          <p className="body-sm text-slate-700 dark:text-slate-300">Small text for captions, helper text, and secondary information.</p>
+          <p className="text-xs text-slate-500 mt-2">Mobile: text-xs | Tablet+: text-sm</p>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
 export const TypographyScale: Story = {
   render: () => (
     <div className="p-8">
