@@ -3,7 +3,7 @@ import { ThemeToggler } from './ThemeToggler';
 import { ThemeProvider } from '../../hooks/useTheme';
 
 const meta = {
-  title: 'Components/ThemeToggler',
+  title: 'Components/Utility/ThemeToggler',
   component: ThemeToggler,
   decorators: [
     (Story) => (

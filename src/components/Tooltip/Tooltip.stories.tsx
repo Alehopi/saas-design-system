@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { Info, HelpCircle, Settings } from 'lucide-react';
 
 const meta = {
-  title: 'Components/Tooltip',
+  title: 'Components/Display/Tooltip',
   component: SimpleTooltip,
   decorators: [
     (Story) => (

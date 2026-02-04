@@ -21,7 +21,7 @@ const LockIcon = () => (
 );
 
 const meta = {
-  title: 'Components/Input',
+  title: 'Components/Inputs/Input',
   component: Input,
   parameters: {
     layout: 'centered',

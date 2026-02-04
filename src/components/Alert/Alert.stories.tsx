@@ -3,7 +3,7 @@ import { Alert, AlertTitle, AlertDescription } from './Alert';
 import { Terminal } from 'lucide-react';
 
 const meta = {
-  title: 'Components/Alert',
+  title: 'Components/Feedback/Alert',
   component: Alert,
   parameters: {
     layout: 'centered',

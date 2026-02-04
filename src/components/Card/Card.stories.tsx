@@ -3,7 +3,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '../Button';
 
 const meta = {
-  title: 'Components/Card',
+  title: 'Components/Display/Card',
   component: Card,
   parameters: {
     layout: 'centered',

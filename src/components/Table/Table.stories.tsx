@@ -14,7 +14,7 @@ import { Checkbox } from '../Checkbox';
 import { Button } from '../Button';
 
 const meta = {
-  title: 'Components/Table',
+  title: 'Components/Data Display/Table',
   component: Table,
   parameters: {
     layout: 'padded',

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { RadioGroupWrapper } from './Radio';
 
 const meta = {
-  title: 'Components/Radio',
+  title: 'Components/Inputs/Radio',
   component: RadioGroupWrapper,
   parameters: {
     layout: 'centered',

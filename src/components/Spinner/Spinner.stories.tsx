@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { useState } from 'react';
 
 const meta = {
-  title: 'Components/Spinner',
+  title: 'Components/Feedback/Spinner',
   component: Spinner,
   parameters: {
     layout: 'centered',

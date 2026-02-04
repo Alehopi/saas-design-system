@@ -11,7 +11,7 @@ import {
 import { Slash, Home } from 'lucide-react';
 
 const meta = {
-  title: 'Components/Breadcrumb',
+  title: 'Components/Navigation/Breadcrumb',
   component: Breadcrumb,
   parameters: {
     layout: 'centered',

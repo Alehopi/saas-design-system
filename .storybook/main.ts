@@ -19,7 +19,7 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
   docs: {
-    defaultName: 'Design System SaaS B2B',
+    defaultName: 'APEX Design System',
   },
 };
 

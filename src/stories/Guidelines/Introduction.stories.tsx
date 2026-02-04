@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 export const Overview: Story = {
   render: () => (
     <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-4 text-slate-900">SaaS B2B Design System</h1>
+      <h1 className="text-4xl font-bold mb-4 text-slate-900">APEX Design System</h1>
       <p className="text-xl text-slate-600 mb-8">
         A comprehensive design system for building professional, accessible, and efficient enterprise SaaS applications.
       </p>

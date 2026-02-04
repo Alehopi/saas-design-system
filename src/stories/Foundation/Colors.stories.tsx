@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Foundation/Colors',
+  title: 'Design Tokens/Colors',
   parameters: {
     layout: 'fullscreen',
   },

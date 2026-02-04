@@ -1,4 +1,4 @@
-# SaaS B2B Design System
+# APEX Design System
 
 A comprehensive, production-ready design system for enterprise SaaS applications. Built with modern web technologies and designed for scalability, accessibility, and developer experience.
 
@@ -19,18 +19,18 @@ A comprehensive, production-ready design system for enterprise SaaS applications
 ### Installation
 
 ```bash
-npm install saas-design-system
+npm install apex-design-system
 # or
-yarn add saas-design-system
+yarn add apex-design-system
 # or
-pnpm add saas-design-system
+pnpm add apex-design-system
 ```
 
 ### Basic Usage
 
 ```tsx
-import { Button, Input, Card } from 'saas-design-system';
-import 'saas-design-system/dist/styles.css';
+import { Button, Input, Card } from 'apex-design-system';
+import 'apex-design-system/dist/styles.css';
 
 function App() {
   return (
@@ -139,7 +139,7 @@ Visit [http://localhost:6006](http://localhost:6006) to browse:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd saas-design-system
+cd apex-design-system
 
 # Install dependencies
 npm install

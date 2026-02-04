@@ -3,7 +3,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../Card';
 
 const meta = {
-  title: 'Components/Tabs',
+  title: 'Components/Navigation/Tabs',
   component: Tabs,
   parameters: {
     layout: 'centered',

@@ -13,7 +13,7 @@ import {
 import { Button } from '../Button';
 
 const meta = {
-  title: 'Components/Toast',
+  title: 'Components/Feedback/Toast',
   component: Toast,
   parameters: {
     layout: 'centered',

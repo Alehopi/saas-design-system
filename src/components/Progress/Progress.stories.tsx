@@ -3,7 +3,7 @@ import { Progress } from './Progress';
 import { useEffect, useState } from 'react';
 
 const meta = {
-  title: 'Components/Progress',
+  title: 'Components/Feedback/Progress',
   component: Progress,
   parameters: {
     layout: 'centered',
