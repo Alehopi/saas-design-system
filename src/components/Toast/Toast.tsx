@@ -12,6 +12,8 @@ const ToastViewport = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Viewport
     ref={ref}
+    aria-live="polite"
+    aria-atomic="true"
     className={cn(
       'fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]',
       className
@@ -82,7 +84,8 @@ const ToastClose = React.forwardRef<
     toast-close=""
     {...props}
   >
-    <X className="h-4 w-4" />
+    <X className="h-4 w-4" aria-hidden="true" />
+    <span className="sr-only">Close</span>
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;
@@ -138,7 +141,7 @@ const ToastContent = React.forwardRef<HTMLDivElement, ToastContentProps>(
 
     return (
       <div ref={ref} className="flex gap-3">
-        {showIcon && <div className="flex-shrink-0">{iconToRender}</div>}
+        {showIcon && <div className="flex-shrink-0" aria-hidden="true">{iconToRender}</div>}
         <div className="grid gap-1">
           {title && <ToastTitle>{title}</ToastTitle>}
           {description && <ToastDescription>{description}</ToastDescription>}

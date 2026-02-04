@@ -37,21 +37,22 @@ const SelectTrigger = React.forwardRef<
         'flex w-full items-center justify-between rounded-md border bg-white',
         'transition-colors',
         'focus:outline-none focus:ring-2 focus:ring-offset-0',
-        'disabled:cursor-not-allowed disabled:opacity-50',
-        'placeholder:text-slate-400',
+        'disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500',
+        'placeholder:text-slate-500',
         '[&>span]:line-clamp-1',
         sizeClasses[size],
         error
           ? 'border-red-500 text-red-900 focus:ring-red-500 focus:border-red-500'
           : 'border-slate-300 text-slate-900 focus:ring-blue-500 focus:border-blue-500',
         'dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100',
+        'dark:disabled:bg-slate-900 dark:disabled:text-slate-500',
         className
       )}
       {...props}
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDown className="h-4 w-4 opacity-50" aria-hidden="true" />
+        <ChevronDown className="h-4 w-4 text-slate-500 dark:text-slate-400" aria-hidden="true" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
@@ -163,7 +164,7 @@ const SelectItem = React.forwardRef<
     className={cn(
       'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none',
       'focus:bg-slate-100 focus:text-slate-900',
-      'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+      'data-[disabled]:pointer-events-none data-[disabled]:text-slate-400 dark:data-[disabled]:text-slate-500',
       'dark:focus:bg-slate-700 dark:focus:text-slate-100',
       className
     )}

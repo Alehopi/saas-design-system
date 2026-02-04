@@ -48,7 +48,7 @@ const Progress = React.forwardRef<
   const progressValue = Math.min(Math.max(value || 0, 0), 100);
 
   return (
-    <div className="w-full space-y-2">
+    <div className="w-full space-y-2" aria-live="polite">
       {(showLabel || label) && (
         <div className="flex items-center justify-between text-sm">
           <span className="text-slate-700 dark:text-slate-300">

@@ -21,6 +21,26 @@ export default {
           800: '#1e40af',
           900: '#1e3a8a',
         },
+        semantic: {
+          'bg-primary': 'var(--color-bg-primary)',
+          'bg-secondary': 'var(--color-bg-secondary)',
+          'bg-tertiary': 'var(--color-bg-tertiary)',
+          'bg-inverse': 'var(--color-bg-inverse)',
+          'fg-primary': 'var(--color-fg-primary)',
+          'fg-secondary': 'var(--color-fg-secondary)',
+          'fg-muted': 'var(--color-fg-muted)',
+          'fg-inverse': 'var(--color-fg-inverse)',
+          'fg-disabled': 'var(--color-fg-disabled)',
+          'border-default': 'var(--color-border-default)',
+          'border-strong': 'var(--color-border-strong)',
+          'border-focus': 'var(--color-border-focus)',
+          'border-error': 'var(--color-border-error)',
+        },
+      },
+      boxShadow: {
+        'design-sm': 'var(--shadow-sm)',
+        'design-md': 'var(--shadow-md)',
+        'design-lg': 'var(--shadow-lg)',
       },
       keyframes: {
         'accordion-down': {

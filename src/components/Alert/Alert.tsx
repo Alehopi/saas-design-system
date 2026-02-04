@@ -58,7 +58,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         className={cn(alertVariants({ variant }), className)}
         {...props}
       >
-        {showIcon && iconToRender}
+        {showIcon && <span aria-hidden="true">{iconToRender}</span>}
         <div className={cn(showIcon && 'pl-7', closable && 'pr-8')}>{children}</div>
         {closable && (
           <button

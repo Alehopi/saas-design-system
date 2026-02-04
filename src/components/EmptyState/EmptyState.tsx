@@ -36,6 +36,8 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
     return (
       <div
         ref={ref}
+        role="region"
+        aria-label={title}
         className={cn(emptyStateVariants({ variant }), className)}
         {...props}
       >
@@ -45,6 +47,7 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
               'mb-4 flex items-center justify-center text-slate-300 dark:text-slate-600',
               variant === 'minimal' && 'mb-3'
             )}
+            aria-hidden="true"
           >
             {icon}
           </div>

@@ -85,9 +85,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           maxLength={maxLength}
           className={cn(
             'w-full rounded-md border bg-white transition-colors',
-            'placeholder:text-slate-400',
+            'placeholder:text-slate-500',
             'focus:outline-none focus:ring-2 focus:ring-offset-0',
-            'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-slate-50',
+            'disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500',
             sizeClasses[size],
             resizeClasses[resize],
             error

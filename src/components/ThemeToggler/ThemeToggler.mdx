@@ -1,0 +1,136 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as ThemeTogglerStories from './ThemeToggler.stories';
+
+<Meta of={ThemeTogglerStories} />
+
+# ThemeToggler
+
+A theme switcher component that allows users to toggle between light, dark, and system theme preferences.
+
+<Canvas of={ThemeTogglerStories.Default} />
+
+<Controls of={ThemeTogglerStories.Default} />
+
+## Overview
+
+The ThemeToggler component provides a simple interface for switching between light and dark themes. It supports a compact single-button toggle mode and an expanded three-option selector that includes a system/auto preference.
+
+It relies on the `ThemeProvider` and `useTheme` hook from `src/hooks/useTheme.tsx` to manage theme state.
+
+## When to Use
+
+### Use ThemeToggler when:
+
+- **User preference**: Let users choose their preferred color scheme
+- **Navigation bars**: Place in header or settings areas
+- **Settings pages**: As part of appearance/display preferences
+- **Accessibility**: Provide visual comfort options
+
+### Don't use ThemeToggler when:
+
+- **No dark mode support**: If the app doesn't support theming
+- **Embedded contexts**: Where theme should match the parent app
+- **Print layouts**: Theme switching is irrelevant
+
+## Modes
+
+### Simple Toggle (default)
+
+A single button that toggles between light and dark mode.
+
+<Canvas of={ThemeTogglerStories.Default} />
+
+### Three-Way Selector
+
+Shows light, dark, and system options as a segmented control.
+
+<Canvas of={ThemeTogglerStories.WithSystemOption} />
+
+## Sizes
+
+Three sizes are available to fit different layout contexts.
+
+<Canvas of={ThemeTogglerStories.AllSizes} />
+
+## With System Option - All Sizes
+
+<Canvas of={ThemeTogglerStories.WithSystemAllSizes} />
+
+## In Context
+
+<Canvas of={ThemeTogglerStories.InNavbar} />
+
+## Accessibility
+
+- **Keyboard navigation**: All buttons are focusable and activatable with Enter/Space
+- **ARIA labels**: Each button has a descriptive `aria-label` (e.g., "Light mode", "Dark mode", "System theme")
+- **Radio group**: The three-way selector uses `role="radiogroup"` with `aria-checked` states
+- **Focus indicators**: Visible focus ring on keyboard navigation
+- **Screen readers**: Current theme state is communicated via aria attributes
+
+## Best Practices
+
+### Do
+
+- Place in a consistent, discoverable location (header, settings)
+- Use the simple toggle for most cases
+- Use the three-way selector when system preference matters
+- Wrap your app with `ThemeProvider` at the root level
+- Match the size to surrounding UI elements
+
+### Don't
+
+- Place multiple theme togglers on the same page
+- Use without a `ThemeProvider` wrapper
+- Override theme from multiple sources simultaneously
+- Hide the toggler in hard-to-find locations
+
+## API Reference
+
+### ThemeToggler Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `showSystem` | `boolean` | `false` | Show system option alongside light/dark |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the toggler |
+| `className` | `string` | - | Additional CSS classes |
+
+### Dependencies
+
+Requires `ThemeProvider` to be present in the component tree:
+
+```tsx
+import { ThemeProvider } from '@/hooks/useTheme';
+import { ThemeToggler } from '@/components';
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="system">
+      <ThemeToggler showSystem />
+    </ThemeProvider>
+  );
+}
+```
+
+### Usage Examples
+
+```tsx
+import { ThemeToggler } from '@/components';
+
+// Simple toggle
+<ThemeToggler />
+
+// With system option
+<ThemeToggler showSystem />
+
+// Small size in a navbar
+<ThemeToggler size="sm" />
+
+// Custom styling
+<ThemeToggler className="ml-auto" />
+```
+
+## Related Components
+
+- **Button** - Base interactive element
+- **DropdownMenu** - Alternative theme selection UI

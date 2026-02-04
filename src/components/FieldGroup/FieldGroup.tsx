@@ -30,13 +30,17 @@ export interface FieldGroupProps
 
 const FieldGroup = React.forwardRef<HTMLDivElement, FieldGroupProps>(
   ({ className, spacing, label, helperText, error, children, ...props }, ref) => {
+    const labelId = React.useId();
+
     return (
       <div
         ref={ref}
+        role="group"
+        aria-labelledby={label ? labelId : undefined}
         className={cn(fieldGroupVariants({ spacing }), className)}
         {...props}
       >
-        {label && <div>{label}</div>}
+        {label && <div id={labelId}>{label}</div>}
         <div>{children}</div>
         {error ? <div>{error}</div> : helperText ? <div>{helperText}</div> : null}
       </div>

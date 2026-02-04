@@ -3,26 +3,99 @@
 @tailwind utilities;
 
 :root {
+  /* Backgrounds */
   --color-bg-primary: #ffffff;
   --color-bg-secondary: #f8fafc;
+  --color-bg-tertiary: #f1f5f9;
+  --color-bg-inverse: #0f172a;
+
+  /* Foregrounds */
   --color-fg-primary: #0f172a;
   --color-fg-secondary: #475569;
+  --color-fg-muted: #64748b;
+  --color-fg-inverse: #ffffff;
+  --color-fg-disabled: #94a3b8;
+
+  /* Borders */
   --color-border-default: #e2e8f0;
+  --color-border-strong: #cbd5e1;
   --color-border-focus: #3b82f6;
+  --color-border-error: #ef4444;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .dark {
+  /* Backgrounds */
   --color-bg-primary: #0f172a;
   --color-bg-secondary: #1e293b;
+  --color-bg-tertiary: #334155;
+  --color-bg-inverse: #f8fafc;
+
+  /* Foregrounds */
   --color-fg-primary: #f8fafc;
   --color-fg-secondary: #cbd5e1;
+  --color-fg-muted: #94a3b8;
+  --color-fg-inverse: #0f172a;
+  --color-fg-disabled: #64748b;
+
+  /* Borders */
   --color-border-default: #334155;
+  --color-border-strong: #475569;
   --color-border-focus: #60a5fa;
+  --color-border-error: #f87171;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
 }
 
 @layer base {
   body {
     margin: 0;
     font-family: system-ui, -apple-system, sans-serif;
+    color: var(--color-fg-primary);
+    background-color: var(--color-bg-primary);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Responsive Typography Utilities */
+@layer components {
+  .heading-1 {
+    @apply text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl;
+  }
+  .heading-2 {
+    @apply text-xl font-semibold tracking-tight md:text-2xl lg:text-3xl;
+  }
+  .heading-3 {
+    @apply text-lg font-semibold md:text-xl lg:text-2xl;
+  }
+  .heading-4 {
+    @apply text-base font-semibold md:text-lg lg:text-xl;
+  }
+  .body-lg {
+    @apply text-base md:text-lg;
+  }
+  .body-base {
+    @apply text-sm md:text-base;
+  }
+  .body-sm {
+    @apply text-xs md:text-sm;
   }
 }

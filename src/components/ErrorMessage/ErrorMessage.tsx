@@ -32,10 +32,11 @@ const ErrorMessage = React.forwardRef<HTMLParagraphElement, ErrorMessageProps>(
         ref={ref}
         className={cn(errorMessageVariants({ size }), className)}
         role="alert"
+        aria-live="assertive"
         {...props}
       >
         {showIcon && (
-          <AlertCircle className={cn('flex-shrink-0', size === 'sm' ? 'h-3 w-3' : 'h-4 w-4')} />
+          <AlertCircle className={cn('flex-shrink-0', size === 'sm' ? 'h-3 w-3' : 'h-4 w-4')} aria-hidden="true" />
         )}
         <span>{children}</span>
       </p>

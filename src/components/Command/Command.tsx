@@ -83,13 +83,13 @@ const CommandInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   <div className="flex items-center border-b border-slate-200 px-3 dark:border-slate-800">
-    <Search className="mr-2 h-4 w-4 shrink-0 text-slate-500 dark:text-slate-400" />
+    <Search className="mr-2 h-4 w-4 shrink-0 text-slate-500 dark:text-slate-400" aria-hidden="true" />
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
         'flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none',
         'placeholder:text-slate-500 dark:placeholder:text-slate-400',
-        'disabled:cursor-not-allowed disabled:opacity-50',
+        'disabled:cursor-not-allowed disabled:text-slate-400 dark:disabled:text-slate-500',
         className
       )}
       {...props}
@@ -162,7 +162,7 @@ const CommandItem = React.forwardRef<
       'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none',
       'data-[selected=true]:bg-slate-100 data-[selected=true]:text-slate-900',
       'dark:data-[selected=true]:bg-slate-800 dark:data-[selected=true]:text-slate-50',
-      'data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
+      'data-[disabled=true]:pointer-events-none data-[disabled=true]:text-slate-400 dark:data-[disabled=true]:text-slate-500',
       className
     )}
     {...props}

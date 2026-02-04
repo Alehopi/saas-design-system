@@ -26,7 +26,7 @@ const SwitchRoot = React.forwardRef<
         'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent',
         'transition-colors',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
-        'disabled:cursor-not-allowed disabled:opacity-50',
+        'disabled:cursor-not-allowed disabled:bg-slate-100 dark:disabled:bg-slate-800',
         'data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-slate-200',
         'dark:data-[state=unchecked]:bg-slate-700',
         sizeClasses[size],
