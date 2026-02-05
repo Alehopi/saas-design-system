@@ -69,6 +69,12 @@ export function PlaygroundProvider({ children }: PlaygroundProviderProps) {
   const generateShareUrl = useCallback(() => {
     const compressed = compressCode(code);
     const url = `${window.location.origin}${window.location.pathname}?code=${compressed}`;
+
+    // Update browser URL without reload
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', url);
+    }
+
     setShareUrl(url);
     navigator.clipboard.writeText(url).catch(() => {
       // Fallback: just set the URL, user can copy manually

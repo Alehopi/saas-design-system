@@ -9,7 +9,7 @@ export function transpileCode(code: string): TranspileResult {
   try {
     const result = Babel.transform(code, {
       presets: [
-        ['react', { runtime: 'automatic' }],
+        ['react', { runtime: 'classic' }],
         'typescript',
       ],
       filename: 'playground.tsx',
