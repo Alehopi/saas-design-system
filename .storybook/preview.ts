@@ -76,6 +76,7 @@ const preview: Preview = {
             ['Label', 'HelperText', 'ErrorMessage', 'FieldGroup', 'Divider', 'ThemeToggler', '*'],
             '*'
           ],
+          'Playground',
           'Patterns',
           '*'
         ],
