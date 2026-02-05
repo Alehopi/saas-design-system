@@ -42,13 +42,13 @@ export const focusRings = {
   default: '0 0 0 2px var(--color-border-focus)',
 
   /** Focus ring with offset (for buttons) */
-  offset: '0 0 0 2px #fff, 0 0 0 4px var(--color-border-focus)',
+  offset: '0 0 0 2px var(--color-ring-offset), 0 0 0 4px var(--color-border-focus)',
 
   /** Error focus ring */
-  error: '0 0 0 2px #fff, 0 0 0 4px #ef4444',
+  error: '0 0 0 2px var(--color-ring-offset), 0 0 0 4px var(--color-border-error)',
 
   /** Success focus ring */
-  success: '0 0 0 2px #fff, 0 0 0 4px #22c55e',
+  success: '0 0 0 2px var(--color-ring-offset), 0 0 0 4px var(--color-indicator-online)',
 } as const;
 
 /**

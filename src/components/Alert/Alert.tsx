@@ -4,15 +4,15 @@ import { cn } from '../../lib/utils';
 import { AlertCircle, CheckCircle2, Info, XCircle, X } from 'lucide-react';
 
 const alertVariants = cva(
-  'relative w-full rounded-lg border p-4 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-slate-950 dark:[&>svg]:text-slate-50',
+  'relative w-full rounded-lg border p-4 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-semantic-fg-primary',
   {
     variants: {
       variant: {
-        default: 'bg-white text-slate-950 border-slate-200 dark:bg-slate-950 dark:text-slate-50 dark:border-slate-800',
-        info: 'border-blue-200 bg-blue-50 text-blue-900 dark:border-blue-900/50 dark:bg-blue-950/30 dark:text-blue-100 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-400',
-        success: 'border-green-200 bg-green-50 text-green-900 dark:border-green-900/50 dark:bg-green-950/30 dark:text-green-100 [&>svg]:text-green-600 dark:[&>svg]:text-green-400',
-        warning: 'border-yellow-200 bg-yellow-50 text-yellow-900 dark:border-yellow-900/50 dark:bg-yellow-950/30 dark:text-yellow-100 [&>svg]:text-yellow-600 dark:[&>svg]:text-yellow-400',
-        error: 'border-red-200 bg-red-50 text-red-900 dark:border-red-900/50 dark:bg-red-950/30 dark:text-red-100 [&>svg]:text-red-600 dark:[&>svg]:text-red-400',
+        default: 'bg-semantic-bg-elevated text-semantic-fg-primary border-semantic-border-default',
+        info: 'border-semantic-status-info-border bg-semantic-status-info-bg text-semantic-status-info-fg [&>svg]:text-semantic-status-info-icon',
+        success: 'border-semantic-status-success-border bg-semantic-status-success-bg text-semantic-status-success-fg [&>svg]:text-semantic-status-success-icon',
+        warning: 'border-semantic-status-warning-border bg-semantic-status-warning-bg text-semantic-status-warning-fg [&>svg]:text-semantic-status-warning-icon',
+        error: 'border-semantic-status-error-border bg-semantic-status-error-bg text-semantic-status-error-fg [&>svg]:text-semantic-status-error-icon',
       },
     },
     defaultVariants: {
@@ -63,7 +63,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         {closable && (
           <button
             onClick={handleClose}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 dark:ring-offset-slate-950 dark:focus:ring-slate-300"
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-semantic-offset transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-semantic-focus focus:ring-offset-2"
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>

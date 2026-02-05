@@ -30,7 +30,7 @@ const Divider = React.forwardRef<
           decorative={decorative}
           orientation={orientation}
           className={cn(
-            'shrink-0 bg-slate-200 dark:bg-slate-800',
+            'shrink-0 bg-semantic-border-default',
             orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]',
             className
           )}
@@ -46,7 +46,7 @@ const Divider = React.forwardRef<
           ref={ref}
           decorative={decorative}
           orientation={orientation}
-          className={cn('h-full w-[1px] shrink-0 bg-slate-200 dark:bg-slate-800', className)}
+          className={cn('h-full w-[1px] shrink-0 bg-semantic-border-default', className)}
           {...props}
         />
       );
@@ -64,15 +64,15 @@ const Divider = React.forwardRef<
           <SeparatorPrimitive.Root
             decorative={decorative}
             orientation={orientation}
-            className="h-[1px] flex-1 bg-slate-200 dark:bg-slate-800"
+            className="h-[1px] flex-1 bg-semantic-border-default"
           />
         )}
-        <span className="px-3 text-xs font-medium text-slate-600 dark:text-slate-300">{label}</span>
+        <span className="px-3 text-xs font-medium text-semantic-fg-secondary">{label}</span>
         {labelPosition !== 'right' && (
           <SeparatorPrimitive.Root
             decorative={decorative}
             orientation={orientation}
-            className="h-[1px] flex-1 bg-slate-200 dark:bg-slate-800"
+            className="h-[1px] flex-1 bg-semantic-border-default"
           />
         )}
       </div>

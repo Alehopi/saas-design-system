@@ -19,7 +19,7 @@ const BreadcrumbList = React.forwardRef<
   <ol
     ref={ref}
     className={cn(
-      'flex flex-wrap items-center gap-1.5 break-words text-sm text-slate-600 sm:gap-2.5 dark:text-slate-300',
+      'flex flex-wrap items-center gap-1.5 break-words text-sm text-semantic-fg-muted sm:gap-2.5',
       className
     )}
     {...props}
@@ -45,7 +45,7 @@ const BreadcrumbLink = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <a
     ref={ref}
-    className={cn('transition-colors hover:text-slate-950 dark:hover:text-slate-50', className)}
+    className={cn('transition-colors hover:text-semantic-fg-primary', className)}
     {...props}
   />
 ));
@@ -60,18 +60,18 @@ const BreadcrumbPage = React.forwardRef<
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={cn('font-medium text-slate-950 dark:text-slate-50', className)}
+    className={cn('font-medium text-semantic-fg-primary', className)}
     {...props}
   />
 ));
 BreadcrumbPage.displayName = 'BreadcrumbPage';
 
-const BreadcrumbSeparator = ({
-  children,
-  className,
-  ...props
-}: React.ComponentProps<'li'>) => (
+const BreadcrumbSeparator = React.forwardRef<
+  HTMLLIElement,
+  React.ComponentPropsWithoutRef<'li'>
+>(({ children, className, ...props }, ref) => (
   <li
+    ref={ref}
     role="presentation"
     aria-hidden="true"
     className={cn('[&>svg]:h-3.5 [&>svg]:w-3.5', className)}
@@ -79,14 +79,15 @@ const BreadcrumbSeparator = ({
   >
     {children || <ChevronRight />}
   </li>
-);
+));
 BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';
 
-const BreadcrumbEllipsis = ({
-  className,
-  ...props
-}: React.ComponentProps<'span'>) => (
+const BreadcrumbEllipsis = React.forwardRef<
+  HTMLSpanElement,
+  React.ComponentPropsWithoutRef<'span'>
+>(({ className, ...props }, ref) => (
   <span
+    ref={ref}
     role="presentation"
     aria-hidden="true"
     className={cn('flex h-9 w-9 items-center justify-center', className)}
@@ -95,8 +96,8 @@ const BreadcrumbEllipsis = ({
     <MoreHorizontal className="h-4 w-4" />
     <span className="sr-only">More</span>
   </span>
-);
-BreadcrumbEllipsis.displayName = 'BreadcrumbElipssis';
+));
+BreadcrumbEllipsis.displayName = 'BreadcrumbEllipsis';
 
 export {
   Breadcrumb,

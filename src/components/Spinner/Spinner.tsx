@@ -12,10 +12,10 @@ const spinnerVariants = cva('animate-spin', {
       xl: 'h-12 w-12',
     },
     variant: {
-      default: 'text-slate-900 dark:text-slate-50',
-      primary: 'text-blue-600 dark:text-blue-500',
-      secondary: 'text-slate-600 dark:text-slate-300',
-      light: 'text-white',
+      default: 'text-semantic-fg-primary',
+      primary: 'text-semantic-action-primary',
+      secondary: 'text-semantic-fg-secondary',
+      light: 'text-semantic-fg-inverse',
     },
   },
   defaultVariants: {
@@ -33,8 +33,8 @@ export interface SpinnerProps
 const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>(
   ({ className, size, variant, label, ...props }, ref) => {
     const labelColorClass = variant === 'light'
-      ? 'text-white'
-      : 'text-slate-700 dark:text-slate-300';
+      ? 'text-semantic-fg-inverse'
+      : 'text-semantic-fg-secondary';
 
     return (
       <div
@@ -71,7 +71,7 @@ const LoadingOverlay = React.forwardRef<HTMLDivElement, LoadingOverlayProps>(
           'fixed inset-0 z-50 flex items-center justify-center',
           transparent
             ? 'bg-transparent'
-            : 'bg-white/80 backdrop-blur-sm dark:bg-slate-950/80'
+            : 'bg-semantic-bg-loading-overlay backdrop-blur-sm'
         )}
       >
         <Spinner label={label} {...spinnerProps} />

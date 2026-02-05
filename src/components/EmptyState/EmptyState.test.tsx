@@ -12,10 +12,11 @@ describe('EmptyState accessibility', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('should have role="region" with aria-label', () => {
-    const { getByRole } = render(<EmptyState title="No data" />);
+  it('should have role="region" with aria-labelledby pointing to title', () => {
+    const { getByRole, getByText } = render(<EmptyState title="No data" />);
     const region = getByRole('region');
-    expect(region).toHaveAttribute('aria-label', 'No data');
+    const title = getByText('No data');
+    expect(region).toHaveAttribute('aria-labelledby', title.id);
   });
 
   it('should hide decorative icon from screen readers', () => {

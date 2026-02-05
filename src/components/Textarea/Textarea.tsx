@@ -1,13 +1,39 @@
 import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  /** Additional CSS classes */
-  className?: string;
-  /** Textarea size */
-  size?: 'sm' | 'md' | 'lg';
-  /** Error state */
-  error?: boolean;
+const textareaVariants = cva(
+  'w-full rounded-md border bg-semantic-control-bg transition-colors placeholder:text-semantic-control-placeholder focus:outline-none focus:ring-2 focus:ring-offset-0 disabled:cursor-not-allowed disabled:bg-semantic-bg-disabled disabled:text-semantic-fg-disabled',
+  {
+    variants: {
+      variant: {
+        default:
+          'border-semantic-control-border text-semantic-control-fg focus:ring-semantic-focus focus:border-semantic-border-focus',
+        error:
+          'border-semantic-control-border-error text-semantic-control-fg focus:ring-semantic-control-border-error focus:border-semantic-control-border-error',
+      },
+      size: {
+        sm: 'min-h-[80px] px-3 py-2 text-sm',
+        md: 'min-h-[120px] px-3 py-2 text-base',
+        lg: 'min-h-[160px] px-4 py-3 text-lg',
+      },
+      resize: {
+        none: 'resize-none',
+        vertical: 'resize-y',
+        both: 'resize',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'md',
+      resize: 'vertical',
+    },
+  }
+);
+
+export interface TextareaProps
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'>,
+    VariantProps<typeof textareaVariants> {
   /** Label text */
   label?: string;
   /** Helper text shown below textarea */
@@ -18,8 +44,8 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   required?: boolean;
   /** Show character count */
   showCount?: boolean;
-  /** Resize behavior */
-  resize?: 'none' | 'vertical' | 'both';
+  /** Error state (shorthand for variant="error") */
+  error?: boolean;
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -27,13 +53,14 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     {
       className,
       size = 'md',
+      variant = 'default',
+      resize = 'vertical',
       error = false,
       label,
       helperText,
       errorMessage,
       required,
       showCount = false,
-      resize = 'vertical',
       maxLength,
       value,
       id,
@@ -46,18 +73,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const errorMessageId = `${textareaId}-error`;
 
     const currentLength = typeof value === 'string' ? value.length : 0;
-
-    const sizeClasses = {
-      sm: 'min-h-[80px] px-3 py-2 text-sm',
-      md: 'min-h-[120px] px-3 py-2 text-base',
-      lg: 'min-h-[160px] px-4 py-3 text-lg',
-    };
-
-    const resizeClasses = {
-      none: 'resize-none',
-      vertical: 'resize-y',
-      both: 'resize',
-    };
+    const hasError = error || variant === 'error';
+    const resolvedVariant = hasError ? 'error' : 'default';
 
     return (
       <div className="w-full">
@@ -65,14 +82,14 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {label && (
             <label
               htmlFor={textareaId}
-              className="block text-sm font-medium text-slate-700 dark:text-slate-300"
+              className="block text-sm font-medium text-semantic-fg-secondary"
             >
               {label}
-              {required && <span className="ml-1 text-red-500">*</span>}
+              {required && <span className="ml-1 text-semantic-fg-error">*</span>}
             </label>
           )}
           {showCount && maxLength && (
-            <span className="text-xs text-slate-600 dark:text-slate-300">
+            <span className="text-xs text-semantic-fg-secondary">
               {currentLength}/{maxLength}
             </span>
           )}
@@ -84,21 +101,12 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           value={value}
           maxLength={maxLength}
           className={cn(
-            'w-full rounded-md border bg-white transition-colors',
-            'placeholder:text-slate-500',
-            'focus:outline-none focus:ring-2 focus:ring-offset-0',
-            'disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500',
-            sizeClasses[size],
-            resizeClasses[resize],
-            error
-              ? 'border-red-500 text-red-900 focus:ring-red-500 focus:border-red-500'
-              : 'border-slate-300 text-slate-900 focus:ring-blue-500 focus:border-blue-500',
-            'dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100',
+            textareaVariants({ variant: resolvedVariant, size, resize }),
             className
           )}
-          aria-invalid={error ? 'true' : 'false'}
+          aria-invalid={hasError ? 'true' : 'false'}
           aria-describedby={
-            error && errorMessage
+            hasError && errorMessage
               ? errorMessageId
               : helperText
                 ? helperTextId
@@ -108,14 +116,14 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
         />
 
-        {!error && helperText && (
-          <p id={helperTextId} className="mt-1.5 text-sm text-slate-600 dark:text-slate-300">
+        {!hasError && helperText && (
+          <p id={helperTextId} className="mt-1.5 text-sm text-semantic-fg-secondary">
             {helperText}
           </p>
         )}
 
-        {error && errorMessage && (
-          <p id={errorMessageId} className="mt-1.5 text-sm text-red-600 dark:text-red-400">
+        {hasError && errorMessage && (
+          <p id={errorMessageId} className="mt-1.5 text-sm text-semantic-fg-error">
             {errorMessage}
           </p>
         )}
@@ -126,5 +134,5 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
 Textarea.displayName = 'Textarea';
 
-export { Textarea };
+export { Textarea, textareaVariants };
 export default Textarea;

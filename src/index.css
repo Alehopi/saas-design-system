@@ -8,6 +8,12 @@
   --color-bg-secondary: #f8fafc;
   --color-bg-tertiary: #f1f5f9;
   --color-bg-inverse: #0f172a;
+  --color-bg-elevated: #ffffff;
+  --color-bg-sunken: #f1f5f9;
+  --color-bg-hover: #f1f5f9;
+  --color-bg-selected: #f1f5f9;
+  --color-bg-disabled: #f8fafc;
+  --color-bg-overlay: rgba(0, 0, 0, 0.5);
 
   /* Foregrounds */
   --color-fg-primary: #0f172a;
@@ -15,12 +21,97 @@
   --color-fg-muted: #64748b;
   --color-fg-inverse: #ffffff;
   --color-fg-disabled: #94a3b8;
+  --color-fg-error: #dc2626;
 
   /* Borders */
   --color-border-default: #e2e8f0;
   --color-border-strong: #cbd5e1;
   --color-border-focus: #3b82f6;
   --color-border-error: #ef4444;
+
+  /* Actions */
+  --color-action-primary: #2563eb;
+  --color-action-primary-hover: #1d4ed8;
+  --color-action-primary-disabled-bg: #93c5fd;
+  --color-action-primary-disabled-fg: #dbeafe;
+  --color-action-danger: #dc2626;
+  --color-action-danger-hover: #b91c1c;
+  --color-action-danger-disabled-bg: #fca5a5;
+  --color-action-danger-disabled-fg: #fee2e2;
+
+  /* Controls */
+  --color-control-bg: #ffffff;
+  --color-control-bg-checked: #2563eb;
+  --color-control-border: #cbd5e1;
+  --color-control-border-hover: #94a3b8;
+  --color-control-border-error: #ef4444;
+  --color-control-fg: #0f172a;
+  --color-control-placeholder: #64748b;
+  --color-control-icon: #475569;
+  --color-control-unchecked: #e2e8f0;
+  --color-control-thumb: #ffffff;
+
+  /* Focus */
+  --color-ring-focus: #3b82f6;
+  --color-ring-offset: #ffffff;
+
+  /* Status: Info */
+  --color-status-info-bg: #eff6ff;
+  --color-status-info-fg: #1e3a8a;
+  --color-status-info-border: #bfdbfe;
+  --color-status-info-icon: #2563eb;
+
+  /* Status: Success */
+  --color-status-success-bg: #f0fdf4;
+  --color-status-success-fg: #14532d;
+  --color-status-success-border: #bbf7d0;
+  --color-status-success-icon: #16a34a;
+  --color-status-success-solid: #15803d;
+
+  /* Status: Warning */
+  --color-status-warning-bg: #fffbeb;
+  --color-status-warning-fg: #78350f;
+  --color-status-warning-border: #fde68a;
+  --color-status-warning-icon: #d97706;
+  --color-status-warning-solid: #b45309;
+
+  /* Status: Error */
+  --color-status-error-bg: #fef2f2;
+  --color-status-error-fg: #7f1d1d;
+  --color-status-error-border: #fecaca;
+  --color-status-error-icon: #dc2626;
+
+  /* Indicators */
+  --color-indicator-online: #22c55e;
+  --color-indicator-offline: #94a3b8;
+  --color-indicator-away: #f59e0b;
+  --color-indicator-busy: #ef4444;
+  --color-indicator-border: #ffffff;
+
+  /* Progress */
+  --color-progress-track: #f1f5f9;
+  --color-progress-fill: #0f172a;
+  --color-progress-success-track: #dcfce7;
+  --color-progress-success-fill: #16a34a;
+  --color-progress-warning-track: #fef9c3;
+  --color-progress-warning-fill: #ca8a04;
+  --color-progress-error-track: #fee2e2;
+  --color-progress-error-fill: #dc2626;
+
+  /* Badge */
+  --color-badge-default-bg: #0f172a;
+  --color-badge-default-fg: #f8fafc;
+  --color-badge-secondary-bg: #f1f5f9;
+  --color-badge-secondary-fg: #0f172a;
+  --color-badge-outline-fg: #0f172a;
+  --color-badge-outline-border: #e2e8f0;
+
+  /* Loading overlay */
+  --color-bg-loading-overlay: rgba(255, 255, 255, 0.8);
+
+  /* Segment (ThemeToggler) */
+  --color-bg-segment-active: #ffffff;
+  --color-fg-segment-active: #0f172a;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -34,6 +125,12 @@
   --color-bg-secondary: #1e293b;
   --color-bg-tertiary: #334155;
   --color-bg-inverse: #f8fafc;
+  --color-bg-elevated: #0f172a;
+  --color-bg-sunken: #1e293b;
+  --color-bg-hover: #1e293b;
+  --color-bg-selected: #1e293b;
+  --color-bg-disabled: #0f172a;
+  --color-bg-overlay: rgba(0, 0, 0, 0.5);
 
   /* Foregrounds */
   --color-fg-primary: #f8fafc;
@@ -41,12 +138,97 @@
   --color-fg-muted: #94a3b8;
   --color-fg-inverse: #0f172a;
   --color-fg-disabled: #64748b;
+  --color-fg-error: #f87171;
 
   /* Borders */
   --color-border-default: #334155;
   --color-border-strong: #475569;
   --color-border-focus: #60a5fa;
   --color-border-error: #f87171;
+
+  /* Actions */
+  --color-action-primary: #2563eb;
+  --color-action-primary-hover: #1d4ed8;
+  --color-action-primary-disabled-bg: #1e40af;
+  --color-action-primary-disabled-fg: #93c5fd;
+  --color-action-danger: #dc2626;
+  --color-action-danger-hover: #b91c1c;
+  --color-action-danger-disabled-bg: #991b1b;
+  --color-action-danger-disabled-fg: #fca5a5;
+
+  /* Controls */
+  --color-control-bg: #1e293b;
+  --color-control-bg-checked: #3b82f6;
+  --color-control-border: #475569;
+  --color-control-border-hover: #64748b;
+  --color-control-border-error: #f87171;
+  --color-control-fg: #f1f5f9;
+  --color-control-placeholder: #94a3b8;
+  --color-control-icon: #94a3b8;
+  --color-control-unchecked: #334155;
+  --color-control-thumb: #ffffff;
+
+  /* Focus */
+  --color-ring-focus: #3b82f6;
+  --color-ring-offset: #0f172a;
+
+  /* Status: Info */
+  --color-status-info-bg: rgba(23, 37, 84, 0.3);
+  --color-status-info-fg: #dbeafe;
+  --color-status-info-border: rgba(30, 58, 138, 0.5);
+  --color-status-info-icon: #60a5fa;
+
+  /* Status: Success */
+  --color-status-success-bg: rgba(20, 83, 45, 0.3);
+  --color-status-success-fg: #dcfce7;
+  --color-status-success-border: rgba(22, 101, 52, 0.5);
+  --color-status-success-icon: #4ade80;
+  --color-status-success-solid: #16a34a;
+
+  /* Status: Warning */
+  --color-status-warning-bg: rgba(120, 53, 15, 0.3);
+  --color-status-warning-fg: #fef3c7;
+  --color-status-warning-border: rgba(146, 64, 14, 0.5);
+  --color-status-warning-icon: #fbbf24;
+  --color-status-warning-solid: #d97706;
+
+  /* Status: Error */
+  --color-status-error-bg: rgba(127, 29, 29, 0.3);
+  --color-status-error-fg: #fee2e2;
+  --color-status-error-border: rgba(153, 27, 27, 0.5);
+  --color-status-error-icon: #f87171;
+
+  /* Indicators */
+  --color-indicator-online: #22c55e;
+  --color-indicator-offline: #94a3b8;
+  --color-indicator-away: #f59e0b;
+  --color-indicator-busy: #ef4444;
+  --color-indicator-border: #0f172a;
+
+  /* Progress */
+  --color-progress-track: #1e293b;
+  --color-progress-fill: #f8fafc;
+  --color-progress-success-track: rgba(20, 83, 45, 0.3);
+  --color-progress-success-fill: #22c55e;
+  --color-progress-warning-track: rgba(120, 53, 15, 0.3);
+  --color-progress-warning-fill: #eab308;
+  --color-progress-error-track: rgba(127, 29, 29, 0.3);
+  --color-progress-error-fill: #f87171;
+
+  /* Badge */
+  --color-badge-default-bg: #f8fafc;
+  --color-badge-default-fg: #0f172a;
+  --color-badge-secondary-bg: #1e293b;
+  --color-badge-secondary-fg: #f8fafc;
+  --color-badge-outline-fg: #f8fafc;
+  --color-badge-outline-border: #475569;
+
+  /* Loading overlay */
+  --color-bg-loading-overlay: rgba(15, 23, 42, 0.8);
+
+  /* Segment (ThemeToggler) */
+  --color-bg-segment-active: #334155;
+  --color-fg-segment-active: #f1f5f9;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);

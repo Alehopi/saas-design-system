@@ -4,6 +4,18 @@ import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 // ===================
+// SELECT CONTEXT (for wrapper → trigger communication)
+// ===================
+
+interface SelectContextValue {
+  selectId?: string;
+  ariaDescribedBy?: string;
+  error?: boolean;
+}
+
+const SelectContext = React.createContext<SelectContextValue>({});
+
+// ===================
 // SELECT ROOT
 // ===================
 
@@ -23,7 +35,10 @@ interface SelectTriggerProps extends React.ComponentPropsWithoutRef<typeof Selec
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
->(({ className, children, size = 'md', error = false, ...props }, ref) => {
+>(({ className, children, size = 'md', error: errorProp, ...props }, ref) => {
+  const ctx = React.useContext(SelectContext);
+  const error = errorProp ?? ctx.error ?? false;
+
   const sizeClasses = {
     sm: 'h-8 px-3 text-sm',
     md: 'h-10 px-3 text-base',
@@ -33,26 +48,26 @@ const SelectTrigger = React.forwardRef<
   return (
     <SelectPrimitive.Trigger
       ref={ref}
+      id={ctx.selectId}
+      aria-describedby={ctx.ariaDescribedBy}
       className={cn(
-        'flex w-full items-center justify-between rounded-md border bg-white',
+        'flex w-full items-center justify-between rounded-md border bg-semantic-control-bg',
         'transition-colors',
         'focus:outline-none focus:ring-2 focus:ring-offset-0',
-        'disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-500',
-        'placeholder:text-slate-500',
+        'disabled:cursor-not-allowed disabled:bg-semantic-bg-disabled disabled:text-semantic-fg-disabled',
+        'placeholder:text-semantic-control-placeholder',
         '[&>span]:line-clamp-1',
         sizeClasses[size],
         error
-          ? 'border-red-500 text-red-900 focus:ring-red-500 focus:border-red-500'
-          : 'border-slate-300 text-slate-900 focus:ring-blue-500 focus:border-blue-500',
-        'dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100',
-        'dark:disabled:bg-slate-900 dark:disabled:text-slate-500',
+          ? 'border-semantic-control-border-error text-semantic-control-fg focus:ring-semantic-control-border-error focus:border-semantic-control-border-error'
+          : 'border-semantic-control-border text-semantic-control-fg focus:ring-semantic-focus focus:border-semantic-border-focus',
         className
       )}
       {...props}
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDown className="h-4 w-4 text-slate-500 dark:text-slate-400" aria-hidden="true" />
+        <ChevronDown className="h-4 w-4 text-semantic-control-icon" aria-hidden="true" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
@@ -105,13 +120,12 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-white text-slate-900 shadow-md',
+        'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border border-semantic-border-default bg-semantic-bg-elevated text-semantic-fg-primary shadow-md',
         'data-[state=open]:animate-in data-[state=closed]:animate-out',
         'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
         'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2',
         'data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-        'dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100',
         position === 'popper' &&
           'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
         className
@@ -145,7 +159,7 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
-    className={cn('py-1.5 pl-8 pr-2 text-sm font-semibold text-slate-900 dark:text-slate-100', className)}
+    className={cn('py-1.5 pl-8 pr-2 text-sm font-semibold text-semantic-fg-primary', className)}
     {...props}
   />
 ));
@@ -163,9 +177,8 @@ const SelectItem = React.forwardRef<
     ref={ref}
     className={cn(
       'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none',
-      'focus:bg-slate-100 focus:text-slate-900',
-      'data-[disabled]:pointer-events-none data-[disabled]:text-slate-400 dark:data-[disabled]:text-slate-500',
-      'dark:focus:bg-slate-700 dark:focus:text-slate-100',
+      'focus:bg-semantic-bg-hover focus:text-semantic-fg-primary',
+      'data-[disabled]:pointer-events-none data-[disabled]:text-semantic-fg-disabled',
       className
     )}
     {...props}
@@ -191,7 +204,7 @@ const SelectSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     ref={ref}
-    className={cn('-mx-1 my-1 h-px bg-slate-200 dark:bg-slate-700', className)}
+    className={cn('-mx-1 my-1 h-px bg-semantic-border-default', className)}
     {...props}
   />
 ));
@@ -234,32 +247,41 @@ const SelectWrapper: React.FC<SelectWrapperProps> = ({
   const helperTextId = `${selectId}-helper`;
   const errorMessageId = `${selectId}-error`;
 
+  const ariaDescribedBy =
+    error && errorMessage
+      ? errorMessageId
+      : helperText
+        ? helperTextId
+        : undefined;
+
   return (
-    <div className={cn('w-full', className)}>
-      {label && (
-        <label
-          htmlFor={selectId}
-          className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300"
-        >
-          {label}
-          {required && <span className="ml-1 text-red-500">*</span>}
-        </label>
-      )}
+    <SelectContext.Provider value={{ selectId, ariaDescribedBy, error }}>
+      <div className={cn('w-full', className)}>
+        {label && (
+          <label
+            htmlFor={selectId}
+            className="mb-1.5 block text-sm font-medium text-semantic-fg-secondary"
+          >
+            {label}
+            {required && <span className="ml-1 text-semantic-fg-error">*</span>}
+          </label>
+        )}
 
-      {children}
+        {children}
 
-      {!error && helperText && (
-        <p id={helperTextId} className="mt-1.5 text-sm text-slate-600 dark:text-slate-300">
-          {helperText}
-        </p>
-      )}
+        {!error && helperText && (
+          <p id={helperTextId} className="mt-1.5 text-sm text-semantic-fg-secondary">
+            {helperText}
+          </p>
+        )}
 
-      {error && errorMessage && (
-        <p id={errorMessageId} className="mt-1.5 text-sm text-red-600 dark:text-red-400">
-          {errorMessage}
-        </p>
-      )}
-    </div>
+        {error && errorMessage && (
+          <p id={errorMessageId} className="mt-1.5 text-sm text-semantic-fg-error">
+            {errorMessage}
+          </p>
+        )}
+      </div>
+    </SelectContext.Provider>
   );
 };
 

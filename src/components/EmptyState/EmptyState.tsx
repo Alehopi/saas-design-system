@@ -9,7 +9,7 @@ const emptyStateVariants = cva(
       variant: {
         default: 'py-12 px-6',
         minimal: 'py-8 px-4',
-        card: 'py-12 px-6 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg shadow-sm',
+        card: 'py-12 px-6 bg-semantic-bg-elevated border border-semantic-border-default rounded-lg shadow-sm',
       },
     },
     defaultVariants: {
@@ -33,18 +33,20 @@ export interface EmptyStateProps
 
 const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
   ({ className, variant, icon, title, description, action, ...props }, ref) => {
+    const titleId = React.useId();
+
     return (
       <div
         ref={ref}
         role="region"
-        aria-label={title}
+        aria-labelledby={titleId}
         className={cn(emptyStateVariants({ variant }), className)}
         {...props}
       >
         {icon && (
           <div
             className={cn(
-              'mb-4 flex items-center justify-center text-slate-300 dark:text-slate-600',
+              'mb-4 flex items-center justify-center text-semantic-fg-disabled',
               variant === 'minimal' && 'mb-3'
             )}
             aria-hidden="true"
@@ -54,8 +56,9 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         )}
 
         <h3
+          id={titleId}
           className={cn(
-            'font-semibold text-slate-900 dark:text-slate-50',
+            'font-semibold text-semantic-fg-primary',
             variant === 'minimal' ? 'text-base' : 'text-lg'
           )}
         >
@@ -65,7 +68,7 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         {description && (
           <p
             className={cn(
-              'mt-2 max-w-sm text-slate-500 dark:text-slate-400',
+              'mt-2 max-w-sm text-semantic-fg-muted',
               variant === 'minimal' ? 'text-xs' : 'text-sm'
             )}
           >

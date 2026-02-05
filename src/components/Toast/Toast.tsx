@@ -28,11 +28,11 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-slate-200 bg-white text-slate-950 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-50',
-        success: 'border-green-200 bg-green-50 text-green-900 dark:border-green-900/50 dark:bg-green-950/30 dark:text-green-100',
-        error: 'border-red-200 bg-red-50 text-red-900 dark:border-red-900/50 dark:bg-red-950/30 dark:text-red-100',
-        warning: 'border-yellow-200 bg-yellow-50 text-yellow-900 dark:border-yellow-900/50 dark:bg-yellow-950/30 dark:text-yellow-100',
-        info: 'border-blue-200 bg-blue-50 text-blue-900 dark:border-blue-900/50 dark:bg-blue-950/30 dark:text-blue-100',
+        default: 'border-semantic-border-default bg-semantic-bg-elevated text-semantic-fg-primary',
+        success: 'success border-semantic-status-success-border bg-semantic-status-success-bg text-semantic-status-success-fg',
+        error: 'error border-semantic-status-error-border bg-semantic-status-error-bg text-semantic-status-error-fg',
+        warning: 'warning border-semantic-status-warning-border bg-semantic-status-warning-bg text-semantic-status-warning-fg',
+        info: 'info border-semantic-status-info-border bg-semantic-status-info-bg text-semantic-status-info-fg',
       },
     },
     defaultVariants: {
@@ -63,7 +63,7 @@ const ToastAction = React.forwardRef<
   <ToastPrimitives.Action
     ref={ref}
     className={cn(
-      'inline-flex h-8 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-transparent px-3 text-sm font-medium ring-offset-white transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.success]:border-green-300 group-[.success]:hover:border-green-400 group-[.success]:hover:bg-green-100 group-[.success]:focus:ring-green-600 group-[.error]:border-red-300 group-[.error]:hover:border-red-400 group-[.error]:hover:bg-red-100 group-[.error]:focus:ring-red-600 dark:ring-offset-slate-950 dark:hover:bg-slate-800 dark:focus:ring-slate-300',
+      'inline-flex h-8 shrink-0 items-center justify-center rounded-md border border-semantic-border-default bg-transparent px-3 text-sm font-medium ring-offset-semantic-offset transition-colors hover:bg-semantic-bg-hover focus:outline-none focus:ring-2 focus:ring-semantic-focus focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.success]:border-semantic-status-success-border group-[.success]:hover:bg-semantic-status-success-bg group-[.error]:border-semantic-status-error-border group-[.error]:hover:bg-semantic-status-error-bg',
       className
     )}
     {...props}
@@ -78,7 +78,7 @@ const ToastClose = React.forwardRef<
   <ToastPrimitives.Close
     ref={ref}
     className={cn(
-      'absolute right-2 top-2 rounded-md p-1 text-slate-950/50 opacity-0 transition-opacity hover:text-slate-950 focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.success]:text-green-900/50 group-[.success]:hover:text-green-900 group-[.error]:text-red-900/50 group-[.error]:hover:text-red-900 dark:text-slate-50/50 dark:hover:text-slate-50',
+      'absolute right-2 top-2 rounded-md p-1 opacity-0 transition-opacity hover:opacity-100 focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100',
       className
     )}
     toast-close=""
@@ -131,10 +131,10 @@ const ToastContent = React.forwardRef<HTMLDivElement, ToastContentProps>(
   ({ title, description, icon, showIcon = true, variant = 'default' }, ref) => {
     const defaultIcons = {
       default: <Info className="h-5 w-5" />,
-      info: <Info className="h-5 w-5 text-blue-600 dark:text-blue-400" />,
-      success: <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400" />,
-      error: <XCircle className="h-5 w-5 text-red-600 dark:text-red-400" />,
-      warning: <AlertCircle className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />,
+      info: <Info className="h-5 w-5 text-semantic-status-info-icon" />,
+      success: <CheckCircle2 className="h-5 w-5 text-semantic-status-success-icon" />,
+      error: <XCircle className="h-5 w-5 text-semantic-status-error-icon" />,
+      warning: <AlertCircle className="h-5 w-5 text-semantic-status-warning-icon" />,
     };
 
     const iconToRender = icon || defaultIcons[variant];

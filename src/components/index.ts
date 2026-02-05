@@ -6,10 +6,10 @@
 export { Button, buttonVariants, type ButtonProps } from './Button';
 
 // Input
-export { Input, type InputProps } from './Input';
+export { Input, inputVariants, type InputProps } from './Input';
 
 // Textarea
-export { Textarea, type TextareaProps } from './Textarea';
+export { Textarea, textareaVariants, type TextareaProps } from './Textarea';
 
 // Select
 export {
@@ -151,13 +151,13 @@ export {
 } from './Command/Command';
 
 // EmptyState
-export { EmptyState, emptyStateVariants, type EmptyStateProps } from './EmptyState/EmptyState';
+export { EmptyState, emptyStateVariants, type EmptyStateProps } from './EmptyState';
 
 // Form Components
 export { Label, labelVariants, type LabelProps } from './Label/Label';
-export { HelperText, helperTextVariants, type HelperTextProps } from './HelperText/HelperText';
-export { ErrorMessage, errorMessageVariants, type ErrorMessageProps } from './ErrorMessage/ErrorMessage';
-export { FieldGroup, fieldGroupVariants, type FieldGroupProps } from './FieldGroup/FieldGroup';
+export { HelperText, helperTextVariants, type HelperTextProps } from './HelperText';
+export { ErrorMessage, errorMessageVariants, type ErrorMessageProps } from './ErrorMessage';
+export { FieldGroup, fieldGroupVariants, type FieldGroupProps } from './FieldGroup';
 
 // ThemeToggler
 export { ThemeToggler, type ThemeTogglerProps } from './ThemeToggler';

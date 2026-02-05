@@ -7,8 +7,8 @@ const labelVariants = cva(
   {
     variants: {
       variant: {
-        default: 'text-slate-900 dark:text-slate-50',
-        muted: 'text-slate-600 dark:text-slate-400',
+        default: 'text-semantic-fg-primary',
+        muted: 'text-semantic-fg-muted',
       },
       size: {
         sm: 'text-xs',
@@ -46,7 +46,7 @@ const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       >
         {children}
         {required && (
-          <span className="ml-1 text-red-600 dark:text-red-500" aria-label="required">
+          <span className="ml-1 text-semantic-fg-error" aria-label="required">
             *
           </span>
         )}

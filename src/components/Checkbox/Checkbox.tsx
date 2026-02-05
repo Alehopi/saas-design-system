@@ -30,16 +30,14 @@ const CheckboxRoot = React.forwardRef<
     <CheckboxPrimitive.Root
       ref={ref}
       className={cn(
-        'peer shrink-0 rounded border-2 ring-offset-white transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
+        'peer shrink-0 rounded border-2 ring-offset-semantic-offset transition-colors',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-semantic-focus focus-visible:ring-offset-2',
         'disabled:cursor-not-allowed disabled:opacity-50',
-        'data-[state=checked]:bg-blue-600 data-[state=checked]:text-white data-[state=checked]:border-blue-600',
-        'data-[state=indeterminate]:bg-blue-600 data-[state=indeterminate]:text-white data-[state=indeterminate]:border-blue-600',
+        'data-[state=checked]:bg-semantic-control-bg-checked data-[state=checked]:text-semantic-fg-inverse data-[state=checked]:border-semantic-control-bg-checked',
+        'data-[state=indeterminate]:bg-semantic-control-bg-checked data-[state=indeterminate]:text-semantic-fg-inverse data-[state=indeterminate]:border-semantic-control-bg-checked',
         error
-          ? 'border-red-500 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600'
-          : 'border-slate-300 hover:border-slate-400',
-        'dark:border-slate-600 dark:ring-offset-slate-800',
-        'dark:data-[state=checked]:bg-blue-500 dark:data-[state=checked]:border-blue-500',
+          ? 'border-semantic-control-border-error data-[state=checked]:bg-semantic-action-danger data-[state=checked]:border-semantic-action-danger'
+          : 'border-semantic-control-border hover:border-semantic-control-border-hover',
         sizeClasses[size],
         className
       )}
@@ -126,7 +124,7 @@ const Checkbox = React.forwardRef<
                 'cursor-pointer select-none font-medium leading-none',
                 'peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
                 size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-lg' : 'text-base',
-                error ? 'text-red-900 dark:text-red-400' : 'text-slate-900 dark:text-slate-100'
+                error ? 'text-semantic-fg-error' : 'text-semantic-fg-primary'
               )}
             >
               {label}
@@ -138,7 +136,7 @@ const Checkbox = React.forwardRef<
           <p
             id={helperTextId}
             className={cn(
-              'text-sm text-slate-600 dark:text-slate-300',
+              'text-sm text-semantic-fg-secondary',
               size === 'sm' ? 'ml-6' : size === 'lg' ? 'ml-8' : 'ml-7',
               'mt-1.5'
             )}
@@ -151,7 +149,7 @@ const Checkbox = React.forwardRef<
           <p
             id={errorMessageId}
             className={cn(
-              'text-sm text-red-600 dark:text-red-400',
+              'text-sm text-semantic-fg-error',
               size === 'sm' ? 'ml-6' : size === 'lg' ? 'ml-8' : 'ml-7',
               'mt-1.5'
             )}

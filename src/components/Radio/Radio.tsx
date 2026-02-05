@@ -33,13 +33,11 @@ const RadioGroupItem = React.forwardRef<
     <RadioGroupPrimitive.Item
       ref={ref}
       className={cn(
-        'aspect-square rounded-full border-2 border-slate-300 text-blue-600 ring-offset-white',
+        'aspect-square rounded-full border-2 border-semantic-control-border text-semantic-control-bg-checked ring-offset-semantic-offset',
         'transition-colors',
-        'focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
-        'disabled:cursor-not-allowed disabled:opacity-50',
-        'data-[state=checked]:border-blue-600 data-[state=checked]:bg-white',
-        'dark:border-slate-600 dark:text-blue-500 dark:ring-offset-slate-800',
-        'dark:data-[state=checked]:border-blue-500',
+        'focus:outline-none focus-visible:ring-2 focus-visible:ring-semantic-focus focus-visible:ring-offset-2',
+        'disabled:cursor-not-allowed disabled:border-semantic-control-border disabled:text-semantic-fg-disabled',
+        'data-[state=checked]:border-semantic-control-bg-checked data-[state=checked]:bg-semantic-control-bg',
         sizeClasses[size],
         className
       )}
@@ -96,7 +94,7 @@ const RadioGroupWrapper = React.forwardRef<
     return (
       <div className="w-full">
         {label && (
-          <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label className="mb-2 block text-sm font-medium text-semantic-fg-secondary">
             {label}
           </label>
         )}
@@ -123,7 +121,7 @@ const RadioGroupWrapper = React.forwardRef<
                     'cursor-pointer select-none font-medium leading-none',
                     size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-lg' : 'text-base',
                     option.disabled && 'cursor-not-allowed opacity-70',
-                    'text-slate-900 dark:text-slate-100'
+                    'text-semantic-fg-primary'
                   )}
                 >
                   {option.label}
@@ -131,7 +129,7 @@ const RadioGroupWrapper = React.forwardRef<
                 {option.description && (
                   <p
                     className={cn(
-                      'text-slate-600 dark:text-slate-300',
+                      'text-semantic-fg-secondary',
                       size === 'sm' ? 'text-xs mt-0.5' : 'text-sm mt-1'
                     )}
                   >
@@ -144,13 +142,13 @@ const RadioGroupWrapper = React.forwardRef<
         </RadioGroup>
 
         {!error && helperText && (
-          <p id={helperTextId} className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+          <p id={helperTextId} className="mt-2 text-sm text-semantic-fg-secondary">
             {helperText}
           </p>
         )}
 
         {error && errorMessage && (
-          <p id={errorMessageId} className="mt-2 text-sm text-red-600 dark:text-red-400">
+          <p id={errorMessageId} className="mt-2 text-sm text-semantic-fg-error">
             {errorMessage}
           </p>
         )}

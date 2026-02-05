@@ -1,13 +1,17 @@
 /**
- * Design Tokens for SaaS Design System
+ * Design Tokens for APEX Design System
  *
- * This file exports all design tokens used throughout the system.
- * Tokens provide a single source of truth for visual design decisions.
+ * These token files are TypeScript reference definitions for the design system's
+ * visual language. They mirror the CSS custom properties defined in `src/index.css`
+ * and are primarily used by Storybook documentation stories.
+ *
+ * Components consume tokens via CSS variables and Tailwind utility classes,
+ * not via direct JS imports. These exports are provided as a programmatic
+ * API for consumers who need token values at runtime.
  *
  * @example
- * import { colors, spacing, typography } from '@/tokens';
+ * import { colors, spacing, typography } from 'apex-design-system/tokens';
  *
- * // Use in components
  * const primaryColor = colors.brand[500];
  * const padding = spacing[4];
  */

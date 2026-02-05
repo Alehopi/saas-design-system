@@ -6,10 +6,10 @@ import { cn } from '../../lib/utils';
 const progressVariants = cva('relative h-4 w-full overflow-hidden rounded-full', {
   variants: {
     variant: {
-      default: 'bg-slate-100 dark:bg-slate-800',
-      success: 'bg-green-100 dark:bg-green-950/30',
-      warning: 'bg-yellow-100 dark:bg-yellow-950/30',
-      error: 'bg-red-100 dark:bg-red-950/30',
+      default: 'bg-semantic-progress-track',
+      success: 'bg-semantic-progress-success-track',
+      warning: 'bg-semantic-progress-warning-track',
+      error: 'bg-semantic-progress-error-track',
     },
   },
   defaultVariants: {
@@ -22,10 +22,10 @@ const progressIndicatorVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-slate-900 dark:bg-slate-50',
-        success: 'bg-green-600 dark:bg-green-500',
-        warning: 'bg-yellow-600 dark:bg-yellow-500',
-        error: 'bg-red-600 dark:bg-red-500',
+        default: 'bg-semantic-progress-fill',
+        success: 'bg-semantic-progress-success-fill',
+        warning: 'bg-semantic-progress-warning-fill',
+        error: 'bg-semantic-progress-error-fill',
       },
     },
     defaultVariants: {
@@ -51,11 +51,11 @@ const Progress = React.forwardRef<
     <div className="w-full space-y-2" aria-live="polite">
       {(showLabel || label) && (
         <div className="flex items-center justify-between text-sm">
-          <span className="text-slate-700 dark:text-slate-300">
+          <span className="text-semantic-fg-secondary">
             {label || 'Progress'}
           </span>
           {showLabel && (
-            <span className="font-medium text-slate-900 dark:text-slate-50">
+            <span className="font-medium text-semantic-fg-primary">
               {progressValue}%
             </span>
           )}

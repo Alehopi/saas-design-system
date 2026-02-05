@@ -57,7 +57,7 @@ const AvatarFallback = React.forwardRef<
   <AvatarPrimitive.Fallback
     ref={ref}
     className={cn(
-      'flex h-full w-full items-center justify-center rounded-full bg-slate-100 font-medium text-slate-900 dark:bg-slate-800 dark:text-slate-100',
+      'flex h-full w-full items-center justify-center rounded-full bg-semantic-bg-sunken font-medium text-semantic-fg-primary',
       className
     )}
     {...props}
@@ -81,10 +81,10 @@ const AvatarWithLabel = React.forwardRef<
   AvatarWithLabelProps
 >(({ src, alt, fallback, size = 'md', label, description, status, className, ...props }, ref) => {
   const statusColors = {
-    online: 'bg-green-500',
-    offline: 'bg-slate-400',
-    away: 'bg-yellow-500',
-    busy: 'bg-red-500',
+    online: 'bg-semantic-indicator-online',
+    offline: 'bg-semantic-indicator-offline',
+    away: 'bg-semantic-indicator-away',
+    busy: 'bg-semantic-indicator-busy',
   };
 
   const statusSizes = {
@@ -103,7 +103,7 @@ const AvatarWithLabel = React.forwardRef<
       {status && (
         <span
           className={cn(
-            'absolute bottom-0 right-0 block rounded-full border-white dark:border-slate-900',
+            'absolute bottom-0 right-0 block rounded-full border-semantic-indicator-border',
             statusColors[status],
             statusSizes[size]
           )}
@@ -123,10 +123,10 @@ const AvatarWithLabel = React.forwardRef<
       {avatarComponent}
       <div className="flex flex-col">
         {label && (
-          <span className="text-sm font-medium text-slate-900 dark:text-slate-100">{label}</span>
+          <span className="text-sm font-medium text-semantic-fg-primary">{label}</span>
         )}
         {description && (
-          <span className="text-xs text-slate-600 dark:text-slate-300">{description}</span>
+          <span className="text-xs text-semantic-fg-secondary">{description}</span>
         )}
       </div>
     </div>

@@ -25,10 +25,9 @@ const SwitchRoot = React.forwardRef<
       className={cn(
         'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent',
         'transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
-        'disabled:cursor-not-allowed disabled:bg-slate-100 dark:disabled:bg-slate-800',
-        'data-[state=checked]:bg-blue-600 data-[state=unchecked]:bg-slate-200',
-        'dark:data-[state=unchecked]:bg-slate-700',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-semantic-focus focus-visible:ring-offset-2',
+        'disabled:cursor-not-allowed disabled:bg-semantic-bg-disabled',
+        'data-[state=checked]:bg-semantic-control-bg-checked data-[state=unchecked]:bg-semantic-control-unchecked',
         sizeClasses[size],
         className
       )}
@@ -37,7 +36,7 @@ const SwitchRoot = React.forwardRef<
     >
       <SwitchPrimitive.Thumb
         className={cn(
-          'pointer-events-none block rounded-full bg-white shadow-lg ring-0 transition-transform',
+          'pointer-events-none block rounded-full bg-semantic-control-thumb shadow-lg ring-0 transition-transform',
           'data-[state=unchecked]:translate-x-0',
           thumbSizeClasses[size]
         )}
@@ -71,12 +70,12 @@ const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitive.Root>, S
           <div className="flex-1">
             <label
               htmlFor={switchId}
-              className="cursor-pointer select-none text-sm font-medium leading-none text-slate-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-100"
+              className="cursor-pointer select-none text-sm font-medium leading-none text-semantic-fg-primary peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               {label}
             </label>
             {description && (
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{description}</p>
+              <p className="mt-1 text-sm text-semantic-fg-secondary">{description}</p>
             )}
           </div>
         )}
@@ -87,12 +86,12 @@ const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitive.Root>, S
           <div className="flex-1">
             <label
               htmlFor={switchId}
-              className="cursor-pointer select-none text-sm font-medium leading-none text-slate-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-slate-100"
+              className="cursor-pointer select-none text-sm font-medium leading-none text-semantic-fg-primary peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               {label}
             </label>
             {description && (
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{description}</p>
+              <p className="mt-1 text-sm text-semantic-fg-secondary">{description}</p>
             )}
           </div>
         )}

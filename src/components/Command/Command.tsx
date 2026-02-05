@@ -11,7 +11,7 @@ const Command = React.forwardRef<
     ref={ref}
     className={cn(
       'flex h-full w-full flex-col overflow-hidden rounded-md',
-      'bg-white dark:bg-slate-950',
+      'bg-semantic-bg-elevated',
       className
     )}
     {...props}
@@ -60,15 +60,14 @@ const CommandDialog = ({ open, onOpenChange, children }: CommandDialogProps) => 
     <div className="fixed inset-0 z-50">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+        className="fixed inset-0 bg-semantic-bg-overlay backdrop-blur-sm"
         onClick={() => handleOpenChange(false)}
       />
       {/* Dialog */}
       <div className="fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 p-4">
         <Command
           className={cn(
-            'rounded-lg border border-slate-200 shadow-2xl',
-            'dark:border-slate-800'
+            'rounded-lg border border-semantic-border-default shadow-2xl',
           )}
         >
           {children}
@@ -82,14 +81,14 @@ const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
-  <div className="flex items-center border-b border-slate-200 px-3 dark:border-slate-800">
-    <Search className="mr-2 h-4 w-4 shrink-0 text-slate-500 dark:text-slate-400" aria-hidden="true" />
+  <div className="flex items-center border-b border-semantic-border-default px-3">
+    <Search className="mr-2 h-4 w-4 shrink-0 text-semantic-fg-muted" aria-hidden="true" />
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
         'flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none',
-        'placeholder:text-slate-500 dark:placeholder:text-slate-400',
-        'disabled:cursor-not-allowed disabled:text-slate-400 dark:disabled:text-slate-500',
+        'placeholder:text-semantic-control-placeholder',
+        'disabled:cursor-not-allowed disabled:text-semantic-fg-disabled',
         className
       )}
       {...props}
@@ -116,7 +115,7 @@ const CommandEmpty = React.forwardRef<
 >((props, ref) => (
   <CommandPrimitive.Empty
     ref={ref}
-    className="py-6 text-center text-sm text-slate-500 dark:text-slate-400"
+    className="py-6 text-center text-sm text-semantic-fg-muted"
     {...props}
   />
 ));
@@ -132,7 +131,7 @@ const CommandGroup = React.forwardRef<
       'overflow-hidden p-1',
       '[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5',
       '[&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium',
-      '[&_[cmdk-group-heading]]:text-slate-500 [&_[cmdk-group-heading]]:dark:text-slate-400',
+      '[&_[cmdk-group-heading]]:text-semantic-fg-muted',
       className
     )}
     {...props}
@@ -146,7 +145,7 @@ const CommandSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CommandPrimitive.Separator
     ref={ref}
-    className={cn('-mx-1 h-px bg-slate-200 dark:bg-slate-800', className)}
+    className={cn('-mx-1 h-px bg-semantic-border-default', className)}
     {...props}
   />
 ));
@@ -160,9 +159,8 @@ const CommandItem = React.forwardRef<
     ref={ref}
     className={cn(
       'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none',
-      'data-[selected=true]:bg-slate-100 data-[selected=true]:text-slate-900',
-      'dark:data-[selected=true]:bg-slate-800 dark:data-[selected=true]:text-slate-50',
-      'data-[disabled=true]:pointer-events-none data-[disabled=true]:text-slate-400 dark:data-[disabled=true]:text-slate-500',
+      'data-[selected=true]:bg-semantic-bg-selected data-[selected=true]:text-semantic-fg-primary',
+      'data-[disabled=true]:pointer-events-none data-[disabled=true]:text-semantic-fg-disabled',
       className
     )}
     {...props}
@@ -176,7 +174,7 @@ const CommandShortcut = ({
 }: React.HTMLAttributes<HTMLSpanElement>) => (
   <span
     className={cn(
-      'ml-auto text-xs tracking-widest text-slate-500 dark:text-slate-400',
+      'ml-auto text-xs tracking-widest text-semantic-fg-muted',
       className
     )}
     {...props}

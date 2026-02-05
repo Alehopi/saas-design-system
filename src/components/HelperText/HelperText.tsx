@@ -5,8 +5,8 @@ import { cn } from '../../lib/utils';
 const helperTextVariants = cva('text-sm', {
   variants: {
     variant: {
-      default: 'text-slate-600 dark:text-slate-400',
-      muted: 'text-slate-500 dark:text-slate-500',
+      default: 'text-semantic-fg-secondary',
+      muted: 'text-semantic-fg-muted',
     },
     size: {
       sm: 'text-xs',

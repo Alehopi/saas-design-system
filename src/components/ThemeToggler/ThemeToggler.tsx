@@ -23,7 +23,7 @@ export function ThemeToggler({ showSystem = false, size = 'md', className }: The
 
   if (showSystem) {
     return (
-      <div role="radiogroup" aria-label="Theme selector" className={cn('inline-flex items-center rounded-lg border border-slate-200 bg-slate-100 p-1 dark:border-slate-700 dark:bg-slate-800', className)}>
+      <div role="radiogroup" aria-label="Theme selector" className={cn('inline-flex items-center rounded-lg border border-semantic-border-default bg-semantic-bg-sunken p-1', className)}>
         <button
           type="button"
           role="radio"
@@ -32,8 +32,8 @@ export function ThemeToggler({ showSystem = false, size = 'md', className }: The
           className={cn(
             'inline-flex items-center justify-center rounded-md p-1.5 transition-colors',
             theme === 'light'
-              ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-slate-100'
-              : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+              ? 'bg-semantic-bg-segment-active text-semantic-fg-segment-active shadow-sm'
+              : 'text-semantic-fg-muted hover:text-semantic-fg-secondary'
           )}
           aria-label="Light mode"
         >
@@ -47,8 +47,8 @@ export function ThemeToggler({ showSystem = false, size = 'md', className }: The
           className={cn(
             'inline-flex items-center justify-center rounded-md p-1.5 transition-colors',
             theme === 'dark'
-              ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-slate-100'
-              : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+              ? 'bg-semantic-bg-segment-active text-semantic-fg-segment-active shadow-sm'
+              : 'text-semantic-fg-muted hover:text-semantic-fg-secondary'
           )}
           aria-label="Dark mode"
         >
@@ -62,8 +62,8 @@ export function ThemeToggler({ showSystem = false, size = 'md', className }: The
           className={cn(
             'inline-flex items-center justify-center rounded-md p-1.5 transition-colors',
             theme === 'system'
-              ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-slate-100'
-              : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+              ? 'bg-semantic-bg-segment-active text-semantic-fg-segment-active shadow-sm'
+              : 'text-semantic-fg-muted hover:text-semantic-fg-secondary'
           )}
           aria-label="System theme"
         >
@@ -79,8 +79,7 @@ export function ThemeToggler({ showSystem = false, size = 'md', className }: The
       onClick={toggleTheme}
       className={cn(
         buttonSize,
-        'inline-flex items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-900',
-        'dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-slate-100',
+        'inline-flex items-center justify-center rounded-md border border-semantic-border-default bg-semantic-bg-elevated text-semantic-fg-secondary transition-colors hover:bg-semantic-bg-hover hover:text-semantic-fg-primary',
         className
       )}
       aria-label={resolvedTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
