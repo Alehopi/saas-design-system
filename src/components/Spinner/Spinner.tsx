@@ -12,7 +12,7 @@ const spinnerVariants = cva('animate-spin', {
       xl: 'h-12 w-12',
     },
     variant: {
-      default: 'text-semantic-fg-primary',
+      default: 'text-semantic-action-primary',
       primary: 'text-semantic-action-primary',
       secondary: 'text-semantic-fg-secondary',
       light: 'text-semantic-fg-inverse',

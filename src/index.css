@@ -90,7 +90,7 @@
 
   /* Progress */
   --color-progress-track: #f1f5f9;
-  --color-progress-fill: #0f172a;
+  --color-progress-fill: #2563eb;
   --color-progress-success-track: #dcfce7;
   --color-progress-success-fill: #16a34a;
   --color-progress-warning-track: #fef9c3;
@@ -99,7 +99,7 @@
   --color-progress-error-fill: #dc2626;
 
   /* Badge */
-  --color-badge-default-bg: #0f172a;
+  --color-badge-default-bg: #2563eb;
   --color-badge-default-fg: #f8fafc;
   --color-badge-secondary-bg: #f1f5f9;
   --color-badge-secondary-fg: #0f172a;
@@ -207,7 +207,7 @@
 
   /* Progress */
   --color-progress-track: #1e293b;
-  --color-progress-fill: #f8fafc;
+  --color-progress-fill: #3b82f6;
   --color-progress-success-track: rgba(20, 83, 45, 0.3);
   --color-progress-success-fill: #22c55e;
   --color-progress-warning-track: rgba(120, 53, 15, 0.3);
@@ -216,8 +216,8 @@
   --color-progress-error-fill: #f87171;
 
   /* Badge */
-  --color-badge-default-bg: #f8fafc;
-  --color-badge-default-fg: #0f172a;
+  --color-badge-default-bg: #2563eb;
+  --color-badge-default-fg: #f8fafc;
   --color-badge-secondary-bg: #1e293b;
   --color-badge-secondary-fg: #f8fafc;
   --color-badge-outline-fg: #f8fafc;
