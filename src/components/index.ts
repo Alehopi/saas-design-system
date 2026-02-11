@@ -161,3 +161,9 @@ export { FieldGroup, fieldGroupVariants, type FieldGroupProps } from './FieldGro
 
 // ThemeToggler
 export { ThemeToggler, type ThemeTogglerProps } from './ThemeToggler';
+
+// Pagination
+export { Pagination, paginationItemVariants, type PaginationProps } from './Pagination';
+
+// Skeleton
+export { Skeleton, SkeletonText, SkeletonCard, skeletonVariants, type SkeletonProps, type SkeletonTextProps, type SkeletonCardProps } from './Skeleton';

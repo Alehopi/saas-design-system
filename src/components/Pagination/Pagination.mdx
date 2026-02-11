@@ -1,0 +1,112 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as PaginationStories from './Pagination.stories';
+
+<Meta of={PaginationStories} />
+
+# Pagination
+
+Pagination allows users to navigate through large sets of data split across multiple pages. It provides clear controls for moving between pages.
+
+<Canvas of={PaginationStories.Default} />
+
+## Overview
+
+The Pagination component renders a navigable page selector with previous/next buttons, page numbers, and ellipsis indicators for large page ranges. It uses an intelligent algorithm to show relevant pages around the current selection.
+
+## When to Use
+
+### Use Pagination when:
+
+- **Tables**: Large datasets displayed in rows
+- **Search results**: Paginated query results
+- **Lists**: Long lists of items (users, products, orders)
+- **Content feeds**: Blog posts, articles, comments
+- **Directories**: Multi-page directories or catalogs
+
+### Don't use Pagination when:
+
+- **Small datasets**: Under 10 items, show all at once
+- **Infinite scroll**: Use virtual scrolling instead
+- **Single page**: No need for pagination
+- **Tabs/Steps**: Use Tabs or Stepper components
+
+## Many Pages
+
+<Canvas of={PaginationStories.ManyPages} />
+
+## Few Pages
+
+<Canvas of={PaginationStories.FewPages} />
+
+## All Sizes
+
+<Canvas of={PaginationStories.AllSizes} />
+
+## With Table
+
+<Canvas of={PaginationStories.WithTable} />
+
+## Accessibility
+
+- **Navigation role**: `role="navigation"` with `aria-label="Pagination"`
+- **Current page**: `aria-current="page"` on active button
+- **Labels**: `aria-label` on prev/next buttons ("Go to previous page", "Go to next page")
+- **Page labels**: Each page button has `aria-label="Go to page N"`
+- **Disabled state**: Previous disabled on first page, next disabled on last page
+- **Keyboard**: Full keyboard navigation with Tab and Enter/Space
+
+## Best Practices
+
+### Do
+
+- Show current page context ("Showing 1–10 of 47")
+- Keep pagination visible near the data
+- Use appropriate size for the layout
+- Disable prev/next at boundaries
+- Maintain page state in URL when possible
+
+### Don't
+
+- Show pagination for small datasets
+- Hide page count from users
+- Use very small page sizes (prefer 10-25 items)
+- Forget to handle edge cases (page 0, beyond max)
+
+## API Reference
+
+### Pagination Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `currentPage` | `number` | - | Current active page (1-indexed) |
+| `totalPages` | `number` | - | Total number of pages |
+| `onPageChange` | `(page: number) => void` | - | Callback when page changes |
+| `siblingCount` | `number` | `1` | Sibling pages shown on each side |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
+| `showEdges` | `boolean` | `true` | Show first/last page buttons |
+| `className` | `string` | - | Additional CSS classes |
+
+### Usage Examples
+
+```tsx
+import { Pagination } from '@/components';
+
+// Basic
+const [page, setPage] = useState(1);
+<Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
+
+// Small size for tables
+<Pagination currentPage={page} totalPages={50} onPageChange={setPage} size="sm" />
+
+// With context text
+<div className="flex items-center justify-between">
+  <p>Showing 1–10 of 100</p>
+  <Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
+</div>
+```
+
+## Related Components
+
+- **Table** - Data display with pagination
+- **Select** - Page size selector
+- **Button** - Individual navigation controls

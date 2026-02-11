@@ -1,0 +1,137 @@
+import { Canvas, Meta, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as SkeletonStories from './Skeleton.stories';
+
+<Meta of={SkeletonStories} />
+
+# Skeleton
+
+Skeleton loaders are placeholder elements that mimic the shape of content while it's loading. They provide a visual preview of the layout before data arrives.
+
+<Canvas of={SkeletonStories.Default} />
+
+## Overview
+
+The Skeleton component provides animated placeholder shapes that indicate content is loading. Unlike spinners, skeletons maintain the layout structure and reduce perceived loading time by giving users a preview of what's coming.
+
+## When to Use
+
+### Use Skeleton when:
+
+- **Page load**: Initial content rendering
+- **Data fetching**: API calls for cards, lists, profiles
+- **Image loading**: Before images are ready
+- **Lazy loading**: Deferred content sections
+- **Dashboard**: Multiple data cards loading simultaneously
+
+### Don't use Skeleton when:
+
+- **Quick operations**: Under 300ms, show nothing
+- **Destructive actions**: Use confirmation dialogs
+- **Background tasks**: Use toast notifications
+- **Known content**: Don't skeleton static content
+
+## Variants
+
+<Canvas of={SkeletonStories.AllVariants} />
+
+## Presets
+
+### Text Block
+
+<Canvas of={SkeletonStories.TextBlock} />
+
+### Full Card
+
+<Canvas of={SkeletonStories.FullCard} />
+
+## Real World Examples
+
+### User Profile
+
+<Canvas of={SkeletonStories.UserProfile} />
+
+### List Items
+
+<Canvas of={SkeletonStories.ListItems} />
+
+### Dashboard Cards
+
+<Canvas of={SkeletonStories.DashboardCards} />
+
+## Accessibility
+
+- **Status role**: `role="status"` for screen reader announcements
+- **Labels**: `aria-label="Loading"` on each skeleton
+- **Screen reader text**: Hidden "Loading..." text via `sr-only`
+- **Reduced motion**: Animation respects `prefers-reduced-motion`
+
+## Best Practices
+
+### Do
+
+- Match skeleton shapes to actual content layout
+- Use consistent animation timing
+- Show skeletons for content taking over 300ms
+- Transition smoothly from skeleton to content
+- Use SkeletonCard/SkeletonText presets for common patterns
+
+### Don't
+
+- Use skeletons for every loading state (spinners are fine for buttons)
+- Animate too aggressively (subtle pulse is best)
+- Show skeletons for content that's already cached
+- Mix skeletons and spinners in the same view
+
+## API Reference
+
+### Skeleton Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'circular' \| 'text'` | `'default'` | Shape variant |
+| `width` | `string \| number` | - | Width (CSS value or px) |
+| `height` | `string \| number` | - | Height (CSS value or px) |
+| `className` | `string` | - | Additional CSS classes |
+
+### SkeletonText Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `lines` | `number` | `3` | Number of text lines |
+| `lastLineWidth` | `string` | `'60%'` | Width of the last line |
+
+### SkeletonCard Props
+
+Pre-composed card skeleton with avatar, image placeholder, and text lines.
+
+### Usage Examples
+
+```tsx
+import { Skeleton, SkeletonText, SkeletonCard } from '@/components';
+
+// Basic shapes
+<Skeleton className="h-12 w-48" />
+<Skeleton variant="circular" width={40} height={40} />
+<Skeleton variant="text" className="h-4 w-64" />
+
+// Text block
+<SkeletonText lines={3} />
+
+// Full card preset
+<SkeletonCard />
+
+// Custom composition
+<div className="flex items-center gap-3">
+  <Skeleton variant="circular" width={40} height={40} />
+  <div className="flex-1 space-y-2">
+    <Skeleton variant="text" className="h-4 w-3/4" />
+    <Skeleton variant="text" className="h-3 w-1/2" />
+  </div>
+</div>
+```
+
+## Related Components
+
+- **Spinner** - Generic loading indicator
+- **Progress** - Determinate loading progress
+- **Card** - Content container (matches SkeletonCard)
